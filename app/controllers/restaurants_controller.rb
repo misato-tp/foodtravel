@@ -33,9 +33,9 @@ class RestaurantsController < ApplicationController
   def destroy
     restaurant = Restaurant.find(params[:id])
     if restaurant.destroy
-      redirect_to restaurants_path, notice: "削除が完了しました"
+      redirect_to restaurants_path
     else
-      redirect_to restaurants_path, alert: "削除に失敗しました"
+      redirect_to restaurants_path
     end
   end
 end
