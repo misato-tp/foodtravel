@@ -1,0 +1,25 @@
+<%= form_with model: @restaurant do |f| %>
+  <div>
+    <%= f.label :name, "お店の名前" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div>
+    <%= f.label :image, "お店の外観"%>
+    <%= f.file_field :image %>
+  </div>
+
+  <div>
+    <%= f.label :memo, "メモ" %>
+    <%= f.text_area :memo %>
+  </div>
+
+  <div>
+    <%= f.submit '登録' %>
+  </div>
+<% end %>

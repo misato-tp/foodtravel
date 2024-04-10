@@ -1,0 +1,11 @@
+<%= link_to "新しいお店をみんなに知らせる", new_restaurant_path %>
+<% @restaurants.each do |r| %>
+  <table>
+      <tr>
+          <td><%= r.name %></td>
+          <td><%= r.address %></td>
+          <td><%= r.memo %></td>
+          <td><%= link_to "詳細", r %></td>
+      </tr>
+  </table>
+<% end %>
