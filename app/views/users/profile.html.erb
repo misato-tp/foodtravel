@@ -1,0 +1,13 @@
+profileページだよ
+    <div class="border-bottom">
+        <h3>プロフィール</h3>
+        <h3><%= link_to "編集", "edit" %></h3>
+    </div>
+
+  <table class="table">
+
+    <tr>
+    <th>名前</th>
+    <td><%= current_user.username %></td>
+    </tr>
+  </table>
