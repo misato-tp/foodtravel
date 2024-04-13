@@ -1,3 +1,24 @@
+GIT
+  remote: https://github.com/heartcombo/devise.git
+  revision: a259ff3c28912a27329727f4a3c2623d3f5cb6f2
+  specs:
+    devise (5.0.0.beta)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 6.0.0)
+      responders
+      warden (~> 1.2.3)
+
+GIT
+  remote: https://github.com/zquestz/omniauth-google-oauth2.git
+  revision: 294bb61b34ade2f80b20ba1ea1d8ceeb752f88d1
+  specs:
+    omniauth-google-oauth2 (1.1.2)
+      jwt (>= 2.0)
+      oauth2 (~> 2.0)
+      omniauth (~> 2.0)
+      omniauth-oauth2 (~> 1.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -98,12 +119,6 @@ GEM
     concurrent-ruby (1.2.3)
     crass (1.0.6)
     date (3.3.4)
-    devise (4.9.4)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
-      responders
-      warden (~> 1.2.3)
     diff-lcs (1.5.1)
     dotenv (3.1.0)
     dotenv-rails (3.1.0)
@@ -183,11 +198,6 @@ GEM
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
       rack-protection
-    omniauth-google-oauth2 (1.1.2)
-      jwt (>= 2.0)
-      oauth2 (~> 2.0)
-      omniauth (~> 2.0)
-      omniauth-oauth2 (~> 1.8)
     omniauth-oauth2 (1.8.0)
       oauth2 (>= 1.4, < 3)
       omniauth (~> 2.0)
@@ -384,13 +394,14 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   carrierwave
-  devise
+  devise!
   dotenv-rails
   factory_bot_rails
   jbuilder (~> 2.7)
   jquery-rails
   listen (~> 3.3)
-  omniauth-google-oauth2
+  omniauth
+  omniauth-google-oauth2!
   omniauth-rails_csrf_protection
   pry-byebug
   pry-rails

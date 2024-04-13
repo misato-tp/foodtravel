@@ -67,7 +67,8 @@ gem 'bootstrap', '~> 5.3.0'
 gem 'jquery-rails'
 
 #ログイン関連
-gem 'omniauth-google-oauth2'
-gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-oauth2.git'
+gem 'omniauth'
 gem 'dotenv-rails'
-gem 'devise'
+gem 'devise', github: 'heartcombo/devise'
+gem 'omniauth-rails_csrf_protection'
