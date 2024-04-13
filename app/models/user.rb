@@ -12,4 +12,11 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end
   end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      #SecureRandom.urlsafe_base64はURLに使えるランダムな文字列を生成するメソッド。
+    end
+  end
 end
