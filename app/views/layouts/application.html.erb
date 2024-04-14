@@ -13,6 +13,7 @@
 
   <body>
     <header>
+      <%= link_to "ホーム(ロゴを後でここに貼る)", root_path %>
       <% if user_signed_in? %>
         <li>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
