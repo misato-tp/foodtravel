@@ -3,3 +3,6 @@ ja:
     attributes:
       user:
         username: ユーザー名
+      restaurant:
+        name: お店の名前
+        address: 住所
