@@ -5,6 +5,8 @@ class User < ApplicationRecord
           :recoverable, :rememberable, :validatable,
           :omniauthable, omniauth_providers: [:google_oauth2]
 
+  validates :username, presence: true
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.username = auth.info.name
@@ -14,7 +16,7 @@ class User < ApplicationRecord
   end
 
   def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |user|
+    find_or_create_by!(email: 'guest@example.com', username: 'guest_user') do |user|
       user.password = SecureRandom.urlsafe_base64
       #SecureRandom.urlsafe_base64はURLに使えるランダムな文字列を生成するメソッド。
     end
