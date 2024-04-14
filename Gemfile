@@ -72,3 +72,7 @@ gem 'omniauth'
 gem 'dotenv-rails'
 gem 'devise', github: 'heartcombo/devise'
 gem 'omniauth-rails_csrf_protection'
+
+#deviseの日本語化
+gem 'rails-i18n'
+gem 'devise-i18n-views'
