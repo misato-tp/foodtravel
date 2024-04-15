@@ -4,7 +4,13 @@
   <p>住所</p>
   <div class="restaurant_address"><%= @restaurant.address %></div>
   <p>画像</p>
-  <div class="restaurant_image"><%= @restaurant.image %></div>
+  <div class="restaurant_image">
+    <% if @restaurant.image? %>
+      <%= image_tag @restaurant.image.url %>
+    <% else %>
+      <%= image_tag "noimage.png" %>
+    <% end %>
+  </div>
   <p>メモ</p>
   <div class="restaurant_memo"><%= @restaurant.memo %></div>
   <%= link_to "削除", restaurant_path(@restaurant.id), method: :delete %>

@@ -42,3 +42,6 @@ yarn-debug.log*
 
 #Google login API
 /.env
+
+#画像
+/public/uploads
