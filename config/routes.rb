@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     get :mypage
     end
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :reports, :restaurants
+
+  resources :restaurants do
+    resources :reports, only: [:create, :destroy]
+  end
   root to: 'homes#index'
 end

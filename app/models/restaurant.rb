@@ -4,6 +4,7 @@ class Restaurant < ApplicationRecord
 
   mount_uploader :image, ImageUploader
   belongs_to :user
+  has_many :reports, dependent: :destroy
 
   def address_uniqueness_check
     #addressが空欄でないことと、今のレコード(id: id)を除いて、Restaurantテーブルのレコード全てに対して、同じaddressがないかを確認する

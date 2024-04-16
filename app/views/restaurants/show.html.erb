@@ -17,3 +17,29 @@
   <li><%= link_to "削除", restaurant_path(@restaurant.id), method: :delete %></li>
   <li><%= link_to "編集", edit_restaurant_path(@restaurant.id) %></li>
 <% end %>
+
+<%= form_with model:[@restaurant, @report] do |f| %>
+  <ul>
+    <li><%= f.label :title, "タイトル" %></li>
+    <li><%= f.text_field :title, class: "" %></li>
+    <li><%= f.label :recommend, "おすすめの料理" %></li>
+    <li><%= f.text_field :recommend, class: "" %></li>
+    <li><%= f.label :memo, "メモ" %></li>
+    <li><%= f.text_area :memo, rows:'5', placeholder: "このお店の感想を書こう！", class:"" %></li>
+    <li><%= f.label :image, "写真" %></li>
+    <li><%= f.file_field :image, class:"" %></li>
+  </ul>
+    <div class="text-right">
+      <%= f.submit "登録", class: "btn btn-primary mt-3 mb-3" %>
+    </div>
+<% end %>
+
+<% if @restaurant_reports.nil? %>
+  投稿されたレポはまだありません。
+<% else %>
+  <% @restaurant_reports.each do |report| %>
+    <div class="col-3 text-center">
+      <%= report.user.username %>
+      <%= link_to "削除", restaurant_report_path(report.restaurant, report), method: :delete %>
+  <% end %>
+<% end %>
