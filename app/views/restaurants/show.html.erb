@@ -46,7 +46,7 @@
       <li><%= report.memo %></li>
       <% if current_user.id == report.user.id %>
         <li><%= link_to "削除", restaurant_report_path(report.restaurant, report), method: :delete %></li>
-        <li><%= link_to "編集", edit_restaurant_report_path(report.restaurant.id) %></li>
+        <li><%= link_to "編集", edit_restaurant_report_path(@restaurant, report) %></li>
       <% end %>
     </ul>
   <% end %>

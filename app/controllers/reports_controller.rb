@@ -18,11 +18,14 @@ class ReportsController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @report = @restaurant.reports.find(params[:id])
   end
 
   def update
+    report = Report.find(params[:id])
+    report.update(report_params)
+    redirect_to restaurant_path(report.restaurant.id)
   end
 
   def destroy
@@ -35,6 +38,6 @@ class ReportsController < ApplicationController
   private
 
   def report_params
-    params.require(:report).permit(:title, :recommend, :memo, :image)
+    params.require(:report).permit(:title, :recommend, :memo, :image, :report_id)
   end
 end
