@@ -38,8 +38,13 @@
   投稿されたレポはまだありません。
 <% else %>
   <% @restaurant_reports.each do |report| %>
-    <div class="col-3 text-center">
-      <%= report.user.username %>
-      <%= link_to "削除", restaurant_report_path(report.restaurant, report), method: :delete %>
+    <ul>
+      <li><%= report.user.username %></li>
+      <li><%= report.title %></li>
+      <li><%= report.recommend %></li>
+      <li><%= report.image %></li>
+      <li><%= report.memo %></li>
+      <li><%= link_to "削除", restaurant_report_path(report.restaurant, report), method: :delete %></li>
+    </ul>
   <% end %>
 <% end %>
