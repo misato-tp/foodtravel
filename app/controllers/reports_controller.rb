@@ -27,6 +27,7 @@ class ReportsController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant_id])
     @restaurant_reports = @restaurant.reports
     Report.find_by(id: params[:id], restaurant_id: params[:restaurant_id]).destroy
+    redirect_to restaurant_path(@restaurant.id)
   end
 
   private
