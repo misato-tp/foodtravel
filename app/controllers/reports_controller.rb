@@ -18,6 +18,8 @@ class ReportsController < ApplicationController
   end
 
   def edit
+    @restaurant = Restaurant.find(params[:id])
+    @report = @restaurant.reports.find(params[:id])
   end
 
   def update
