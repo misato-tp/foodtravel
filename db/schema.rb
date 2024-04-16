@@ -13,10 +13,12 @@
 ActiveRecord::Schema.define(version: 2024_04_15_103024) do
 
   create_table "reports", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.string "image"
     t.string "recommend"
-    t.string "memo"
+    t.string "memo", null: false
+    t.integer "user_id", null: false
+    t.integer "restaurant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

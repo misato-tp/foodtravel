@@ -11,5 +11,7 @@ import "bootstrap";
 import "../stylesheets/application.scss";
 
 Rails.start()
-Turbolinks.start()
+//Turbolinks.start()
 ActiveStorage.start()
+
+require('./preview')
