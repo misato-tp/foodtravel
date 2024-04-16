@@ -44,7 +44,10 @@
       <li><%= report.recommend %></li>
       <li><%= image_tag report.image.url %></li>
       <li><%= report.memo %></li>
-      <li><%= link_to "削除", restaurant_report_path(report.restaurant, report), method: :delete %></li>
+      <% if current_user.id == report.user.id %>
+        <li><%= link_to "削除", restaurant_report_path(report.restaurant, report), method: :delete %></li>
+        <li><%= link_to "編集", edit_restaurant_report_path(report.restaurant.id) %></li>
+      <% end %>
     </ul>
   <% end %>
 <% end %>

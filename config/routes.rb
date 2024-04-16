@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :restaurants do
-    resources :reports, only: [:create, :destroy]
+    resources :reports, only: [:create, :edit, :destroy]
   end
   root to: 'homes#index'
 end
