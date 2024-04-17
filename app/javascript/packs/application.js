@@ -15,3 +15,19 @@ Rails.start()
 ActiveStorage.start()
 
 require('./preview')
+require('./jquery.jpostal')
+
+$(function(){
+  $(document).on('turbolinks:load',() =>{
+    $('#restaurant_postal_code').jpostal({
+      postcode : [
+        '#restaurant_postal_code'
+      ],
+      address: {
+        "#restaurant_prefecture_code": "%3",
+        "#restaurant_city"           : "%4%5",
+        "#restaurant_street"         : "%6%7"
+      }
+    });
+  });
+});
