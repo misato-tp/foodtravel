@@ -1,5 +1,7 @@
 class Restaurant < ApplicationRecord
-  validates :name, :address, presence: true
+  with_options presence: true do
+    validates :name, :postal_code, :prefecture_code, :city, :street
+  end
   validate :address_uniqueness_check
 
   mount_uploader :image, ImageUploader

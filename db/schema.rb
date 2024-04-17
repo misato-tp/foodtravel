@@ -25,12 +25,15 @@ ActiveRecord::Schema.define(version: 2024_04_15_103024) do
 
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
-    t.string "address"
+    t.integer "postal_code", null: false
+    t.string "prefecture_code", null: false
+    t.string "city", null: false
+    t.string "street", null: false
+    t.string "other_address"
     t.string "image"
     t.text "memo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

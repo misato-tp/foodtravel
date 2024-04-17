@@ -6,8 +6,28 @@
   </div>
 
   <div>
-    <%= f.label :address, "住所" %>
-    <%= f.text_field :address %>
+    <%= f.label :postal_code, "郵便番号" %>
+    <%= f.text_field :postal_code %>
+  </div>
+
+  <div>
+    <%= f.label :prefecture_code, "都道府県名" %>
+    <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name %>
+  </div>
+
+  <div>
+    <%= f.label :city, "市区町村" %>
+    <%= f.text_field :city %>
+  </div>
+
+  <div>
+    <%= f.label :street, "わからん" %>
+    <%= f.text_field :street %>
+  </div>
+
+  <div>
+    <%= f.label :other_address %>
+    <%= f.text_field :other_address %>
   </div>
 
   <div>
