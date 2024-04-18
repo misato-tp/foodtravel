@@ -17,8 +17,8 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-$(function() {
-  $(document).on('turbolinks:load', () => {
+
+  $(document).on('turbolinks:load', function (){
     $('#restaurant_postal_code.form_control').jpostal({
       postcode : [
         '#restaurant_postal_code.form_control'
@@ -31,4 +31,3 @@ $(function() {
       }
     });
   });
-});
