@@ -33,3 +33,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+jQuery(document).on("turbolinks:load", function () {
+  $('#restaurant_postal_code').jpostal({
+    postcode: [
+      '#restaunrant_postal_code'
+    ],
+    address: {
+      '#restaurant_prefecture_code': '%3',
+      '#restaurant_city': '%4',
+      '#restaurant_street': '%5%6',
+      '#restaurant_other_address': '%7'
+    },
+  })
+})

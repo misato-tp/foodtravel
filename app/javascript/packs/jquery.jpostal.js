@@ -1,3 +1,4 @@
+import $ from 'jquery'
 /*jslint browser:true, devel:true*/
 /*jslint unparam:true*/
 /*global window, $, jQuery*/
