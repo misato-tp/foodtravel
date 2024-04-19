@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 2024_04_15_103024) do
     t.string "street", null: false
     t.string "other_address"
     t.string "image"
+    t.float "latitude"
+    t.float "longitude"
     t.text "memo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

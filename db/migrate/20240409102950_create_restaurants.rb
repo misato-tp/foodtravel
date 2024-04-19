@@ -8,6 +8,8 @@ class CreateRestaurants < ActiveRecord::Migration[6.1]
       t.string :street, null: false
       t.string :other_address
       t.string :image
+      t.float :latitude
+      t.float :longitude
       t.text :memo
 
       t.timestamps
