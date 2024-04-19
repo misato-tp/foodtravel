@@ -28,9 +28,12 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    restaurant = Restaurant.find(params[:id])
-    restaurant.update(restaurant_params)
-    redirect_to restaurant_path(restaurant.id)
+    @restaurant = Restaurant.find(params[:id])
+    if @restaurant.update(restaurant_params)
+      redirect_to restaurant_path(@restaurant.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
