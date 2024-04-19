@@ -7,11 +7,27 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import "bootstrap";
-import "../stylesheets/application.scss";
+import "jquery"
+import "bootstrap"
+import "../stylesheets/application.scss"
+import "./preview"
+import "./jquery.jpostal.js"
 
 Rails.start()
-//Turbolinks.start()
+Turbolinks.start()
 ActiveStorage.start()
 
-require('./preview')
+
+  $(document).on('turbolinks:load', function (){
+    $('#restaurant_postal_code.form_control').jpostal({
+      postcode : [
+        '#restaurant_postal_code.form_control'
+      ],
+      address: {
+        "#restaurant_prefecture_code.form_control": "%3",
+        "#restaurant_city.form_control"           : "%4%5",
+        "#restaurant_street.form_control"         : "%6",
+        "#restaurant_other_address.form_control"  : "%7"
+      }
+    });
+  });

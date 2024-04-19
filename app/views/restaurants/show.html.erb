@@ -2,7 +2,15 @@
 <p>お店の名前</p>
 <div class="restaurant_name"><%= @restaurant.name %></div>
 <p>住所</p>
-<div class="restaurant_address"><%= @restaurant.address %></div>
+<div class="restaurant_address">
+  <%= @restaurant.postal_code %><br>
+  <%= @restaurant.prefecture_code %>
+  <%= @restaurant.city %>
+  <%= @restaurant.street %>
+  <% if @restaurant.other_address.nil? %>
+    <%= @restaurant.other_address %>
+  <% end %>
+</div>
 <p>画像</p>
 <div class="restaurant_image">
   <% if @restaurant.image? %>

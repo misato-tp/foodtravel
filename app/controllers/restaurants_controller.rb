@@ -46,5 +46,5 @@ end
 private
 
 def restaurant_params
-  params.require(:restaurant).permit(:name, :address, :image, :memo)
+  params.require(:restaurant).permit(:name, :postal_code, :prefecture_code, :city, :street, :other_address, :image, :memo)
 end

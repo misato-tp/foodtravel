@@ -5,5 +5,9 @@ ja:
         username: ユーザー名
       restaurant:
         name: お店の名前
-        address: 住所
+        postal_code: 郵便番号
+        prefecture_code: 都道府県
+        city: 市区町村
+        street: 番地
+        other_address: 建物名
         
