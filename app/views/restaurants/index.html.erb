@@ -11,7 +11,7 @@
             <td><%= r.other_address %></td>
           <% end %>
           <td><%= r.memo %></td>
-          <td><%= link_to "詳細", r %></td>
+          <td><%= link_to "詳細", r, data: {"turbolinks" => false} %></td>
       </tr>
   </table>
 <% end %>
