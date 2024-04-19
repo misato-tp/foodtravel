@@ -1,0 +1,50 @@
+<%= form_with model: restaurant do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+      <%= f.label :name, "お店の名前" %>
+      <%= f.text_field :name, class: "form_control" %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :postal_code, "郵便番号" %>
+      <%= f.text_field :postal_code, id: "restaurant_postal_code", autocomplete: "postal_code", class: "form_control" %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :prefecture_code, "都道府県" %>
+      <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name, { prompt: '選択してください'}, id: "restaurant_prefecture_code", autocomplete: "prefecture_code", class: "form_control"  %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :city, "市区町村" %>
+      <%= f.text_field :city, id: "restaurant_city", autocomplete: "city", class: "form_control" %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :street, "番地" %>
+      <%= f.text_field :street, id: "restaurant_street", autocomplete: "street", class: "form_control" %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :other_address, "建物名" %>
+      <%= f.text_field :other_address, id: "restaurant_other_address", autocomplete: "other_address", class: "form_control" %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :image, "お店の外観"%>
+      <%= f.file_field :image, class: "form_control" %>
+    </div>
+    <div id="preview-image"></div>
+  
+    <div class="field">
+      <%= f.label :memo, "メモ" %>
+      <%= f.text_area :memo, class: "form_control" %>
+    </div>
+  
+    <div class="field">
+      <%= f.submit '登録' %>
+    </div>
+  <% end %>
+  
+  <%= link_to "一覧に戻る", restaurants_path %>
+  
