@@ -16,7 +16,7 @@ class Restaurant < ApplicationRecord
   jp_prefecture :prefecture_code
 
 #GoogleMapsAPIの設定
-geocoded_by :combine_address
+geocoded_by :address
 after_validation :geocode, if: :address_changed?
 
   def name_uniqueness_check
@@ -32,13 +32,5 @@ after_validation :geocode, if: :address_changed?
 
   def prefecture_name=(prefecture_name)
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
-  end
-
-  def combine_address
-    [prefecture_code, city, street, other_address]
-  end
-
-  def address_changed?
-    prefecture_code_changed? || city_changed? || street_changed? || other_address_changed?
   end
 end

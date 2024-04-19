@@ -32,7 +32,7 @@
               });
     var transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
-    var contentString = '<%= @restaurant.prefecture_code + @restaurant.city + @restaurant.street + @restaurant.other_address %>';
+    var contentString = '<%= @restaurant.address %>';
     var infowindow = new google.maps.InfoWindow({
       content: contentString
     });
