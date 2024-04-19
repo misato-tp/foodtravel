@@ -3,7 +3,13 @@
   <table>
       <tr>
           <td><%= r.name %></td>
-          <td><%= r.address %></td>
+          <td><%= r.postal_code %></td>
+          <td><%= r.prefecture_code %></td>
+          <td><%= r.city %></td>
+          <td><%= r.street %></td>
+          <% if r.other_address.present? %>
+            <td><%= r.other_address %></td>
+          <% end %>
           <td><%= r.memo %></td>
           <td><%= link_to "詳細", r %></td>
       </tr>
