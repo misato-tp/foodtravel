@@ -26,16 +26,17 @@
   function initMap() {
     var test ={lat: <%= @restaurant.latitude %>, lng: <%= @restaurant.longitude %>};
     var map = new google.maps.Map(document.getElementById('map'), {
+              mapId: 'DEMO_MAP_ID',
               zoom: 15,
               center: test
               });
     var transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
-    var contentString = '住所：<%= @restaurant.prefecture_code + @restaurant.city + @restaurant.street + @restaurant.other_address %>';
+    var contentString = '<%= @restaurant.prefecture_code + @restaurant.city + @restaurant.street + @restaurant.other_address %>';
     var infowindow = new google.maps.InfoWindow({
       content: contentString
     });
-    var marker = new google.maps.Marker({
+    var marker = new google.maps.marker.AdvancedMarkerElement({
                   position:test,
                   map: map,
                   title: contentString
@@ -46,7 +47,7 @@
   }
 </script>
 <script async defer
-              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap">
+              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap&libraries=marker">
 </script>
 <style type="text/css">
   #map { height: 200px;

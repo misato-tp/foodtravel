@@ -35,7 +35,7 @@ after_validation :geocode, if: :address_changed?
   end
 
   def combine_address
-    [prefecture_code, city, street, other_address].compact.join(', ')
+    [prefecture_code, city, street, other_address]
   end
 
   def address_changed?
