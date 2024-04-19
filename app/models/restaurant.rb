@@ -39,6 +39,6 @@ after_validation :geocode, if: :address_changed?
   end
 
   def address_changed?
-    prefecture_code_changed? || city_canged? || street_changed? || other_address_changed?
+    prefecture_code_changed? || city_changed? || street_changed? || other_address_changed?
   end
 end
