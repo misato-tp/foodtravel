@@ -1,13 +1,4 @@
 class ReportsController < ApplicationController
-  def index
-  end
-
-  def show
-  end
-
-  def new
-  end
-
   def create
     @restaurant = Restaurant.find(params[:restaurant_id])
     @report = Report.new(report_params)
