@@ -1,6 +1,6 @@
 class Restaurant < ApplicationRecord
   with_options presence: true do
-    validates :name, :postal_code, :prefecture_code, :city, :street
+    validates :name, :postal_code, :address
   end
   validate :name_uniqueness_check
 
