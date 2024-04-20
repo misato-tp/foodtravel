@@ -24,10 +24,7 @@ ActiveStorage.start()
         '#restaurant_postal_code.form_control'
       ],
       address: {
-        "#restaurant_prefecture_code.form_control": "%3",
-        "#restaurant_city.form_control"           : "%4%5",
-        "#restaurant_street.form_control"         : "%6",
-        "#restaurant_other_address.form_control"  : "%7"
+        "#restaurant_address.form_control": "%3%4%5%6%7"
       }
     });
   });
