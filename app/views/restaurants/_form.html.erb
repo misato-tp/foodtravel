@@ -16,6 +16,13 @@
     </div>
 
     <div class="field">
+      <%= f.label :country, "どこの国の料理が食べられる？" %>
+      <%= f.text_field :country %>
+      <div>【この国ですか？】</div>
+      <div id="search-result"></div>
+    </div>
+
+    <div class="field">
       <%= f.label :image, "お店の外観"%>
       <%= f.file_field :image, class: "form_control" %>
     </div>

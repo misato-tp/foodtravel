@@ -44,10 +44,16 @@ class RestaurantsController < ApplicationController
       redirect_to restaurants_path
     end
   end
+
+  def search
+    return nil if params[:input] == ""
+    country = Country.where(['name LIKE ?', "%#{params[:input]}%"])
+    render json: {keyword: country}
+  end
 end
 
 private
 
 def restaurant_params
-  params.require(:restaurant).permit(:name, :postal_code, :address, :image, :memo)
+  params.require(:restaurant).permit(:name, :postal_code, :address, :country, :image, :memo)
 end
