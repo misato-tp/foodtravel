@@ -26,10 +26,7 @@ ActiveRecord::Schema.define(version: 2024_04_15_103024) do
   create_table "restaurants", force: :cascade do |t|
     t.string "name", null: false
     t.integer "postal_code", null: false
-    t.string "prefecture_code", null: false
-    t.string "city", null: false
-    t.string "street", null: false
-    t.string "other_address"
+    t.string "address", null: false
     t.string "image"
     t.float "latitude"
     t.float "longitude"
