@@ -80,3 +80,6 @@ gem 'devise-i18n-views'
 
 #住所の入力
 gem 'jp_prefecture'
+
+#Google map　API関連
+gem 'geocoder'

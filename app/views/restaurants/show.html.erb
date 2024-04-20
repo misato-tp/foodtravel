@@ -4,12 +4,7 @@
 <p>住所</p>
 <div class="restaurant_address">
   <%= @restaurant.postal_code %><br>
-  <%= @restaurant.prefecture_code %>
-  <%= @restaurant.city %>
-  <%= @restaurant.street %>
-  <% if @restaurant.other_address.nil? %>
-    <%= @restaurant.other_address %>
-  <% end %>
+  <%= @restaurant.address %>
 </div>
 <p>画像</p>
 <div class="restaurant_image">
@@ -21,6 +16,39 @@
 </div>
 <p>メモ</p>
 <div class="restaurant_memo"><%= @restaurant.memo %></div>
+<div id="map"></div>
+<script type="text/javascript">
+  function initMap() {
+    var test ={lat: <%= @restaurant.latitude %>, lng: <%= @restaurant.longitude %>};
+    var map = new google.maps.Map(document.getElementById('map'), {
+              mapId: 'DEMO_MAP_ID',
+              zoom: 15,
+              center: test
+              });
+    var transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+    var contentString = '<%= @restaurant.address %>';
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    var marker = new google.maps.marker.AdvancedMarkerElement({
+                  position:test,
+                  map: map,
+                  title: contentString
+                });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  }
+</script>
+<script async defer
+              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap&libraries=marker">
+</script>
+<style type="text/css">
+  #map { height: 200px;
+        width: 70%;}
+</style>
+
 <% if current_user.id == @restaurant.user.id %>
   <li><%= link_to "削除", restaurant_path(@restaurant.id), method: :delete %></li>
   <li><%= link_to "編集", edit_restaurant_path(@restaurant.id) %></li>
