@@ -1,4 +1,4 @@
-if (location.pathname.match("restaurants/*")){
+if (location.pathname.match(/restaurants\/new|restaurants\/edit/)){
   window.addEventListener("load", (e) => {
     const inputElement = document.getElementById("restaurant_country");
     inputElement.addEventListener('keyup', (e) => {

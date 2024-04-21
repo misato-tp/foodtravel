@@ -56,7 +56,7 @@
 
 <% if current_user.id == @restaurant.user.id %>
   <li><%= link_to "削除", restaurant_path(@restaurant.id), method: :delete %></li>
-  <li><%= link_to "編集", edit_restaurant_path(@restaurant.id) %></li>
+  <li><%= link_to "編集", edit_restaurant_path(@restaurant.id), data: {"turbolinks" => false} %></li>
 <% end %>
 
 <%= render "reports/form", restaurant: @restaurant, report: @report %>
