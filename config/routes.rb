@@ -17,9 +17,8 @@ Rails.application.routes.draw do
 
   resources :restaurants do
     resources :reports, only: [:create, :edit, :update, :destroy]
-    collection do
-      get 'search'
-    end
+      get 'search', on: :member
+      get 'search', on: :collection
   end
   root to: 'homes#index'
 end

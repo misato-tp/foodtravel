@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-if (location.pathname.match(/restaurants\/new|restaurants\/edit/)){
+if (location.pathname.match(/\/restaurants\/(new|\d+\/edit)/)) {
   window.addEventListener("load", (e) => {
     const inputElement = document.getElementById("restaurant_country");
     inputElement.addEventListener('keyup', (e) => {
