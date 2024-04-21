@@ -6,6 +6,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @countries = @restaurant.countries
     @report = Report.new
     @restaurant_reports = @restaurant.reports.all
   end
@@ -55,5 +56,5 @@ end
 private
 
 def restaurant_params
-  params.require(:restaurant).permit(:name, :postal_code, :address, :country, :image, :memo)
+  params.require(:restaurant).permit(:name, :postal_code, :address, :image, :memo, restaurant_country_relations_attributes: [:id, :country_id])
 end
