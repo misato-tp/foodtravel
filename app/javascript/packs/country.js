@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-if (location.pathname.match(/restaurants\/new|restaurants\/edit/)){
+if (location.pathname.match(/restaurants\/new|restaurants\/edit|restaurans\//)){
   window.addEventListener("load", (e) => {
     const inputElement = document.getElementById("restaurant_country");
     inputElement.addEventListener('keyup', (e) => {
@@ -27,6 +27,7 @@ if (location.pathname.match(/restaurants\/new|restaurants\/edit/)){
           const clickElement = document.getElementById(country.id);
           clickElement.addEventListener('click', () => {
             document.getElementById("restaurant_country").value = clickElement.textContent;
+            document.getElementById("restaurant_country_id").value = country.id;
             clickElement.remove();
           });
         });

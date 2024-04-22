@@ -6,16 +6,18 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
-    @countries = @restaurant.countries
+    @countries = @restaurant.country
     @report = Report.new
     @restaurant_reports = @restaurant.reports.all
   end
 
   def new
     @restaurant = Restaurant.new
+    @country = Country.find_by(id: params[:id])
   end
 
   def create
+    binding.pry
     @restaurant = current_user.restaurants.new(restaurant_params)
     if @restaurant.save
       redirect_to restaurant_path(@restaurant.id)
@@ -56,5 +58,5 @@ end
 private
 
 def restaurant_params
-  params.require(:restaurant).permit(:name, :postal_code, :address, :image, :memo)
+  params.require(:restaurant).permit(:name, :postal_code, :address, :image, :memo, :country_id )
 end

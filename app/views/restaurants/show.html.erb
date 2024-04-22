@@ -6,10 +6,9 @@
   <%= @restaurant.postal_code %><br>
   <%= @restaurant.address %>
 </div>
+<p>どこの国の料理が食べられる？</p>
 <div class="restaurant_country">
-  <% @restaurant.countries.each do |country| %>
-    <%= country.name %>
-  <% end %>
+  <%= @restaurant.country.name %>
 </div>
 <p>画像</p>
 <div class="restaurant_image">
