@@ -9,6 +9,8 @@ class Restaurant < ApplicationRecord
 
 #リレーションの設定
   belongs_to :user
+  has_many :restaurant_country_relations
+  has_many :countries, through: :restaurant_country_relations
   has_many :reports, dependent: :destroy
   
 #住所の自動入力機能, 都道府県コードから都道府県名に自動で変換する

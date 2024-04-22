@@ -1,3 +1,6 @@
 class Country < ApplicationRecord
-  validates :country_name, presence: true
+  has_many :restaurant_country_relations
+  has_many :restaurants, through: :restaurant_country_relations
+
+  validates :name, presence: true
 end

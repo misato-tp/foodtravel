@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_20_083239) do
+ActiveRecord::Schema.define(version: 2024_04_20_083818) do
 
   create_table "countries", force: :cascade do |t|
-    t.string "country_name", null: false
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 2024_04_20_083239) do
     t.integer "restaurant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "restaurant_country_relations", force: :cascade do |t|
+    t.integer "restaurant_id"
+    t.integer "country_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["country_id"], name: "index_restaurant_country_relations_on_country_id"
+    t.index ["restaurant_id"], name: "index_restaurant_country_relations_on_restaurant_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -57,4 +66,6 @@ ActiveRecord::Schema.define(version: 2024_04_20_083239) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "restaurant_country_relations", "countries"
+  add_foreign_key "restaurant_country_relations", "restaurants"
 end
