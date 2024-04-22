@@ -7,8 +7,7 @@
   <%= @restaurant.address %>
 </div>
 <div class="restaurant_country">
-<p>どこの国の料理が食べられる？</p>
-  <% @countries.each do |country| %>
+  <% @restaurant.countries.each do |country| %>
     <%= country.name %>
   <% end %>
 </div>
