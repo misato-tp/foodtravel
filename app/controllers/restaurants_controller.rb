@@ -47,7 +47,7 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  def search
+  def search_country
     return nil if params[:input] == ""
     country = Country.where(['name LIKE ?', "%#{params[:input]}%"])
     render json: {keyword: country}

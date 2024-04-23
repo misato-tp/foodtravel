@@ -5,7 +5,7 @@ if (location.pathname.match(/restaurants\/new|restaurants\/\d+\/edit|restaurans\
     inputElement.addEventListener('keyup', (e) => {
       const input = document.getElementById("restaurant_country").value;
       const xhr = new XMLHttpRequest();
-      xhr.open("GET", `search/?input=${input}`, true);
+      xhr.open("GET", `search_country/?input=${input}`, true);
       xhr.responseType = "json";
       xhr.send();
       xhr.onload = () => {

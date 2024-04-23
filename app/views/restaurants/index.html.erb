@@ -1,5 +1,7 @@
 <%= link_to "新しいお店をみんなに知らせる", new_restaurant_path, data: {"turbolinks" => false} %>
 <%= link_to "決めてもらう", restaurant_path(Restaurant.offset(rand(Restaurant.count)).first) %>
+<br>
+# 新しく加えられた順に表示したい
 <% @restaurants.each do |r| %>
   <table>
       <tr>
