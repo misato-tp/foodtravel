@@ -2,6 +2,7 @@ class RestaurantsController < ApplicationController
   before_action :authenticate_user!
   def index
     @restaurants = Restaurant.all
+    @country = @restaurant.country
   end
 
   def show
