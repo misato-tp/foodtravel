@@ -13,7 +13,6 @@ class RestaurantsController < ApplicationController
 
   def new
     @restaurant = Restaurant.new
-    @country = Country.find_by(id: params[:id])
   end
 
   def create
@@ -27,6 +26,7 @@ class RestaurantsController < ApplicationController
 
   def edit
     @restaurant = Restaurant.find(params[:id])
+    @country = @restaurant.country
   end
 
   def update
