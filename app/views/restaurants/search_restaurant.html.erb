@@ -38,7 +38,7 @@ function initMap(){
       });
 
       infoWindow[i] = new google.maps.InfoWindow({
-        content: `<a href= "/restaurants/${id}">${markerData[i]['name']}</a>`
+        content: `<a href= "/restaurants/${id}" data-turbolinks="false">${markerData[i]['name']}</a>`
       });
 
       markerEvent(i);
