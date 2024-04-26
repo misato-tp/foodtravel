@@ -53,7 +53,7 @@ class RestaurantsController < ApplicationController
     render json: {keyword: country}
   end
 
-  def search_restaurant
+  def search_restaurant_by_gps
     @restaurants = Restaurant.all
   end
 end
