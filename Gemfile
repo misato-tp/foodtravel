@@ -83,3 +83,6 @@ gem 'jp_prefecture'
 
 #Google map　API関連
 gem 'geocoder'
+
+#検索機能
+gem 'ransack'
