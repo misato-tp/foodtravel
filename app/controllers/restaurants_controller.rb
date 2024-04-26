@@ -2,6 +2,7 @@ class RestaurantsController < ApplicationController
   before_action :authenticate_user!
   def index
     @restaurants = Restaurant.all
+    @q = Restaurant.ransack(params[:q])
   end
 
   def show
@@ -55,6 +56,11 @@ class RestaurantsController < ApplicationController
 
   def search_restaurant_by_gps
     @restaurants = Restaurant.all
+  end
+
+  def search_restaurant_by_address
+    @q = Restaurant.ransack(params[:q])
+    @results = @q.result
   end
 end
 private
