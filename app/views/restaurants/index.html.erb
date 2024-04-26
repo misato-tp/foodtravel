@@ -3,7 +3,7 @@
 <%= link_to "現在周辺のお店を探す", search_restaurant_by_gps_restaurants_path, data: {"turbolinks" => false} %>
 <br>
 <h3>住所から検索</h3>
-<%= search_form_for @q, url: search_restaurant_by_address_path do |f| %>
+<%= search_form_for @q, url: search_restaurant_by_address_restaurants_path do |f| %>
   <%= f.label :address, '住所' %>
   <%= f.search_field :address %>
   <br>
