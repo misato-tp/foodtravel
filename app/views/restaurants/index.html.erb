@@ -1,5 +1,5 @@
 <%= link_to "新しいお店をみんなに知らせる", new_restaurant_path, data: {"turbolinks" => false} %>
-<%= link_to "決めてもらう", restaurant_path(Restaurant.offset(rand(Restaurant.count)).first) %>
+<%= link_to "決めてもらう", restaurant_path(Restaurant.offset(rand(Restaurant.count)).first), data: {"turbolinks" => false} %>
 <%= link_to "現在周辺のお店を探す", search_restaurant_by_gps_restaurants_path, data: {"turbolinks" => false} %>
 <br>
 # 新しく加えられた順に表示したい
