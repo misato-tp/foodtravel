@@ -23,19 +23,19 @@
 <div id="map"></div>
 <script type="text/javascript">
   function initMap() {
-    var test ={lat: <%= @restaurant.latitude %>, lng: <%= @restaurant.longitude %>};
-    var map = new google.maps.Map(document.getElementById('map'), {
+    const test ={lat: <%= @restaurant.latitude %>, lng: <%= @restaurant.longitude %>};
+    const map = new google.maps.Map(document.getElementById('map'), {
               mapId: 'DEMO_MAP_ID',
               zoom: 15,
               center: test
               });
-    var transitLayer = new google.maps.TransitLayer();
+    const transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
-    var contentString = '<%= @restaurant.address %>';
-    var infowindow = new google.maps.InfoWindow({
+    const contentString = '<%= @restaurant.address %>';
+    const infowindow = new google.maps.InfoWindow({
       content: contentString
     });
-    var marker = new google.maps.marker.AdvancedMarkerElement({
+    const marker = new google.maps.marker.AdvancedMarkerElement({
                   position:test,
                   map: map,
                   title: contentString

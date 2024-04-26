@@ -1,0 +1,64 @@
+<div id='map'></div>
+
+<script>
+let map;
+let mainMarker;
+let marker =[];
+let infoWindow = [];
+let restaurants = <%= raw @restaurants.to_json %>;
+
+function initMap(){
+  let markerData = <%= raw @restaurants.to_json %>;
+  let latlng = {lat: <%= @restaurants[0].latitude %>, lng: <%= @restaurants[0].longitude %>};
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: latlng,
+    zoom: 14
+  });
+
+  mainMarker = new google.maps.Marker({
+    map: map,
+    position: latlng
+  });
+
+  for(let i = 0; i < markerData.length; i++) {
+    const image = "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
+    const id = markerData[i]['id'];
+
+    let markerLatLng = new google.maps.LatLng({lat: markerData[i]['latitude'], lng: markerData[i]['longitude']});
+
+    marker[i] = new google.maps.Marker({
+      position: markerLatLng,
+      map: map,
+      icon: image
+    });
+
+    infoWindow[i] = new google.maps.InfoWindow({
+      content: `<a href= "/restaurants/${id}">${markerData[i]['name']}</a>`
+    });
+
+    markerEvent(i);
+  }
+}
+
+function markerEvent(i) {
+  marker[i].addListener('click',function(){
+    infoWindow[i].open(map, marker[i]);
+  });
+}
+
+document.addEventListener('turbolinks:load', function(){
+  initMap();
+});
+</script>
+
+<script async defer
+              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap&libraries=marker">
+</script>
+
+<style>
+  #map {
+      height: 500px;
+      width: 500px;
+  }
+</style>
+

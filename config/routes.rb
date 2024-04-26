@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :reports, only: [:create, :edit, :update, :destroy]
     collection do
       get 'search_country'
+      get 'search_restaurant'
     end
     member do
       get 'search_country'
