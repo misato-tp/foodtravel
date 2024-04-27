@@ -2,10 +2,10 @@
 <%= link_to "決めてもらう", restaurant_path(Restaurant.offset(rand(Restaurant.count)).first), data: {"turbolinks" => false} %>
 <%= link_to "現在周辺のお店を探す", search_restaurant_by_gps_restaurants_path, data: {"turbolinks" => false} %>
 <br>
-<h3>住所から検索</h3>
+店名・住所検索
 <%= search_form_for @q, url: search_restaurant_by_address_restaurants_path do |f| %>
-  <%= f.label :address, '住所' %>
-  <%= f.search_field :address %>
+  <%= f.label :name_or_address_cont, '店名か住所(スペースで複数単語検索できます)' %>
+  <%= f.search_field :name_or_address_cont %>
   <br>
   <%= f.submit '検索' %>
 <% end %>
