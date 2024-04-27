@@ -26,5 +26,10 @@ Rails.application.routes.draw do
       get 'search_country'
     end
   end
+
+  resources :countries, only: [] do
+    get 'search_restaurant_by_country'
+  end
+
   root to: 'homes#index'
 end
