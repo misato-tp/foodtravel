@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     collection do
       get 'search_country'
       get 'search_restaurant_by_gps'
-      get 'search_restaurant_by_address'
+      get 'search_restaurant_by_keywords'
     end
     member do
       get 'search_country'

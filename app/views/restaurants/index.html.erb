@@ -3,7 +3,7 @@
 <%= link_to "現在周辺のお店を探す", search_restaurant_by_gps_restaurants_path, data: {"turbolinks" => false} %>
 <br>
 店名・住所検索
-<%= search_form_for @q, url: search_restaurant_by_address_restaurants_path do |f| %>
+<%= search_form_for @q, url: search_restaurant_by_keywords_restaurants_path do |f| %>
   <%= f.label :name_or_address_cont, '店名か住所(スペースで複数単語検索できます)' %>
   <%= f.search_field :name_or_address_cont %>
   <br>
