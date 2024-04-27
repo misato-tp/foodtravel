@@ -70,3 +70,7 @@ private
 def restaurant_params
   params.require(:restaurant).permit(:name, :postal_code, :address, :image, :memo, :country_id )
 end
+
+def search_params
+  params.require(:q).permit(:name_or_address_cont)
+end
