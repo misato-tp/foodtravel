@@ -59,8 +59,8 @@ class RestaurantsController < ApplicationController
   end
 
   def search_restaurant_by_keywords
-    @q = Restaurant.ransack(params[:q])
-    keywords = params[:q][:name_or_address_cont].split(/[\p{blank}\s]+/)
+    @q = Restaurant.ransack(search_params)
+    keywords = search_params[:name_or_address_cont].split(/[\p{blank}\s]+/)
     grouping_hash = keywords.reduce({}){|hash, word| hash.merge(word => { name_or_address_cont: word})}
     @results = Restaurant.ransack({ combinator: 'and', groupings: grouping_hash }).result
   end
