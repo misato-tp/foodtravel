@@ -12,6 +12,7 @@ import "bootstrap"
 import "../stylesheets/application.scss"
 import "./preview"
 import "./jquery.jpostal.js"
+import "./country.js"
 
 Rails.start()
 Turbolinks.start()

@@ -17,6 +17,15 @@ Rails.application.routes.draw do
 
   resources :restaurants do
     resources :reports, only: [:create, :edit, :update, :destroy]
+    collection do
+      get 'search_country'
+      get 'search_restaurant_by_gps'
+      get 'search_restaurant_by_keywords'
+      get 'search_restaurant_by_map'
+    end
+    member do
+      get 'search_country'
+    end
   end
   root to: 'homes#index'
 end
