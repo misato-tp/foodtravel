@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get 'search_country'
       get 'search_restaurant_by_gps'
       get 'search_restaurant_by_keywords'
+      get 'search_restaurant_by_map'
     end
     member do
       get 'search_country'
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
   end
 
   resources :countries, only: [] do
-    get 'search_restaurant_by_country'
+    get 'search_restaurant_by_map_result'
   end
 
   root to: 'homes#index'

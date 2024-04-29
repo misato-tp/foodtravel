@@ -9,6 +9,7 @@
   <br>
   <%= f.submit '検索' %>
 <% end %>
+<div class=""><%= link_to "国から探す", search_restaurant_by_map_restaurants_path %></div>
 <br>
 # 新しく加えられた順に表示したい
 <% @restaurants.each do |r| %>
