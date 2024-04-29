@@ -1,13 +1,1 @@
-<h1>検索結果</h1>
-<% @results.each do |r| %>
-  <table>
-      <tr>
-          <td><%= r.name %></td>
-          <td><%= r.postal_code %></td>
-          <td><%= r.address %></td>
-          <td><%= r.memo %></td>
-          <td><%= r.country.name %></td>
-          <td><%= link_to "詳細", r, data: {"turbolinks" => false} %></td>
-      </tr>
-  </table>
-<% end %>
+<%= render "search_result", results: @results %>

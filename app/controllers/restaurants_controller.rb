@@ -64,6 +64,11 @@ class RestaurantsController < ApplicationController
     grouping_hash = keywords.reduce({}){|hash, word| hash.merge(word => { name_or_address_cont: word})}
     @results = Restaurant.ransack({ combinator: 'and', groupings: grouping_hash }).result
   end
+
+  def search_restaurant_by_map
+    country_id = params[:country_id]
+    @results = Restaurant.where(country_id: country_id)
+  end
 end
 private
 
