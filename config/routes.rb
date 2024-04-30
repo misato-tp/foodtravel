@@ -27,5 +27,7 @@ Rails.application.routes.draw do
       get 'search_country'
     end
   end
+
+  resources :likes, only: [:create, :destroy]
   root to: 'homes#index'
 end
