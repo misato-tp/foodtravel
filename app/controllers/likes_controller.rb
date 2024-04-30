@@ -1,11 +1,16 @@
 class LikesController < ApplicationController
+  before_action :restaurant_params
   def create
     Like.create(user_id: current_user.id, restaurant_id: params[:id])
-    redirect_to root_path
   end
 
   def destroy
     Like.find_by(user_id: current_user.id, restaurant_id: params[:id]).destroy
-    redirect_to root_path
+  end
+
+private
+
+  def restaurant_params
+    @restaurant = Restaurant.find(params[:id])
   end
 end
