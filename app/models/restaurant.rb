@@ -11,6 +11,7 @@ class Restaurant < ApplicationRecord
   belongs_to :user
   belongs_to :country
   has_many :reports, dependent: :destroy
+  has_many :likes, dependent: :destroy
   
 #住所の自動入力機能, 都道府県コードから都道府県名に自動で変換する
   include JpPrefecture

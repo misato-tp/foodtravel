@@ -20,11 +20,9 @@ ActiveRecord::Schema.define(version: 2024_04_30_023515) do
 
   create_table "likes", force: :cascade do |t|
     t.integer "restaurant_id", null: false
-    t.integer "report_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["report_id"], name: "index_likes_on_report_id"
     t.index ["restaurant_id"], name: "index_likes_on_restaurant_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
@@ -70,7 +68,6 @@ ActiveRecord::Schema.define(version: 2024_04_30_023515) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "likes", "reports"
   add_foreign_key "likes", "restaurants"
   add_foreign_key "likes", "users"
   add_foreign_key "restaurants", "countries"
