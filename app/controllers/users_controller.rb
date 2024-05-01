@@ -31,6 +31,11 @@ class UsersController < ApplicationController
   def myrestaurants
     @restaurants = current_user.restaurants
   end
+
+  def myreports
+    @reports = current_user.reports
+    @restaurants = @reports.map{ |report| report.restaurant }.uniq
+  end
 end
 
 private

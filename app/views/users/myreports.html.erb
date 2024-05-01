@@ -1,0 +1,14 @@
+<h1>投稿したコメント一覧</h1>
+<table class="table">
+  <tbody>
+    <% @restaurants.each do |restaurant| %>
+      <% restaurant.reports.each do |report| %>
+      <tr>
+        <td>
+          <%= link_to report.title, restaurant_path(restaurant, anchor: "report_#{report.id}"), data:{"turbolinks"=>false} %>
+        </td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

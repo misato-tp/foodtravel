@@ -65,7 +65,7 @@
   投稿されたレポはまだありません。
 <% else %>
   <% @restaurant_reports.each do |report| %>
-    <ul>
+    <ul id="report_<%= report.id %>">
       <li><%= report.user.username %></li>
       <li><%= report.title %></li>
       <li><%= report.recommend %></li>
@@ -75,6 +75,7 @@
         <li><%= link_to "削除", restaurant_report_path(report.restaurant, report), method: :delete %></li>
         <li><%= link_to "編集", edit_restaurant_report_path(@restaurant, report) %></li>
       <% end %>
+      </div>
     </ul>
   <% end %>
 <% end %>
