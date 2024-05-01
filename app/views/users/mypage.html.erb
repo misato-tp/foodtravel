@@ -1,7 +1,8 @@
 users/mypageのページです<br>
 ここにユーザー情報を一覧で出していく予定
 <ul>
-  <li>お気に入りしたお店一覧</li>
-  <li>いいねしたコメント一覧</li>
+  <li><%= link_to "お気に入りしたお店", likes_user_path(current_user) %></li>
+  <li><%= link_to "投稿したお店", myrestaurants_users_path %></li>
+  <li><%= link_to "投稿したレポ", myreports_users_path %></li>
   <li><%= link_to "プロフィール", profile_users_path %></li>
 など

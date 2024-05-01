@@ -19,6 +19,12 @@ class ImageUploader < CarrierWave::Uploader::Base
     "noimage.png"
   end
 
+  version :default_profile_image do
+    def default_url(*args)
+      "defaultIcon.png"
+    end
+  end
+
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #
@@ -27,8 +33,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-    version :thumb do
-      process resize_to_fit: [500, 500]
+    version :photo do
+      process resize_to_fit: [300, 300]
+    end
+
+    version :icon do
+      process resize_to_fit: [100, 100]
     end
 
   # Add an allowlist of extensions which are allowed to be uploaded.

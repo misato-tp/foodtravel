@@ -20,6 +20,22 @@ class UsersController < ApplicationController
       render users_profile_path
     end
   end
+
+  def likes
+    @user = User.find(params[:id])
+    likes = Like.where(user_id: @user.id).pluck(:restaurant_id)
+    @like_restaurants = Restaurant.find(likes)
+    @restaurant = Restaurant.find(params[:id])
+  end
+
+  def myrestaurants
+    @restaurants = current_user.restaurants
+  end
+
+  def myreports
+    @reports = current_user.reports
+    @restaurants = @reports.map{ |report| report.restaurant }.uniq
+  end
 end
 
 private
