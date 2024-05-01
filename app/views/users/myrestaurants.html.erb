@@ -1,0 +1,12 @@
+<h1>自分が投稿したお店一覧</h1>
+<table class="table">
+  <tbody>
+    <% @restaurants.each do |restaurant| %>
+      <tr>
+        <td>
+          <%= link_to restaurant.name, restaurant_path(restaurant) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

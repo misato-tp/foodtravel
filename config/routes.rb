@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     collection do
     get :profile
     get :mypage
+    get :myrestaurants
     end
     member do
       get :likes

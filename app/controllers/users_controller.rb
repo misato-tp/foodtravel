@@ -27,6 +27,11 @@ class UsersController < ApplicationController
     @like_restaurants = Restaurant.find(likes)
     @restaurant = Restaurant.find(params[:id])
   end
+
+  def myrestaurants
+    @restaurants = Restaurant.all
+    @restaurants = current_user.restaurants
+  end
 end
 
 private
