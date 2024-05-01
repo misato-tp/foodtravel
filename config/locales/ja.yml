@@ -3,6 +3,7 @@ ja:
     attributes:
       user:
         username: ユーザー名
+        profile_image: プロフィールアイコン
       restaurant:
         name: お店の名前
         postal_code: 郵便番号

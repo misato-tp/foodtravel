@@ -1,13 +1,23 @@
-profileページだよ
-    <div class="border-bottom">
-        <h3>プロフィール</h3>
-        <h3><%= link_to "編集", "edit" %></h3>
-    </div>
+<div class="border-bottom">
+  <h3>プロフィール</h3>
+  <h3><%= link_to "編集", "edit" %></h3>
+</div>
 
-  <table class="table">
-
-    <tr>
-    <th>名前</th>
-    <td><%= current_user.username %></td>
-    </tr>
-  </table>
+<table class="table">
+  <tr>
+  <th>アイコン</th>
+  <td><% if @user.profile_image? %>
+        <%= image_tag @user.profile_image.icon.url %></td>
+      <% else %>
+        <%= image_tag "defaultIcon.png", size: "100x100" %>
+      <% end %>
+  </tr>
+  <tr>
+  <th>名前</th>
+  <td><%= current_user.username %></td>
+  </tr>
+  <tr>
+  <th>メールアドレス</th>
+  <td><%= current_user.email %></td>
+  </tr>
+</table>

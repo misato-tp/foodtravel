@@ -13,9 +13,9 @@
 <p>画像</p>
 <div class="restaurant_image">
   <% if @restaurant.image? %>
-    <%= image_tag @restaurant.image.url %>
+    <%= image_tag @restaurant.image.photo.url %>
   <% else %>
-    <%= image_tag "noimage.png" %>
+    <%= image_tag "noimage.png", size: :photo %>
   <% end %>
 </div>
 <p>メモ</p>
@@ -69,7 +69,7 @@
       <li><%= report.user.username %></li>
       <li><%= report.title %></li>
       <li><%= report.recommend %></li>
-      <li><%= image_tag report.image.url %></li>
+      <li><%= image_tag report.image.photo.url %></li>
       <li><%= report.memo %></li>
       <% if current_user.id == report.user.id %>
         <li><%= link_to "削除", restaurant_report_path(report.restaurant, report), method: :delete %></li>
