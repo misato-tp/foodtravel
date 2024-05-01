@@ -29,7 +29,6 @@ class UsersController < ApplicationController
   end
 
   def myrestaurants
-    @restaurants = Restaurant.all
     @restaurants = current_user.restaurants
   end
 end
