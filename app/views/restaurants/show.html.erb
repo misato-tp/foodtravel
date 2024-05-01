@@ -20,6 +20,7 @@
 </div>
 <p>メモ</p>
 <div class="restaurant_memo"><%= @restaurant.memo %></div>
+<%= render "likes/like", restaurant: @restaurant %>
 <div id="map"></div>
 <script type="text/javascript">
   function initMap() {
