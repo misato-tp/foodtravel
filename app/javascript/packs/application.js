@@ -13,7 +13,6 @@ import "../stylesheets/application.scss"
 import "./preview"
 import "./jquery.jpostal.js"
 import "./country.js"
-import "@fortawesome/fontawesome-free/js/all"
 
 Rails.start()
 Turbolinks.start()
