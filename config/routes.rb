@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     get :profile
     get :mypage
     end
+    member do
+      get :likes
+    end
   end
 
   resources :restaurants do
