@@ -7,9 +7,9 @@
     <%= csp_meta_tag %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
+    <%= javascript_pack_tag 'application' %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
@@ -55,8 +55,6 @@
       </div>
     </nav> 
     </header>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= yield %>
     <footer class="py-5 bg-dark">
       <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; FOOD TRAVEL 2024</p></div>
