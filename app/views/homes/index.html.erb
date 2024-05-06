@@ -1,16 +1,10 @@
-<div id="myCarousel" class="carousel slide carousel-fade mb-6" data-bs-ride="carousel" data-bs-theme="light">
+<div id="myCarousel" class="carousel slide carousel-fade mb-6" data-bs-ride="carousel" data-bs-theme="light" data-bs-pause="false">
   <div class="carousel-inner">
     <div class="carousel-item active">
     <%= image_tag("paeria.jpg", alt:"パエリア", class: "bd-placeholder-img", width: "100%", height: "100%", preserve_aspect_ratio: "xMidYMid slice", focusable: "false") %>
       <div class="container">
-        <div class="carousel-caption text-center">
-        <%= image_tag("logo.png", alt: "FOOD TRAVEL", class: "mx-auto mb-4", width: 100, height: 100) %>
-        <h1 class="display-5 fw-bold text-light">FOOD TRAVEL</h1>
-        <p class="lead mb-4 text-light">今日はどこの国のご飯を食べにいく？</p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <button type="button" class="btn btn-primary btn-lg px-4 gap-3">国から探す</button>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4">現在地から探す</button>
-        </div>
+        <div class="carousel-caption">
+          <%= render "shared/carouselcaption" %>
         </div>
       </div>
     </div>
@@ -18,31 +12,19 @@
     <%= image_tag("pizza.jpg", alt:"ピザ", class: "bd-placeholder-img", width: "100%", height: "100%", preserve_aspect_ratio: "xMidYMid slice", focusable: "false") %>
       <div class="container">
         <div class="carousel-caption">
-          <h1>Another example headline.</h1>
-          <p>Some representative placeholder content for the second slide of the carousel.</p>
-          <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+          <%= render "shared/carouselcaption" %>
         </div>
       </div>
     </div>
     <div class="carousel-item">
     <%= image_tag("yakitori.jpg", alt:"焼き鳥", class: "bd-placeholder-img", width: "100%", height: "100%", preserve_aspect_ratio: "xMidYMid slice", focusable: "false") %>
       <div class="container">
-        <div class="carousel-caption text-end">
-          <h1>One more for good measure.</h1>
-          <p>Some representative placeholder content for the third slide of this carousel.</p>
-          <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+        <div class="carousel-caption">
+          <%= render "shared/carouselcaption" %>
         </div>
       </div>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
 </div>
 <div class="container marketing">
   <div class="row">
