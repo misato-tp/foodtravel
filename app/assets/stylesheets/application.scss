@@ -2,9 +2,8 @@
 @import "homes/index";
 @import "bootstrap";
 
-header{
-  height: 50px;
+header {
   position: sticky;
+  z-index: 999;
   top: 0;
-  z-index: 1000;
 }
