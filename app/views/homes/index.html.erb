@@ -26,19 +26,32 @@
     </div>
   </div>
 </div>
-<div class="container marketing">
+<div class="container">
   <div class="row">
+    <h2 class="fw-normal"><i class="bi bi-question-circle-fill"></i>&ensp;How to Use?</h2>
     <div class="col-lg-6">
-      <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-      <h2 class="fw-normal">Heading</h2>
-      <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-      <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+    <i class="bi bi-share-fill" style="font-size: 5rem;"></i>
+      <h2 class="fw-normal">みんなでお店を共有</h2>
+      <div>日本で海外の食事が楽しめるお店はありませんか？</div>
+      <div>お気に入りのお店をみんなに紹介しよう！</div>
+      <p>※お店を紹介するにはログインが必要です。</p>
+      <p>
+        <%= link_to "restaurants/new", class:"btn btn-warning" do %>
+          みんなに紹介する &raquo;
+        <% end %>
+        </p>
     </div>
     <div class="col-lg-6">
-      <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-      <h2 class="fw-normal">Heading</h2>
-      <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-      <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+    <i class="bi bi-chat-left-dots-fill" style="font-size: 5rem;"></i>
+      <h2 class="fw-normal">実際に行ってレポート</h2>
+      <div>紹介されているお店に行ってみて、</div>
+      <div>お気に入りの料理やコメントをみんなで共有しよう！</div>
+      <p>※レポートをするにはログインが必要です。</p>
+      <p>
+        <%= link_to "restaurants", class:"btn btn-warning" do %>
+          行ったお店を探す &raquo;
+        <% end %>
+      </p>
     </div>
   </div>
 </div>
