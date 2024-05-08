@@ -21,4 +21,22 @@ html, body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
+
+  .forgotPasswortLink {
+    .link{
+      color: currentColor;
+      text-decoration: none;
+      
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  .newLink{
+    text-align: center;
+    .link{
+      color: currentColor;
+    }
+  }
 }
