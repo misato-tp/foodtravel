@@ -4,8 +4,13 @@ class ReportsController < ApplicationController
     @report = Report.new(report_params)
     @report.user_id = current_user.id
     @report.restaurant_id = @restaurant.id
-    @report.save
-    redirect_to restaurant_path(@restaurant.id)
+    if @report.save
+      flash[:notice] = "レポートの登録に成功しました。投稿ありがとう！"
+      redirect_to restaurant_path(@restaurant.id)
+    else
+      flash.now[:notice] = "登録に失敗しました"
+      render restaurant_path(@restaurant.id)
+    end
   end
 
   def edit

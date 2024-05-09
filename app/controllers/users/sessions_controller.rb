@@ -3,8 +3,13 @@
 class Users::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
-    sign_in user
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+    if sign_in user
+      flash[:notice] = 'ゲストユーザーとしてログインしました。'
+      redirect_to root_path
+    else
+      flash.now[:notice] = 'ログインに失敗しました。'
+      render new_user_session_path
+    end
   end
   # before_action :configure_sign_in_params, only: [:create]
 
