@@ -1,0 +1,42 @@
+.carousel {
+  margin-bottom: 4rem;
+
+  &-caption {
+    bottom: 3rem;
+    z-index: 10;
+
+    p {
+      margin-bottom: 1.25rem;
+      font-size: 1.25rem;
+      line-height: 1.4;
+    }
+  }
+
+  &-item {
+    height: 32rem;
+  }
+}
+
+@media (min-width: 40em) {
+  .carousel-caption {
+    p {
+      margin-bottom: 1.25rem;
+      font-size: 1.25rem;
+      line-height: 1.4;
+    }
+
+    .featurette-heading {
+      font-size: 50px;
+    }
+  }
+}
+
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 7rem;
+  }
+}
+
+.row{
+  padding-bottom: 50px;
+}

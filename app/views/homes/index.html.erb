@@ -1,3 +1,58 @@
-homes#indexです
-<%= link_to "お店一覧", restaurants_path, data: {"turbolinks" => false} %>
-<%= link_to "新しいお店をみんなに知らせる", new_restaurant_path, data: {"turbolinks" => false} %>
+<%= render "shared/flash_messages" %>
+<div id="myCarousel" class="carousel slide carousel-fade mb-6" data-bs-ride="carousel" data-bs-theme="light" data-bs-pause="false">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    <%= image_tag("paeria.jpg", alt:"パエリア", class: "bd-placeholder-img", width: "100%", height: "100%", preserve_aspect_ratio: "xMidYMid slice", focusable: "false") %>
+      <div class="container">
+        <div class="carousel-caption">
+          <%= render "carouselcaption" %>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+    <%= image_tag("pizza.jpg", alt:"ピザ", class: "bd-placeholder-img", width: "100%", height: "100%", preserve_aspect_ratio: "xMidYMid slice", focusable: "false") %>
+      <div class="container">
+        <div class="carousel-caption">
+          <%= render "carouselcaption" %>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+    <%= image_tag("yakitori.jpg", alt:"焼き鳥", class: "bd-placeholder-img", width: "100%", height: "100%", preserve_aspect_ratio: "xMidYMid slice", focusable: "false") %>
+      <div class="container">
+        <div class="carousel-caption">
+          <%= render "carouselcaption" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <h2 class="fw-normal"><i class="bi bi-question-circle-fill"></i>&ensp;How to Use?</h2>
+    <div class="col-lg-6">
+    <i class="bi bi-share-fill" style="font-size: 5rem;"></i>
+      <h2 class="fw-normal">みんなでお店を共有</h2>
+      <div>日本で海外の食事が楽しめるお店はありませんか？</div>
+      <div>お気に入りのお店をみんなに紹介しよう！</div>
+      <p>※お店を紹介するにはログインが必要です。</p>
+      <p>
+        <%= link_to "restaurants/new", class:"btn btn-warning" do %>
+          みんなに紹介する &raquo;
+        <% end %>
+        </p>
+    </div>
+    <div class="col-lg-6">
+    <i class="bi bi-chat-left-dots-fill" style="font-size: 5rem;"></i>
+      <h2 class="fw-normal">実際に行ってレポート</h2>
+      <div>紹介されているお店に行ってみて、</div>
+      <div>お気に入りの料理やコメントをみんなで共有しよう！</div>
+      <p>※レポートをするにはログインが必要です。</p>
+      <p>
+        <%= link_to "restaurants", class:"btn btn-warning" do %>
+          行ったお店を探す &raquo;
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>

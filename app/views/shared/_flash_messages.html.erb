@@ -1,0 +1,5 @@
+<% flash.each do |key, value| %>
+  <p class="alert alert-<%= bootstrap_flash_class(key) %> no-margin">
+    <%= value %>
+  </p>
+<% end %>

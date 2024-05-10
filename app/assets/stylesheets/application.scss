@@ -1,2 +1,16 @@
-@import "bootstrap";
 @import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import "homes/index";
+@import "devise/sign_in";
+@import "devise/sign_up";
+@import "devise/forgot_password";
+@import "bootstrap";
+
+header {
+  position: sticky;
+  z-index: 999;
+  top: 0;
+}
+
+.no-margin {
+  margin: 0;
+}

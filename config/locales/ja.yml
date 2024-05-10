@@ -10,3 +10,8 @@ ja:
         address: 住所
         image: 画像
         memo: メモ
+      report:
+        title: タイトル
+        memo: メモ
+        recommend: おすすめの料理
+        image: 写真

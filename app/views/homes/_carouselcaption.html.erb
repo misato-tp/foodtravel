@@ -1,0 +1,11 @@
+<%= image_tag("logo_white.png", alt: "FOOD TRAVEL", class: "mx-auto mb-4", width: 100, height: 100) %>
+<h1 class="display-5 fw-bold text-light">FOOD TRAVEL</h1>
+<p class="lead mb-4 text-light">今日はどこの国のご飯を食べにいく？</p>
+<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+  <%= link_to "restaurants/search_restaurant_by_map", class: "btn btn-outline-light btn-lg px-4 gap-3" do %>
+    <i class="bi bi-globe-asia-australia">&ensp;</i>国から探す
+  <% end %>
+  <%= link_to "restaurants/search_restaurant_by_gps", class: "btn btn-outline-light btn-lg px-4 gap-3" do %>
+    <i class="bi bi bi-geo-alt-fill">&ensp;</i>現在地から探す
+  <% end %>
+</div>

@@ -1,13 +1,14 @@
 <%= form_with model:[@restaurant, @report] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
   <ul>
     <li><%= f.label :title, "タイトル" %></li>
-    <li><%= f.text_field :title, class: "" %></li>
+    <li><%= f.text_field :title, class: "field_with_errors" %></li>
     <li><%= f.label :recommend, "おすすめの料理" %></li>
-    <li><%= f.text_field :recommend, class: "" %></li>
+    <li><%= f.text_field :recommend, class: "field_with_errors" %></li>
     <li><%= f.label :memo, "メモ" %></li>
-    <li><%= f.text_area :memo, rows:'5', placeholder: "このお店の感想を書こう！", class:"" %></li>
+    <li><%= f.text_area :memo, rows:'5', placeholder: "このお店の感想を書こう！", class:"field_with_errors" %></li>
     <li><%= f.label :image, "写真" %></li>
-    <li><%= f.file_field :image, class:"" %></li>
+    <li><%= f.file_field :image, class:"field_with_errors" %></li>
   </ul>
     <div class="text-right">
       <%= f.submit "登録", class: "btn btn-primary mt-3 mb-3" %>

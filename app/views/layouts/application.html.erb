@@ -7,31 +7,60 @@
     <%= csp_meta_tag %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= stylesheet_pack_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'application' %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" crossorigin="anonymous">
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <%= link_to "ホーム(ロゴを後でここに貼る)", root_path %>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
-        <li>
-          <%= link_to "マイページ", mypage_users_path %>
-      <% else %>
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
-      <% end %>
+      <nav class="navbar sticky-top navbar-expand-lg bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <%= image_tag "logo_white.png", size: "50x50" %>
+            FOOD TRAVEL
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="/restaurants">お店を探す</a>
+              </li>
+              <% if user_signed_in? %>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle float-right " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    マイページ
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><%= link_to "お気に入りしたお店", likes_user_path(current_user), class: "dropdown-item" %></li>
+                    <li><%= link_to "投稿したお店", myrestaurants_users_path, class: "dropdown-item" %></li>
+                    <li><%= link_to "投稿したレポ", myreports_users_path, class: "dropdown-item" %></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><%= link_to "プロフィール", profile_users_path, class: "dropdown-item" %></li>
+                    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+                  </ul>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/users/sign_in">ログイン</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/users/sign_up">新規登録</a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav> 
     </header>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= yield %>
+    <footer class="py-5 bg-dark">
+      <div class="container-fluid px-0">
+        <p class="m-0 text-center text-white small">Copyright &copy; FOOD TRAVEL 2024</p>
+      </div>
+    </footer>
   </body>
 </html>
