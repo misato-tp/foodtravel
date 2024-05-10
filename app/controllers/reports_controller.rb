@@ -8,8 +8,8 @@ class ReportsController < ApplicationController
       flash[:notice] = "レポートの登録に成功しました。投稿ありがとう！"
       redirect_to restaurant_path(@restaurant.id)
     else
-      flash.now[:notice] = "登録に失敗しました"
-      render restaurant_path(@restaurant.id)
+      flash.now[:alert] = "登録に失敗しました。フォームを再度確認してください。"
+      render template: 'restaurants/show'
     end
   end
 
