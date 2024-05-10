@@ -1,3 +1,39 @@
+<div class="py-5">
+  <div class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+    <% @restaurants.each do |r| %>
+      <div class="col mb-5">
+        <div class="card h-100">
+          <div class="text-center">
+            <div class="restaurant_image">
+              <% if r.image? %>
+                <%= image_tag r.image.photo.url, class:'img-fluid mx-auto rounded-top' %>
+              <% else %>
+                <%= image_tag "noimage.png", size: :photo, class:'img-fluid mx-auto rounded-top' %>
+              <% end %>
+            </div>
+          </div>
+          <!-- Product details-->
+          <div class="card-body p-4">
+            <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder"><%= r.name %></h5>
+                <!-- Product address-->
+                <p><%= r.address %></p>
+                <p><%= r.country.name %></p>
+            </div>
+          </div>
+          <!-- Product actions-->
+          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <%= link_to "詳細", r, data: {"turbolinks" => false}, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
+
 <%= link_to "新しいお店をみんなに知らせる", new_restaurant_path, data: {"turbolinks" => false} %>
 <%= link_to "決めてもらう", restaurant_path(Restaurant.offset(rand(Restaurant.count)).first), data: {"turbolinks" => false} %>
 <%= link_to "現在周辺のお店を探す", search_restaurant_by_gps_restaurants_path, data: {"turbolinks" => false} %>
@@ -11,16 +47,3 @@
 <% end %>
 <div class=""><%= link_to "国から探す", search_restaurant_by_map_restaurants_path %></div>
 <br>
-# 新しく加えられた順に表示したい
-<% @restaurants.each do |r| %>
-  <table>
-      <tr>
-          <td><%= r.name %></td>
-          <td><%= r.postal_code %></td>
-          <td><%= r.address %></td>
-          <td><%= r.memo %></td>
-          <td><%= r.country.name %></td>
-          <td><%= link_to "詳細", r, data: {"turbolinks" => false} %></td>
-      </tr>
-  </table>
-<% end %>
