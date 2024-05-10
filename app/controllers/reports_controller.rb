@@ -9,7 +9,7 @@ class ReportsController < ApplicationController
       redirect_to restaurant_path(@restaurant.id)
     else
       flash.now[:alert] = "登録に失敗しました。フォームを再度確認してください。"
-      render template: 'restaurants/show'
+      render 'restaurants/show'
     end
   end
 
