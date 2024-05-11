@@ -1,23 +1,23 @@
 {
-  "application.js": "/packs/js/application-f51c00b35acb95bfc6b3.js",
-  "application.js.map": "/packs/js/application-f51c00b35acb95bfc6b3.js.map",
-  "country.js": "/packs/js/country-779c87233a37a29478c0.js",
-  "country.js.map": "/packs/js/country-779c87233a37a29478c0.js.map",
+  "application.js": "/packs/js/application-087c6dad69d2615fbfe4.js",
+  "application.js.map": "/packs/js/application-087c6dad69d2615fbfe4.js.map",
+  "country.js": "/packs/js/country-64373d263f109e653de3.js",
+  "country.js.map": "/packs/js/country-64373d263f109e653de3.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/js/application-f51c00b35acb95bfc6b3.js"
+        "/packs/js/application-087c6dad69d2615fbfe4.js"
       ],
       "js.map": [
-        "/packs/js/application-f51c00b35acb95bfc6b3.js.map"
+        "/packs/js/application-087c6dad69d2615fbfe4.js.map"
       ]
     },
     "country": {
       "js": [
-        "/packs/js/country-779c87233a37a29478c0.js"
+        "/packs/js/country-64373d263f109e653de3.js"
       ],
       "js.map": [
-        "/packs/js/country-779c87233a37a29478c0.js.map"
+        "/packs/js/country-64373d263f109e653de3.js.map"
       ]
     },
     "flash_messages": {

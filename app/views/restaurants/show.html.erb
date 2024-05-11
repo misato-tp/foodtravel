@@ -1,82 +1,110 @@
 <%= render "shared/flash_messages" %>
-<%= link_to "一覧に戻る", restaurants_path %>
-<p>お店の名前</p>
-<div class="restaurant_name"><%= @restaurant.name %></div>
-<p>住所</p>
-<div class="restaurant_address">
-  <%= @restaurant.postal_code %><br>
-  <%= @restaurant.address %>
-</div>
-<p>どこの国の料理が食べられる？</p>
-<div class="restaurant_country">
-  <%= @restaurant.country.name %>
-</div>
-<p>画像</p>
-<div class="restaurant_image">
-  <% if @restaurant.image? %>
-    <%= image_tag @restaurant.image.photo.url %>
-  <% else %>
-    <%= image_tag "noimage.png", size: :photo %>
-  <% end %>
-</div>
-<p>メモ</p>
-<div class="restaurant_memo"><%= @restaurant.memo %></div>
-<%= render "likes/like", restaurant: @restaurant %>
-<div id="map"></div>
-<script type="text/javascript">
-  function initMap() {
-    const test ={lat: <%= @restaurant.latitude %>, lng: <%= @restaurant.longitude %>};
-    const map = new google.maps.Map(document.getElementById('map'), {
-              mapId: 'DEMO_MAP_ID',
-              zoom: 15,
-              center: test
-              });
-    const transitLayer = new google.maps.TransitLayer();
-    transitLayer.setMap(map);
-    const contentString = '<%= @restaurant.address %>';
-    const infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
-    const marker = new google.maps.marker.AdvancedMarkerElement({
-                  position:test,
-                  map: map,
-                  title: contentString
-                });
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
-  }
-</script>
-<script async defer
-              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap&libraries=marker">
-</script>
-<style type="text/css">
-  #map { height: 200px;
-        width: 70%;}
-</style>
-
-<% if current_user.id == @restaurant.user.id %>
-  <li><%= link_to "削除", restaurant_path(@restaurant.id), method: :delete %></li>
-  <li><%= link_to "編集", edit_restaurant_path(@restaurant.id), data: {"turbolinks" => false} %></li>
-<% end %>
-
-<%= render "reports/form", restaurant: @restaurant, report: @report %>
-
-<% if @restaurant_reports.nil? %>
-  投稿されたレポはまだありません。
-<% else %>
-  <% @restaurant_reports.each do |report| %>
-    <ul id="report_<%= report.id %>">
-      <li><%= report.user.username %></li>
-      <li><%= report.title %></li>
-      <li><%= report.recommend %></li>
-      <li><%= image_tag report.image.photo.url %></li>
-      <li><%= report.memo %></li>
-      <% if current_user.id == report.user.id %>
-        <li><%= link_to "削除", restaurant_report_path(report.restaurant, report), method: :delete %></li>
-        <li><%= link_to "編集", edit_restaurant_report_path(@restaurant, report) %></li>
+<div class="container px-4 px-lg-5 my-5">
+  <div class="row justify-content-between">
+    <div class="col-auto">
+      <%= link_to :back, class:"btn btn-dark m-3" do %>
+        <i class="bi bi-arrow-left"></i>戻る
       <% end %>
+    </div>
+    <div class="edit-buttons col-auto">
+      <% if current_user.id == @restaurant.user.id %>
+        <%= link_to "編集", edit_restaurant_path(@restaurant.id), data: {"turbolinks" => false}, class:"btn btn-outline-dark mt-auto" %>
+        <%= link_to "削除", restaurant_path(@restaurant.id), method: :delete, class:"btn btn-outline-danger mt-auto" %>
+      <% end %>
+    </div>
+  </div>
+  <section class="py-5">
+    <div class="row gx-4 gx-lg-5 align-items-center">
+      <div class="col-md-6">
+        <div class="restaurant_image">
+          <% if @restaurant.image? %>
+            <%= image_tag @restaurant.image.show.url, class:"card-img-top mb-5 mb-md-0" %>
+          <% else %>
+            <%= image_tag "noimage.png", size: :show, class:"card-img-top mb-5 mb-md-0" %>
+          <% end %>
+        </div>
       </div>
-    </ul>
-  <% end %>
-<% end %>
+      <div class="col-md-6">
+        <h1 class="display-5 fw-bolder"><%= @restaurant.name %></h1><%= render "likes/like", restaurant: @restaurant %></h1>
+        <ul class="list-unstyled">
+          <li class="mb-2">〒<%= @restaurant.postal_code %></li>
+          <li class="mb-2"><%= @restaurant.address %></li>
+          <li class="mb-2"><%= @restaurant.country.name %>料理店</li>
+          <li class="mb-2"><%= @restaurant.memo %></li>
+          <li>
+            <div id="map"></div>
+            <script type="text/javascript">
+              function initMap() {
+                const test ={lat: <%= @restaurant.latitude %>, lng: <%= @restaurant.longitude %>};
+                const map = new google.maps.Map(document.getElementById('map'), {
+                          mapId: 'DEMO_MAP_ID',
+                          zoom: 15,
+                          center: test
+                          });
+                const transitLayer = new google.maps.TransitLayer();
+                transitLayer.setMap(map);
+                const contentString = '<%= @restaurant.address %>';
+                const infowindow = new google.maps.InfoWindow({
+                  content: contentString
+                });
+                const marker = new google.maps.marker.AdvancedMarkerElement({
+                              position:test,
+                              map: map,
+                              title: contentString
+                            });
+                marker.addListener('click', function() {
+                  infowindow.open(map, marker);
+                });
+              }
+            </script>
+            <script async defer
+                          src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap&libraries=marker">
+            </script>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5 bg-light">
+    <div class="container px-4 px-lg-5 mt-5">
+      <h2 class="fw-bolder mb-4">みんなのレポ</h2>
+      <% if @restaurant_reports.blank? %>
+        <div>投稿されたレポはまだありません。</div>
+      <% else %>
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <% @restaurant_reports.each do |report| %>
+            <div class="col mb-5">
+              <div class="card h-100">
+                <div id="report_<%= report.id %>"></div>
+                  <div><%= image_tag report.image.url, class:"img-fluid" %></div>
+                  <div class="card-body p-4">
+                    <div class="text-center">
+                      <div><h5 class="fw-bolder"><%= report.title %></h5></div>
+                      <div class="badge text-bg-dark">recommend</div>
+                      <div><%= report.recommend %></div>
+                      <hr>
+                      <div><%= report.memo %></div>
+                      <hr>
+                      <div>by&ensp;<%= report.user.username %></div>
+                    </div>
+                  </div>
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="row text-center">
+                      <% if current_user.id == report.user.id %>
+                        <div class="col"><%= link_to "編集", edit_restaurant_report_path(@restaurant, report), class:"btn btn-outline-dark mt-auto"%></div>
+                        <div class="col"><%= link_to "削除", restaurant_report_path(report.restaurant, report), method: :delete, class:"btn btn-outline-danger mt-auto"%></div>
+                      <% end %>
+                    </div>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</div>
+
+  <%= render "reports/form", restaurant: @restaurant, report: @report %>
