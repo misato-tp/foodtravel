@@ -1,3 +1,29 @@
+<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  <i class="bi bi-search"></i>お店を探す
+</button>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body mx-2">
+    <div class="search-label m-2 text-center btn btn-dark">
+      <i class="bi bi-search"></i>&ensp;キーワードで検索(店名または住所)
+      <%= search_form_for @q, url: search_restaurant_by_keywords_restaurants_path do |f| %>
+        <%= f.search_field :name_or_address_cont, placeholder:"スペースでAND検索可能", style: "width: 50%;" %>
+        <%= f.submit '検索', class: "btn btn-light" %>
+      <% end %>
+    </div>
+    <div class="row justify-content-center no-padding-bottom">
+      <%= link_to restaurant_path(Restaurant.offset(rand(Restaurant.count)).first), data: {"turbolinks" => false}, class:"btn btn-dark col-md-3 m-2" do %>
+        <i class="bi bi-dice-3"></i>&ensp;ランダムで探す
+      <% end %>
+      <%= link_to search_restaurant_by_gps_restaurants_path, data: {"turbolinks" => false}, class:"btn btn-dark col-md-3 m-2" do %>
+        <i class="bi bi-geo-alt"></i>&ensp;現在地周辺のお店を探す
+      <% end %>
+      <%= link_to search_restaurant_by_map_restaurants_path, class: "btn btn-dark col-md-3 m-2" do %>
+        <i class="bi bi-map"></i>&ensp;国から探す
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <div class="py-5">
   <div class="container px-4 px-lg-5 mt-5">
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -35,15 +61,3 @@
 </div>
 
 <%= link_to "新しいお店をみんなに知らせる", new_restaurant_path, data: {"turbolinks" => false} %>
-<%= link_to "決めてもらう", restaurant_path(Restaurant.offset(rand(Restaurant.count)).first), data: {"turbolinks" => false} %>
-<%= link_to "現在周辺のお店を探す", search_restaurant_by_gps_restaurants_path, data: {"turbolinks" => false} %>
-<br>
-店名・住所検索
-<%= search_form_for @q, url: search_restaurant_by_keywords_restaurants_path do |f| %>
-  <%= f.label :name_or_address_cont, '店名か住所(スペースで複数単語検索できます)' %>
-  <%= f.search_field :name_or_address_cont %>
-  <br>
-  <%= f.submit '検索' %>
-<% end %>
-<div class=""><%= link_to "国から探す", search_restaurant_by_map_restaurants_path %></div>
-<br>

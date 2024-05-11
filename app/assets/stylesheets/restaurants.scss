@@ -1,3 +1,20 @@
 // Place all the styles related to the restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.collapse {
+  .search-label {
+    background-color: #212529;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+  }
+  
+  .no-padding-bottom {
+    padding-bottom: 0;
+  }
+
+  .search-label {
+    pointer-events: none;
+  }
+}
