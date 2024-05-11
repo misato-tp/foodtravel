@@ -1,8 +1,13 @@
-<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-  <i class="bi bi-search"></i>お店を探す
-</button>
-<div class="collapse" id="collapseExample">
-  <div class="card card-body mx-2">
+<div class="text-center pt-5">
+  <button class="btn btn-warning btn-lg m-2 top-buttons" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRestaurantSearch" aria-expanded="false" aria-controls="collapseRestaurantSearch">
+    <i class="bi bi-search"></i>&ensp;お店を探す
+  </button>
+  <%= link_to new_restaurant_path, data: {"turbolinks" => false}, class:"btn btn-warning btn-lg m-2 top-buttons" do %>
+    <i class="bi bi-chat-left-dots-fill"></i>&ensp;新しくお店を登録する
+  <% end %>
+</div>
+<div class="collapse" id="collapseRestaurantSearch">
+  <div class="card card-body m-2">
     <div class="search-label m-2 text-center btn btn-dark">
       <i class="bi bi-search"></i>&ensp;キーワードで検索(店名または住所)
       <%= search_form_for @q, url: search_restaurant_by_keywords_restaurants_path do |f| %>
@@ -24,40 +29,32 @@
   </div>
 </div>
 
-<div class="py-5">
-  <div class="container px-4 px-lg-5 mt-5">
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-    <% @restaurants.each do |r| %>
-      <div class="col mb-5">
-        <div class="card h-100">
-          <div class="text-center">
-            <div class="restaurant_image">
-              <% if r.image? %>
-                <%= image_tag r.image.photo.url, class:'img-fluid mx-auto rounded-top' %>
-              <% else %>
-                <%= image_tag "noimage.png", size: :photo, class:'img-fluid mx-auto rounded-top' %>
-              <% end %>
-            </div>
-          </div>
-          <!-- Product details-->
-          <div class="card-body p-4">
-            <div class="text-center">
-                <!-- Product name-->
-                <h5 class="fw-bolder"><%= r.name %></h5>
-                <!-- Product address-->
-                <p><%= r.address %></p>
-                <p><%= r.country.name %></p>
-            </div>
-          </div>
-          <!-- Product actions-->
-          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <%= link_to "詳細", r, data: {"turbolinks" => false}, class: "btn btn-primary" %>
+<div class="container px-4 px-lg-5 mt-5">
+  <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+  <% @restaurants.each do |r| %>
+    <div class="col mb-5">
+      <div class="card h-100">
+        <div class="text-center">
+          <div class="restaurant_image">
+            <% if r.image? %>
+              <%= image_tag r.image.photo.url, class:'img-fluid mx-auto rounded-top' %>
+            <% else %>
+              <%= image_tag "noimage.png", size: :photo, class:'img-fluid mx-auto rounded-top' %>
+            <% end %>
           </div>
         </div>
+        <div class="card-body p-4">
+          <div class="text-center">
+            <h5 class="fw-bolder"><%= r.name %></h5>
+            <p><%= r.address %></p>
+            <p><%= r.country.name %></p>
+          </div>
+        </div>
+        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
+          <%= link_to "詳細", r, data: {"turbolinks" => false}, class: "btn btn-primary" %>
+        </div>
       </div>
-    <% end %>
     </div>
+  <% end %>
   </div>
 </div>
-
-<%= link_to "新しいお店をみんなに知らせる", new_restaurant_path, data: {"turbolinks" => false} %>
