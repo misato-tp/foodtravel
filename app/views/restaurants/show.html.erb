@@ -68,7 +68,29 @@
 
   <section class="py-5 bg-light">
     <div class="container px-4 px-lg-5 mt-5">
-      <h2 class="fw-bolder mb-4">みんなのレポ</h2>
+      <div class="row align-items-center justify-content-between mb-4">
+        <div class="col">
+          <h2 class="fw-bolder">みんなのレポ</h2>
+        </div>
+        <div class="col-auto">
+          <button type="button" class="btn btn-warning focus-button" data-bs-toggle="modal" data-bs-target="#Modal">
+            <i class="bi bi-pencil-square"></i>&ensp;このお店のレポを書く
+          </button>
+        </div>
+      </div>
+      <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel"><%= @restaurant.name %>のレポを書く</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <%= render "reports/form", restaurant: @restaurant, report: @report %>
+            </div>
+          </div>
+        </div>
+      </div>
       <% if @restaurant_reports.blank? %>
         <div>投稿されたレポはまだありません。</div>
       <% else %>
@@ -106,5 +128,3 @@
     </div>
   </section>
 </div>
-
-  <%= render "reports/form", restaurant: @restaurant, report: @report %>
