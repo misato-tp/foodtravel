@@ -21,10 +21,10 @@
     </div>
     <div class="field mb-4">
       <i class="bi bi-globe2"></i>
-      <%= f.label :country, "どこの国の料理が食べられる？" %>
+      <%= f.label :country, "どこの国の料理が食べられる？(入力すると下に候補が出ます)" %>
       <%= f.text_field :country_name, id: "restaurant_country", value: @country ? @country.name : nil, class: "form-control"  %>
       <%= f.hidden_field :country_id, id: "restaurant_country_id" %>
-      <div>【該当する国をクリックしてください】</div>
+      <div>【該当する国を必ずクリックして選んでください】</div>
       <div id="search-result"></div>
     </div>
     <div class="field mb-3">
