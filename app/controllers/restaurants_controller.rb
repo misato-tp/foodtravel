@@ -42,14 +42,14 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    restaurant = Restaurant.find(params[:id])
-    if restaurant.destroy
+    @restaurant = Restaurant.find(params[:id])
+    if @restaurant.destroy
+      Like.where(restaurant_id: @restaurant.id).destroy_all
       flash[:notice] = "お店を削除しました。"
-      redirect_to restaurants_path
     else
-      redirect_to restaurants_path
       flash[:alert] = "お店を削除できませんでした。"
     end
+    redirect_to restaurants_path
   end
 
   def search_country

@@ -25,7 +25,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     likes = Like.where(user_id: @user.id).pluck(:restaurant_id)
     @like_restaurants = Restaurant.find(likes)
-    @restaurant = Restaurant.find(params[:id])
   end
 
   def myrestaurants

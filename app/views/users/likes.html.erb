@@ -1,12 +1,16 @@
 <h1>いいねしたお店一覧</h1>
+<% if @like_restaurants.blank? %>
+  まだいいねしたお店はありません。
+<% else %>
 <table class="table">
   <tbody>
     <% @like_restaurants.each do |restaurant| %>
       <tr>
         <td>
-          <%= link_to restaurant.name, restaurant_path(@restaurant) %>
+          <%= link_to restaurant.name, restaurant_path(restaurant) %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<% end %>
