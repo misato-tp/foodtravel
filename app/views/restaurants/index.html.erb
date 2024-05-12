@@ -8,13 +8,13 @@
 </div>
 <div class="collapse" id="collapseRestaurantSearch">
   <div class="card card-body m-2">
-    <div class="search-label m-2 text-center btn btn-dark">
+    <label class="search-label m-2 text-center btn btn-dark">
       <i class="bi bi-search"></i>&ensp;キーワードで検索(店名または住所)
       <%= search_form_for @q, url: search_restaurant_by_keywords_restaurants_path do |f| %>
         <%= f.search_field :name_or_address_cont, placeholder:"スペースでAND検索可能", style: "width: 50%;" %>
         <%= f.submit '検索', class: "btn btn-light" %>
       <% end %>
-    </div>
+    </label>
     <div class="row justify-content-center no-padding-bottom">
       <%= link_to restaurant_path(Restaurant.offset(rand(Restaurant.count)).first), data: {"turbolinks" => false}, class:"btn btn-dark col-md-3 m-2" do %>
         <i class="bi bi-dice-3"></i>&ensp;ランダムで探す

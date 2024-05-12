@@ -99,7 +99,7 @@
             <div class="col mb-5">
               <div class="card h-100">
                 <div id="report_<%= report.id %>"></div>
-                  <div><%= image_tag report.image.url, class:"img-fluid" %></div>
+                  <%= image_tag report.image.url, class:"img-fluid mx-auto rounded-top" %>
                   <div class="card-body p-4">
                     <div class="text-center">
                       <div><h5 class="fw-bolder"><%= report.title %></h5></div>
