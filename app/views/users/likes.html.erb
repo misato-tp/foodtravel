@@ -1,16 +1,14 @@
-<h1>いいねしたお店一覧</h1>
-<% if @like_restaurants.blank? %>
-  まだいいねしたお店はありません。
-<% else %>
-<table class="table">
-  <tbody>
-    <% @like_restaurants.each do |restaurant| %>
-      <tr>
-        <td>
-          <%= link_to restaurant.name, restaurant_path(restaurant) %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<% end %>
+<div class="container px-4 px-lg-5 my-5">
+  <h1><i class="bi bi-house-heart"></i>&ensp;いいねしたお店一覧</h1>
+  <% if @like_restaurants.blank? %>
+    まだいいねしたお店はありません。
+  <% else %>
+    <div class="list-group">
+      <% @like_restaurants.each do |restaurant| %>
+        <%= link_to restaurant_path(restaurant), class:"list-group-item list-group-item-action" do %>
+          <i class="bi bi-heart"></i>&ensp;<%= restaurant.name %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
