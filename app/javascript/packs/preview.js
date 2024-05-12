@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     blobImage.setAttribute('src', blob);
     imageElement.appendChild(blobImage);
   };
-  document.getElementById('report_image').addEventListener('change', (e) =>{
+  const reportImageElement = document.getElementById('report_image');
+  if (reportImageElement) {
+  reportImageElement.addEventListener('change', (e) =>{
     const imageContent = document.querySelector('#preview-image img');
     if (imageContent){
       imageContent.remove();
@@ -15,4 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const blob = window.URL.createObjectURL(file);
     createImageHTML(blob);
   });
+}
+const restaurantImageElement = document.getElementById('restaurant_image');
+if (restaurantImageElement) {
+  restaurantImageElement.addEventListener('change', (e) =>{
+    const imageContent = document.querySelector('#preview-image img');
+    if (imageContent) {
+      imageContent.remove();
+    }
+    const file = e.target.files[0];
+    const blob = window.URL.createObjectURL(file);
+    createImageHTML(blob);
+  });
+}
 });
