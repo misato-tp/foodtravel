@@ -19,6 +19,7 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = current_user.restaurants.new(restaurant_params)
     if @restaurant.save
+      flash[:notice] = "お店の登録に成功しました。投稿ありがとう！"
       redirect_to restaurant_path(@restaurant.id)
     else
       render :new
@@ -34,6 +35,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     if @restaurant.update(restaurant_params)
       redirect_to restaurant_path(@restaurant.id)
+      flash[:notice] = "お店の情報を更新しました。"
     else
       render :edit
     end
@@ -42,9 +44,11 @@ class RestaurantsController < ApplicationController
   def destroy
     restaurant = Restaurant.find(params[:id])
     if restaurant.destroy
+      flash[:notice] = "お店を削除しました。"
       redirect_to restaurants_path
     else
       redirect_to restaurants_path
+      flash[:alert] = "お店を削除できませんでした。"
     end
   end
 
@@ -70,6 +74,7 @@ class RestaurantsController < ApplicationController
     @results = Restaurant.where(country_id: country_id)
   end
 end
+
 private
 
 def restaurant_params
