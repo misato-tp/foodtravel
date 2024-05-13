@@ -30,4 +30,16 @@ if (restaurantImageElement) {
     createImageHTML(blob);
   });
 }
+const userImageElement = document.getElementById('user_profile_image');
+if (userImageElement) {
+  userImageElement.addEventListener('change', (e) =>{
+    const imageContent = document.querySelector('#preview-image img');
+    if (imageContent) {
+      imageContent.remove();
+    }
+    const file = e.target.files[0];
+    const blob = window.URL.createObjectURL(file);
+    createImageHTML(blob);
+  });
+}
 });
