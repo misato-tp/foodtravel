@@ -23,14 +23,6 @@
       <%= f.password_field :password, class: "form-control", id: "floatingPassword", placeholder: "Password", type: "password" %>
       <label for="floatingPassword">パスワード</label>
     </div>
-    <div class="form-check text-start my-3">
-      <% if devise_mapping.rememberable? %>
-        <%= f.check_box :remember_me, class: "form-check-input", id: "flexCheckDefault" %>
-        <label class="form-check-label" for="flexCheckDefault">
-          パスワードを保存
-        </label>
-      <% end %>
-    </div>
     <div class="forgotPasswortLink pb-3">
       <i class="bi bi-question-circle"></i>&ensp;<%= link_to "パスワードを忘れた方", new_password_path(resource_name), class: "link" %>
     </div>
