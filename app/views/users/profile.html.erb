@@ -1,6 +1,7 @@
 <%= render "shared/flash_messages" %>
+<h1 class="page-title text-dark text-center text-uppercase fw-lighter mt-4">profile</h1>
+<h5 class="page-title text-dark text-center">プロフィール</h5>
 <div class="container px-4 px-lg-5 my-5 text-center">
-  <h3 class="mb-4">プロフィール</h3>
   <div class="card mx-auto" style="width: 18rem;">
     <% if @user.profile_image? %>
       <%= image_tag @user.profile_image.url, class:"card-image-top img-fluid mx-auto rounded-top" %>
