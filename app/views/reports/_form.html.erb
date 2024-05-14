@@ -1,4 +1,7 @@
 <div class="container">
+  <%= link_to :back, class:"btn btn-dark mb-3 mt-3" do %>
+    <i class="bi bi-arrow-left"></i>一つ前に戻る
+  <% end %>
   <%= form_with model:[@restaurant, @report] do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <ul class="list-unstyled">
@@ -12,8 +15,7 @@
       <li class="mb-3"><%= f.file_field :image, class: "form-control" %></li>
       <div id="preview-image"></div>
     </ul>
-      <div class="">
-        <button type="button" class="btn btn-secondary col-md-3" data-bs-dismiss="modal">閉じる</button>
+      <div class="d-flex justify-content-end">
         <%= f.submit "登録", class: "btn btn-primary col-md-3" %>
       </div>
   <% end %>

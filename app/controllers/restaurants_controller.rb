@@ -8,7 +8,6 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
     @countries = @restaurant.country
-    @report = Report.new
     @restaurant_reports = @restaurant.reports.all
   end
 

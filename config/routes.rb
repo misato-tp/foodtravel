@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   resources :restaurants do
-    resources :reports, only: [:create, :edit, :update, :destroy]
+    resources :reports, only: [:new, :create, :edit, :update, :destroy]
     collection do
       get 'search_country'
       get 'search_restaurant_by_gps'

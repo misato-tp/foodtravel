@@ -73,22 +73,11 @@
           <h2 class="fw-bolder">みんなのレポ</h2>
         </div>
         <div class="col-auto">
-          <button type="button" class="btn btn-warning focus-button" data-bs-toggle="modal" data-bs-target="#Modal">
+          <button type="button" class="btn btn-warning focus-button">
+          <%= link_to new_restaurant_report_path(@restaurant) do %>
             <i class="bi bi-pencil-square"></i>&ensp;このお店のレポを書く
+          <% end %>
           </button>
-        </div>
-      </div>
-      <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel"><%= @restaurant.name %>のレポを書く</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <%= render "reports/form", restaurant: @restaurant, report: @report %>
-            </div>
-          </div>
         </div>
       </div>
       <% if @restaurant_reports.blank? %>

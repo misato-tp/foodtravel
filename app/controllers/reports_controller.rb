@@ -1,4 +1,9 @@
 class ReportsController < ApplicationController
+  def new
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @report = Report.new
+  end
+
   def create
     @restaurant = Restaurant.find(params[:restaurant_id])
     @report = Report.new(report_params)
@@ -9,7 +14,7 @@ class ReportsController < ApplicationController
       redirect_to restaurant_path(@restaurant.id)
     else
       flash.now[:alert] = "登録に失敗しました。「このお店のレポを書く」ボタンを押して、フォームを再度確認してください。"
-      render 'restaurants/show'
+      render 'new'
     end
   end
 
