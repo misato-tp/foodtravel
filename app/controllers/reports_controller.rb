@@ -10,11 +10,11 @@ class ReportsController < ApplicationController
     @report.user_id = current_user.id
     @report.restaurant_id = @restaurant.id
     if @report.save
-      flash[:notice] = "レポートの登録に成功しました。投稿ありがとう！"
+      flash[:notice] = "レポの登録に成功しました。投稿ありがとう！"
       redirect_to restaurant_path(@restaurant.id)
     else
-      flash.now[:alert] = "登録に失敗しました。「このお店のレポを書く」ボタンを押して、フォームを再度確認してください。"
-      render 'new'
+      flash[:alert] = "登録に失敗しました。"
+      render :new
     end
   end
 
@@ -24,15 +24,21 @@ class ReportsController < ApplicationController
   end
 
   def update
-    report = Report.find(params[:id])
-    report.update(report_params)
-    redirect_to restaurant_path(report.restaurant.id)
+    @report = Report.find(params[:id])
+    if @report.update(report_params)
+      flash[:notice] = "レポを更新しました。"
+      redirect_to restaurant_path(report.restaurant.id)
+    else
+      flash[:alert] = "登録に失敗しました。"
+      render :edit
+    end
   end
 
   def destroy
     @restaurant = Restaurant.find(params[:restaurant_id])
     @restaurant_reports = @restaurant.reports
     Report.find_by(id: params[:id], restaurant_id: params[:restaurant_id]).destroy
+    flash[:notice] = "レポを削除しました。"
     redirect_to restaurant_path(@restaurant.id)
   end
 

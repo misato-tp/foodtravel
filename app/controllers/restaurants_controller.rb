@@ -21,6 +21,7 @@ class RestaurantsController < ApplicationController
       flash[:notice] = "お店の登録に成功しました。投稿ありがとう！"
       redirect_to restaurant_path(@restaurant.id)
     else
+      flash[:alert] = "お店の登録に失敗しました。"
       render :new
     end
   end
@@ -33,9 +34,10 @@ class RestaurantsController < ApplicationController
   def update
     @restaurant = Restaurant.find(params[:id])
     if @restaurant.update(restaurant_params)
-      redirect_to restaurant_path(@restaurant.id)
       flash[:notice] = "お店の情報を更新しました。"
+      redirect_to restaurant_path(@restaurant.id)
     else
+      flash[:alert] = "お店の情報更新に失敗しました。"
       render :edit
     end
   end
