@@ -5,18 +5,26 @@
   <%= form_with model:[@restaurant, @report] do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <ul class="list-unstyled">
-      <li><%= f.label :title, "タイトル" %><span class="text-danger"> ※必須</span></li>
-      <li class="mb-3"><%= f.text_field :title, class: "form-control" %></li>
-      <li><%= f.label :recommend, "おすすめの料理" %></li>
-      <li class="mb-3"><%= f.text_field :recommend, class: "form-control" %></li>
-      <li><%= f.label :memo, "メモ" %><span class="text-danger"> ※必須</span></li>
-      <li class="mb-3"><%= f.text_area :memo, placeholder: "このお店の感想を書こう！", class: "col form-control" %></li>
-      <li><%= f.label :image, "写真" %></li>
-      <li class="mb-3"><%= f.file_field :image, class: "form-control" %></li>
-      <div id="preview-image"></div>
+      <li><i class="bi bi-chat-right"></i>
+        <%= f.label :title, "タイトル" %><span class="text-danger"> ※必須</span>
+        <%= f.text_field :title, class: "form-control mb-3" %>
+      </li>
+      <li><i class="bi bi-hand-thumbs-up"></i>
+        <%= f.label :recommend, "おすすめの料理" %>
+        <%= f.text_field :recommend, class: "form-control mb-3" %>
+      </li>
+      <li><i class="bi bi-pencil-fill"></i>
+        <%= f.label :memo, "メモ" %><span class="text-danger"> ※必須</span>
+        <%= f.text_area :memo, placeholder: "このお店の感想を書こう！", class: "col form-control mb-3" %>
+      </li>
+      <li><i class="bi bi-image"></i>
+        <%= f.label :image, "写真" %>
+        <%= f.file_field :image, class: "form-control mb-3" %>
+        <div id="preview-image"></div>
+      </li>
     </ul>
-      <div class="d-flex justify-content-end">
-        <%= f.submit "登録", class: "btn btn-primary col-md-3" %>
-      </div>
+    <div class="d-flex justify-content-end">
+      <%= f.submit "登録", class: "btn btn-primary col-md-3" %>
+    </div>
   <% end %>
 </div>
