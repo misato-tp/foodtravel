@@ -56,11 +56,13 @@
         </div>
       </nav> 
     </header>
-    <%= yield %>
-    <footer class="py-5 bg-dark">
-      <div class="container-fluid px-0">
-        <p class="m-0 text-center text-white small">Copyright &copy; FOOD TRAVEL 2024</p>
-      </div>
-    </footer>
+    <div class="wrap">
+      <%= yield %>
+      <footer class="mt-auto py-5 bg-dark">
+        <div class="container-fluid px-0">
+          <p class="m-0 text-center text-white small">Copyright &copy; FOOD TRAVEL 2024</p>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>

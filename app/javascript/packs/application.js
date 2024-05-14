@@ -22,12 +22,12 @@ ActiveStorage.start()
 
 
   $(document).on('turbolinks:load', function (){
-    $('#restaurant_postal_code.form_control').jpostal({
+    $('#restaurant_postal_code.form-control').jpostal({
       postcode : [
-        '#restaurant_postal_code.form_control'
+        '#restaurant_postal_code.form-control'
       ],
       address: {
-        "#restaurant_address.form_control": "%3%4%5%6%7"
+        "#restaurant_address.form-control": "%3%4%5%6%7"
       }
     });
   });

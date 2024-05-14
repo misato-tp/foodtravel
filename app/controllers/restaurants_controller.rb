@@ -8,7 +8,6 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
     @countries = @restaurant.country
-    @report = Report.new
     @restaurant_reports = @restaurant.reports.all
   end
 
@@ -19,8 +18,10 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = current_user.restaurants.new(restaurant_params)
     if @restaurant.save
+      flash[:notice] = "お店の登録に成功しました。投稿ありがとう！"
       redirect_to restaurant_path(@restaurant.id)
     else
+      flash[:alert] = "お店の登録に失敗しました。"
       render :new
     end
   end
@@ -33,19 +34,23 @@ class RestaurantsController < ApplicationController
   def update
     @restaurant = Restaurant.find(params[:id])
     if @restaurant.update(restaurant_params)
+      flash[:notice] = "お店の情報を更新しました。"
       redirect_to restaurant_path(@restaurant.id)
     else
+      flash[:alert] = "お店の情報更新に失敗しました。"
       render :edit
     end
   end
 
   def destroy
-    restaurant = Restaurant.find(params[:id])
-    if restaurant.destroy
-      redirect_to restaurants_path
+    @restaurant = Restaurant.find(params[:id])
+    if @restaurant.destroy
+      Like.where(restaurant_id: @restaurant.id).destroy_all
+      flash[:notice] = "お店を削除しました。"
     else
-      redirect_to restaurants_path
+      flash[:alert] = "お店を削除できませんでした。"
     end
+    redirect_to restaurants_path
   end
 
   def search_country
@@ -70,6 +75,7 @@ class RestaurantsController < ApplicationController
     @results = Restaurant.where(country_id: country_id)
   end
 end
+
 private
 
 def restaurant_params

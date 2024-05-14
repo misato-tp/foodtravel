@@ -3,6 +3,9 @@
 @import "devise/sign_in";
 @import "devise/sign_up";
 @import "devise/forgot_password";
+@import "restaurants";
+@import "likes";
+@import "users";
 @import "bootstrap";
 
 header {
@@ -13,4 +16,13 @@ header {
 
 .no-margin {
   margin: 0;
+}
+
+.wrap{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+footer{
+    margin-top: auto;
 }

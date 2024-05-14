@@ -6,21 +6,21 @@
   <%= form_with model: @user, url: user_registration_path do |f| %>
     <div class="form-floating">
       <%= f.text_field :username, class: "form-control", id: "floatingUsername", placeholder: "Username", type: "username" %>
-      <label for="floatingUsername">ユーザー名</label>
+      <label for="floatingUsername">ユーザー名<span class="text-danger"> ※必須</span></label>
     </div>
     <div class="form-floating">
       <%= f.email_field :email, class: "form-control", id: "floatingEmail", placeholder: "Email", type: "email" %>
-      <label for="floatingEmail">メールアドレス</label>
+      <label for="floatingEmail">メールアドレス<span class="text-danger"> ※必須</span></label>
     </div>
     <div class="form-floating">
       <%= f.password_field :password, class: "form-control", id: "floatingPassword", placeholder: "Password", type: "password" %>
-      <label for="floatingPassword">パスワード(6文字以上)</label>
+      <label for="floatingPassword">パスワード(6文字以上)<span class="text-danger"> ※必須</span></label>
     </div>
     <div class="form-floating">
-      <%= f.password_field :confirm_password, class: "form-control", id: "floatingConfirmPassword", placeholder: "ConfirmPassword", type: "password" %>
-      <label for="floatingConfirmPassword">パスワード(確認用)</label>
+      <%= f.password_field :password_confirmation, class: "form-control", id: "floatingConfirmPassword", placeholder: "ConfirmPassword", type: "password" %>
+      <label for="floatingConfirmPassword">パスワード(確認用)<span class="text-danger"> ※必須</span></label>
     </div>
-    <%= f.submit "登録", class: "btn btn-primary w-100 py-2" %>
+    <%= f.submit "登録", data: {"turbolinks" => false}, class: "btn btn-primary w-100 py-2" %>
   <% end %>
   <hr>
   <div class="loginLink">

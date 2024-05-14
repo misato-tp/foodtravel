@@ -1,12 +1,14 @@
-<h1>自分が投稿したお店一覧</h1>
-<table class="table">
-  <tbody>
-    <% @restaurants.each do |restaurant| %>
-      <tr>
-        <td>
-          <%= link_to restaurant.name, restaurant_path(restaurant) %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container px-4 px-lg-5 my-5">
+  <h1><i class="bi bi-shop"></i>&ensp;自分が投稿したお店一覧</h1>
+  <% if @restaurants.blank? %>
+    まだ投稿したレポはありません。
+  <% else %>
+    <div class="list-group">
+      <% @restaurants.each do |restaurant| %>
+        <%= link_to restaurant_path(restaurant), class:"list-group-item list-group-item-action" do %>
+          <i class="bi bi-pencil-fill"></i>&ensp;<%= restaurant.name %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

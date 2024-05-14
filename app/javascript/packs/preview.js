@@ -2,34 +2,44 @@ document.addEventListener('DOMContentLoaded', () => {
   const createImageHTML = (blob) => {
     const imageElement = document.getElementById('preview-image');
     const blobImage = document.createElement('img');
-    blobImage.setAttribute('class', 'preview-image');
+    blobImage.setAttribute('class', 'preview-img') 
     blobImage.setAttribute('src', blob);
     imageElement.appendChild(blobImage);
   };
-
-  const restaurantImage = document.getElementById('restaurant_image');
-  if (restaurantImage) {
-    restaurantImage.addEventListener('change', (e) => {
-      const imageContent = document.querySelector('img');
-      if (imageContent) {
-        imageContent.remove();
-      }
-      const file = e.target.files[0];
-      const blob = window.URL.createObjectURL(file);
-      createImageHTML(blob);
-    });
-  }
-
-  const reportImage = document.getElementById('report_image');
-  if (reportImage) {
-    reportImage.addEventListener('change', (e) => {
-      const imageContent = document.querySelector('img');
-      if (imageContent) {
-        imageContent.remove();
-      }
-      const file = e.target.files[0];
-      const blob = window.URL.createObjectURL(file);
-      createImageHTML(blob);
-    });
-  }
+  const reportImageElement = document.getElementById('report_image');
+  if (reportImageElement) {
+  reportImageElement.addEventListener('change', (e) =>{
+    const imageContent = document.querySelector('#preview-image img');
+    if (imageContent){
+      imageContent.remove();
+    }
+    const file = e.target.files[0];
+    const blob = window.URL.createObjectURL(file);
+    createImageHTML(blob);
+  });
+}
+const restaurantImageElement = document.getElementById('restaurant_image');
+if (restaurantImageElement) {
+  restaurantImageElement.addEventListener('change', (e) =>{
+    const imageContent = document.querySelector('#preview-image img');
+    if (imageContent) {
+      imageContent.remove();
+    }
+    const file = e.target.files[0];
+    const blob = window.URL.createObjectURL(file);
+    createImageHTML(blob);
+  });
+}
+const userImageElement = document.getElementById('user_profile_image');
+if (userImageElement) {
+  userImageElement.addEventListener('change', (e) =>{
+    const imageContent = document.querySelector('#preview-image img');
+    if (imageContent) {
+      imageContent.remove();
+    }
+    const file = e.target.files[0];
+    const blob = window.URL.createObjectURL(file);
+    createImageHTML(blob);
+  });
+}
 });

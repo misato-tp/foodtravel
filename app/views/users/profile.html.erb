@@ -1,24 +1,20 @@
 <%= render "shared/flash_messages" %>
-<div class="border-bottom">
-  <h3>プロフィール</h3>
-  <h3><%= link_to "編集", "edit" %></h3>
+<div class="container px-4 px-lg-5 my-5 text-center">
+  <h3 class="mb-4">プロフィール</h3>
+  <div class="card mx-auto" style="width: 18rem;">
+    <% if @user.profile_image? %>
+      <%= image_tag @user.profile_image.url, class:"card-image-top img-fluid mx-auto rounded-top" %>
+    <% else %>
+      <%= image_tag "defaultIcon.png", class:"card-image-top img-fluid mx-auto rounded-top" %>
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title"><%= current_user.username %></h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><i class="bi bi-envelope"></i>メールアドレス : <%= current_user.email %></li>
+    </ul>
+    <div class="card-body">
+      <%= link_to "編集", "edit", data: {"turbolinks" => false}, class:"btn btn-primary" %>
+    </div>
+  </div>
 </div>
-
-<table class="table">
-  <tr>
-  <th>アイコン</th>
-  <td><% if @user.profile_image? %>
-        <%= image_tag @user.profile_image.icon.url %></td>
-      <% else %>
-        <%= image_tag "defaultIcon.png", size: "100x100" %>
-      <% end %>
-  </tr>
-  <tr>
-  <th>名前</th>
-  <td><%= current_user.username %></td>
-  </tr>
-  <tr>
-  <th>メールアドレス</th>
-  <td><%= current_user.email %></td>
-  </tr>
-</table>
