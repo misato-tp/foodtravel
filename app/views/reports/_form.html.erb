@@ -2,11 +2,11 @@
   <%= form_with model:[@restaurant, @report] do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <ul class="list-unstyled">
-      <li><%= f.label :title, "タイトル" %></li>
+      <li><%= f.label :title, "タイトル" %><span class="text-danger"> ※必須</span></li>
       <li class="mb-3"><%= f.text_field :title, class: "form-control" %></li>
       <li><%= f.label :recommend, "おすすめの料理" %></li>
       <li class="mb-3"><%= f.text_field :recommend, class: "form-control" %></li>
-      <li><%= f.label :memo, "メモ" %></li>
+      <li><%= f.label :memo, "メモ" %><span class="text-danger"> ※必須</span></li>
       <li class="mb-3"><%= f.text_area :memo, placeholder: "このお店の感想を書こう！", class: "col form-control" %></li>
       <li><%= f.label :image, "写真" %></li>
       <li class="mb-3"><%= f.file_field :image, class: "form-control" %></li>
