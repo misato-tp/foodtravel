@@ -10,6 +10,7 @@ ja:
         address: 住所
         image: 画像
         memo: メモ
+        country: 国
       report:
         title: タイトル
         memo: メモ
