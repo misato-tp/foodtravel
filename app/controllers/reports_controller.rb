@@ -27,7 +27,7 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
     if @report.update(report_params)
       flash[:notice] = "レポを更新しました。"
-      redirect_to restaurant_path(report.restaurant.id)
+      redirect_to restaurant_path(@report.restaurant.id)
     else
       flash[:alert] = "登録に失敗しました。"
       render :edit

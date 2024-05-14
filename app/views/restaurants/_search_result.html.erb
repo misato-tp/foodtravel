@@ -1,36 +1,35 @@
-<h1>検索結果</h1>
-<div class="py-5">
-  <div class="container px-4 px-lg-5 mt-5">
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-    <% @results.each do |r| %>
-      <div class="col mb-5">
-        <div class="card h-100">
-          <div class="text-center">
-            <div class="restaurant_image">
-              <% if r.image? %>
-                <%= image_tag r.image.photo.url, class:'img-fluid mx-auto rounded-top' %>
-              <% else %>
-                <%= image_tag "noimage.png", size: :photo, class:'img-fluid mx-auto rounded-top' %>
-              <% end %>
-            </div>
-          </div>
-          <!-- Product details-->
-          <div class="card-body p-4">
-            <div class="text-center">
-                <!-- Product name-->
-                <h5 class="fw-bolder"><%= r.name %></h5>
-                <!-- Product address-->
-                <p><%= r.address %></p>
-                <p><%= r.country.name %></p>
-            </div>
-          </div>
-          <!-- Product actions-->
-          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <%= link_to "詳細", r, data: {"turbolinks" => false}, class: "btn btn-primary" %>
+<h1 class="page-title text-dark text-center text-uppercase fw-lighter mt-4">result</h1>
+<h5 class="page-title text-dark text-center">検索結果</h5>
+<div class="container px-4 px-lg-5 mt-5">
+  <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+  <% @results.each do |r| %>
+    <div class="col mb-5">
+      <div class="card h-100">
+        <div class="text-center">
+          <div class="restaurant_image">
+            <% if r.image? %>
+              <%= image_tag r.image.photo.url, class:'img-fluid mx-auto rounded-top' %>
+            <% else %>
+              <%= image_tag "noimage.png", size: :photo, class:'img-fluid mx-auto rounded-top' %>
+            <% end %>
           </div>
         </div>
+        <!-- Product details-->
+        <div class="card-body p-4">
+          <div class="text-center">
+              <!-- Product name-->
+              <h5 class="fw-bolder"><%= r.name %></h5>
+              <!-- Product address-->
+              <p><%= r.address %></p>
+              <p><%= r.country.name %></p>
+          </div>
+        </div>
+        <!-- Product actions-->
+        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+          <%= link_to "詳細", r, data: {"turbolinks" => false}, class: "btn btn-primary" %>
+        </div>
       </div>
-    <% end %>
     </div>
+  <% end %>
   </div>
 </div>
