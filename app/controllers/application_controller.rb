@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  #devise_parameter_sanitizer.permitメソッドを使うことで新規登録時に:usernameと:email,:profilre_imageのパラメータを許可している
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :email, :profile_image])
     devise_parameter_sanitizer.permit(:account_update, keys: [:username, :email, :profile_image])
