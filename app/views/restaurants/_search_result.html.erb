@@ -14,17 +14,13 @@
             <% end %>
           </div>
         </div>
-        <!-- Product details-->
         <div class="card-body p-4">
           <div class="text-center">
-              <!-- Product name-->
               <h5 class="fw-bolder"><%= r.name %></h5>
-              <!-- Product address-->
               <p><%= r.address %></p>
               <p><%= r.country.name %></p>
           </div>
         </div>
-        <!-- Product actions-->
         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
           <%= link_to "詳細", r, data: {"turbolinks" => false}, class: "btn btn-primary" %>
         </div>
