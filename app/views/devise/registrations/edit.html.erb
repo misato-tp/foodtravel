@@ -1,6 +1,7 @@
 <%= render "devise/shared/error_messages", resource: resource %>
 <div class="container p-4">
-<h2 class="text-center">アカウント編集</h2>
+<h1 class="page-title text-dark text-center text-uppercase fw-lighter mt-4">edit</h1>
+<h5 class="page-title text-dark text-center">編集</h5>
 <%= link_to :back, class:"btn btn-dark mb-3" do %>
   <i class="bi bi-arrow-left"></i>一つ前に戻る
 <% end %>
@@ -25,8 +26,8 @@
   </div>
   <div id="preview-image" class="mb-3"><%= image_tag @user.profile_image.url if @user.profile_image? %></div>
 
-  <div class="action mb-3">
-    <%= f.submit "更新", class:"btn btn-primary" %>
+  <div class="action mb-3 d-flex justify-content-end">
+    <%= f.submit "更新", class:"btn btn-primary col-md-3" %>
   </div>
 <% end %>
 <hr>
