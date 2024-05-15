@@ -1,5 +1,8 @@
 class RestaurantsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :search_restaurant_by_gps, :search_restaurant_by_keywords, :search_restaurant_by_map]
+  before_action :authenticate_user!, except: [
+    :index, :show, :search_restaurant_by_gps, :search_restaurant_by_keywords, :search_restaurant_by_map
+  ]
+
   def index
     @restaurants = Restaurant.all
     @q = Restaurant.ransack(params[:q])
