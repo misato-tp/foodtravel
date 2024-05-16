@@ -88,3 +88,5 @@ gem 'geocoder'
 
 #検索機能
 gem 'ransack'
+
+gem 'fog-aws'
