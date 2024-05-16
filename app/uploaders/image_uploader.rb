@@ -2,19 +2,19 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   process resize_to_fit: [300,300]
 
-  storage :file
+  storage :fog
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   def default_url(*args)
-    "noimage.png"
+    "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/noimage.png"
   end
 
   version :default_profile_image do
     def default_url(*args)
-      "defaultIcon.png"
+      "s3://food-travel/app-images/defaultIcon.png"
     end
   end
 

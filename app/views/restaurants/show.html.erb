@@ -22,7 +22,7 @@
           <% if @restaurant.image? %>
             <%= image_tag @restaurant.image.show.url, class:"card-img-top mb-5 mb-md-0" %>
           <% else %>
-            <%= image_tag "noimage.png", size: :show, class:"card-img-top mb-5 mb-md-0" %>
+            <%= image_tag "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/noimage.png", size: :show, class:"card-img-top mb-5 mb-md-0" %>
           <% end %>
         </div>
       </div>
