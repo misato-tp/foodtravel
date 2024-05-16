@@ -6,7 +6,7 @@
     <% if @user.profile_image? %>
       <%= image_tag @user.profile_image.url, class:"card-image-top img-fluid mx-auto rounded-top" %>
     <% else %>
-      <%= image_tag "https://food-travel.s3.ap-northeast-1.amazonaws.com/app-images/defaultIcon.png", class:"card-image-top img-fluid mx-auto rounded-top" %>
+      <%= image_tag "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/defaultIcon.png", class:"card-image-top img-fluid mx-auto rounded-top" %>
     <% end %>
     <div class="card-body">
       <h5 class="card-title"><%= current_user.username %></h5>

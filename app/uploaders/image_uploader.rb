@@ -9,12 +9,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def default_url(*args)
-    "https://food-travel.s3.ap-northeast-1.amazonaws.com/app-images/noimage.png"
+    "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/noimage.png"
   end
 
   version :default_profile_image do
     def default_url(*args)
-      "https://food-travel.s3.ap-northeast-1.amazonaws.com/app-images/defaultIcon.png"
+      "s3://food-travel/app-images/defaultIcon.png"
     end
   end
 

@@ -9,9 +9,9 @@ CarrierWave.configure do |config|
     provider: 'AWS',
     aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
     aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
-    region: 'ap-northeast-1'
+    region: ENV["AWS_REGION"]
   }
 
-  config.fog_directory  = 'food-travel'
-  config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/food-travel'
+  config.fog_directory  = ENV["AWS_BUCKETT_NAME"]
+  config.asset_host = ENV["AWS_ASSET_HOST"]
 end
