@@ -5,6 +5,7 @@ require 'carrierwave/storage/fog'
 CarrierWave.configure do |config|
   config.storage = :fog
   config.fog_provider = 'fog/aws'
+  config.fog_public = false
   config.fog_credentials = {
     provider: 'AWS',
     aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
@@ -12,6 +13,6 @@ CarrierWave.configure do |config|
     region: ENV["AWS_REGION"]
   }
 
-  config.fog_directory  = ENV["AWS_BUCKETT_NAME"]
+  config.fog_directory  = ENV["AWS_BUCKET_NAME"]
   config.asset_host = ENV["AWS_ASSET_HOST"]
 end
