@@ -65,6 +65,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #レイアウト関連
 gem 'bootstrap', '~> 5.3.0'
 gem 'font-awesome-rails'
+gem 'font-awesome-sass'
 gem 'jquery-rails'
 
 #ログイン関連

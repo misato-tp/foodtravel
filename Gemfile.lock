@@ -155,6 +155,8 @@ GEM
       nokogiri (>= 1.5.11, < 2.0.0)
     font-awesome-rails (4.7.0.8)
       railties (>= 3.2, < 8.0)
+    font-awesome-sass (6.5.2)
+      sassc (~> 2.0)
     formatador (1.1.0)
     geocoder (1.8.2)
     globalid (1.2.1)
@@ -437,6 +439,7 @@ DEPENDENCIES
   factory_bot_rails
   fog-aws
   font-awesome-rails
+  font-awesome-sass
   geocoder
   jbuilder (~> 2.7)
   jp_prefecture
