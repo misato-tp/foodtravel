@@ -101,7 +101,12 @@
                       <hr>
                       <div><%= report.memo %></div>
                       <hr>
-                      <div>by&ensp;<%= report.user.username %></div>
+                      <% if report.user.profile_image? %>
+                        <%= image_tag report.user.profile_image.url, size:"50x50", class:"rounded-circle" %>
+                      <% else %>
+                        <%= image_tag "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/defaultIcon.png", size:"50x50", class:"rounded-circle" %>
+                      <% end %>
+                      <span>by&ensp;<%= report.user.username %></span>
                     </div>
                   </div>
                   <% if current_user %>
