@@ -92,8 +92,12 @@
                   <div class="card-body p-4">
                     <div class="text-center">
                       <div><h5 class="fw-bolder"><%= report.title %></h5></div>
-                      <div class="badge text-bg-dark">recommend</div>
-                      <div><%= report.recommend %></div>
+                      <% if report.recommend.blank? %>
+                      <% else %>
+                        <hr>
+                        <div class="badge text-bg-dark">recommend</div>
+                        <div><%= report.recommend %></div>
+                      <% end %>
                       <hr>
                       <div><%= report.memo %></div>
                       <hr>
