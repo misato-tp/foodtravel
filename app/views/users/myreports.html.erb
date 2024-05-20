@@ -6,7 +6,7 @@
   <% else %>
     <div class="list-group">
       <% @restaurants.each do |restaurant| %>
-        <% restaurant.reports.each do |report| %>
+        <% restaurant.reports.where(user: current_user).each do |report| %>
           <%= link_to restaurant_path(restaurant, anchor: "report_#{report.id}"), data:{"turbolinks"=>false}, class:"list-group-item list-group-item-action" do %>
             <i class="bi bi-pencil-fill"></i>&ensp;<%= report.title %>
           <% end %>
