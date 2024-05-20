@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2024_05_01_124640) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "countries", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -19,8 +22,8 @@ ActiveRecord::Schema.define(version: 2024_05_01_124640) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "restaurant_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "restaurant_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_likes_on_restaurant_id"
@@ -49,7 +52,7 @@ ActiveRecord::Schema.define(version: 2024_05_01_124640) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
-    t.integer "country_id"
+    t.bigint "country_id"
     t.index ["country_id"], name: "index_restaurants_on_country_id"
   end
 
