@@ -28,3 +28,4 @@ production:
   database: foodtravel_production
   username: root
   password: <%= ENV['DATABASE_PASSWORD'] %>
+  url: <%= ENV['JAWSDB_URL']&.sub(/\Amysql/, 'mysql2') %>
