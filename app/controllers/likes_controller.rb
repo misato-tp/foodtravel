@@ -8,7 +8,7 @@ class LikesController < ApplicationController
     Like.find_by(user_id: current_user.id, restaurant_id: params[:id]).destroy
   end
 
-private
+  private
 
   def restaurant_params
     @restaurant = Restaurant.find(params[:id])

@@ -1,6 +1,6 @@
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  process resize_to_fit: [300,300]
+  process resize_to_fit: [300, 300]
 
   storage :fog
 
@@ -18,15 +18,14 @@ class ImageUploader < CarrierWave::Uploader::Base
     end
   end
 
-    version :photo do
-      process resize_to_fit: [300, 300]
-    end
+  version :photo do
+    process resize_to_fit: [300, 300]
+  end
+  version :show do
+    process resize_to_fit: [600, 700]
+  end
 
-    version :show do
-      process resize_to_fit: [600, 700]
-    end
-
-    def extension_allowlist
-      %w(jpg jpeg gif png)
-    end
+  def extension_allowlist
+    %w(jpg jpeg gif png)
+  end
 end
