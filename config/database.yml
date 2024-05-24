@@ -13,7 +13,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV['DATABASE_USERNAME'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
-  socket: /tmp/mysql.sock
+  host: localhost
 
 development:
   <<: *default
@@ -26,6 +26,6 @@ test:
 production:
   <<: *default
   database: foodtravel_production
-  username: root
+  username: foodtravel
   password: <%= ENV['DATABASE_PASSWORD'] %>
   url: <%= ENV['JAWSDB_URL']&.sub(/\Amysql/, 'mysql2') %>
