@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_05_24_091951) do
+ActiveRecord::Schema.define(version: 2024_05_24_134523) do
 
   create_table "countries", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -71,4 +71,5 @@ ActiveRecord::Schema.define(version: 2024_05_24_091951) do
 
   add_foreign_key "likes", "restaurants"
   add_foreign_key "likes", "users"
+  add_foreign_key "restaurants", "countries"
 end
