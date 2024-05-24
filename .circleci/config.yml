@@ -9,9 +9,9 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-              command: |
-                gem install bundler:2.3.26
-                bundle install
+          command: |
+            gem install bundler:2.3.26
+            bundle install
       - run:
           name: Install MySQL
           command: |
