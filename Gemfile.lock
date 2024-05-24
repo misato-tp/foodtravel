@@ -178,6 +178,8 @@ GEM
     json (2.7.2)
     jwt (2.8.1)
       base64
+    libv8-node (21.7.2.0-x86_64-darwin)
+    libv8-node (21.7.2.0-x86_64-linux)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -197,6 +199,8 @@ GEM
     mime-types-data (3.2024.0507)
     mini_magick (4.12.0)
     mini_mime (1.0.3)
+    mini_racer (0.12.0)
+      libv8-node (~> 21.7.2.0)
     minitest (5.22.3)
     msgpack (1.7.2)
     multi_json (1.15.0)
@@ -445,6 +449,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.3)
   mini_magick
+  mini_racer
   mysql2 (~> 0.5)
   omniauth
   omniauth-google-oauth2!
