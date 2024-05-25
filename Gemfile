@@ -91,3 +91,4 @@ gem 'ransack'
 gem 'fog-aws'
 
 gem 'rack-mini-profiler', '~> 2.0'
+gem 'mini_racer'
