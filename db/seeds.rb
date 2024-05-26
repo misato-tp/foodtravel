@@ -45,7 +45,7 @@ Restaurant.create!([
     user_id: seed_user.id,
     country_id: 52,
     remote_image_url: "#{base_url}/app-images/WORLD-BREAKFAST-ALLDAY.JPG",
-    memo: "美味しい世界の朝ごはんが食べられます。"
+    memo: "美味しい世界の朝ごはんが食べられます"
   },
   { 
     name: "カンガンスルレ",

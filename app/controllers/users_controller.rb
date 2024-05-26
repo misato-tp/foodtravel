@@ -28,12 +28,12 @@ class UsersController < ApplicationController
 
   def myreports
     @reports = current_user.reports
-    @restaurants = @reports.map{ |report| report.restaurant }.uniq
+    @restaurants = @reports.map { |report| report.restaurant }.uniq
   end
-end
 
-private
+  private
 
-def user_params
-  params.require(:user).permit(:username, :email, :user_id)
+  def user_params
+    params.require(:user).permit(:username, :email, :user_id)
+  end
 end

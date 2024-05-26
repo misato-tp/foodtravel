@@ -1,0 +1,2 @@
+class RestaurantCountryRelation < ApplicationRecord
+end
