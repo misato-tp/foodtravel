@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
   before_action :authenticate_user!, except: [
-    :index, :show, :search_restaurant_by_gps, :search_restaurant_by_keywords, :search_restaurant_by_map,
+    :index, :show, :search_restaurant_by_gps, :search_restaurant_by_keywords, :search_restaurant_by_map
   ]
 
   def index
@@ -59,7 +59,7 @@ class RestaurantsController < ApplicationController
   def search_country
     return nil if params[:input] == ""
     country = Country.where(['name LIKE ?', "%#{params[:input]}%"])
-    render json: { keyword: country }
+    render json: {keyword: country}
   end
 
   def search_restaurant_by_gps
@@ -69,7 +69,7 @@ class RestaurantsController < ApplicationController
   def search_restaurant_by_keywords
     @q = Restaurant.ransack(search_params)
     keywords = search_params[:name_or_address_cont].split(/[\p{blank}\s]+/)
-    grouping_hash = keywords.reduce({}) { |hash, word| hash.merge(word => { name_or_address_cont: word }) }
+    grouping_hash = keywords.reduce({}){|hash, word| hash.merge(word => { name_or_address_cont: word})}
     @results = Restaurant.ransack({ combinator: 'and', groupings: grouping_hash }).result
   end
 
@@ -77,14 +77,14 @@ class RestaurantsController < ApplicationController
     country_id = params[:country_id]
     @results = Restaurant.where(country_id: country_id)
   end
+end
 
-  private
+private
 
-  def restaurant_params
-    params.require(:restaurant).permit(:name, :postal_code, :address, :image, :memo, :country_id)
-  end
+def restaurant_params
+  params.require(:restaurant).permit(:name, :postal_code, :address, :image, :memo, :country_id )
+end
 
-  def search_params
-    params.require(:q).permit(:name_or_address_cont)
-  end
+def search_params
+  params.require(:q).permit(:name_or_address_cont)
 end
