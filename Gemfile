@@ -58,6 +58,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'rspec_junit_formatter'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -91,3 +92,4 @@ gem 'ransack'
 gem 'fog-aws'
 
 gem 'rack-mini-profiler', '~> 2.0'
+gem 'mini_racer'
