@@ -1,6 +1,6 @@
 default: &default
-  adapter: mysql2
-  encoding: utf8mb4
+  adapter: postgresql
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV.fetch("DATABASE_USERNAME") {"DATABASE_USERNAMEの環境変数が存在しません"} %>
   password: <%= ENV.fetch("DATABASE_PASSWORD") {"DATABASE_PASSWORDの環境変数が存在しません"}%>
@@ -19,4 +19,4 @@ production:
   database: foodtravel_production
   username: foodtravel
   password: <%= ENV.fetch("DATABASE_PASSWORD") {"DATABASE_PASSWORDの環境変数が存在しません"}%>
-  host: db
+  host: <%= ENV.fetch("DATABASE_HOST") {"DATABASE_HOSTの環境変数が存在しません"} %>

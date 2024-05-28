@@ -1,6 +1,6 @@
 test:
-  adapter: mysql2
-  encoding: utf8mb4
+  adapter: postgresql
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV.fetch("DATABASE_USERNAME") {"DATABASE_USERNAMEの環境変数が存在しません"} %>
   port: 3306
