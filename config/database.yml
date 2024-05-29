@@ -2,6 +2,11 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV.fetch("DATABASE_USERNAME") {"DATABASE_USERNAMEの環境変数が存在しません"} %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") {"DATABASE_PASSWORDの環境変数が存在しません"}%>
+  host: <%= ENV.fetch("DATABASE_HOST") {"DATABASE_HOSTの環境変数が存在しません"} %>
+  port: 5432
+
 
 development:
   <<: *default
