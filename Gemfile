@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.6'
+ruby '2.7.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '= 6.1.3.2'
@@ -74,7 +74,7 @@ gem 'jquery-rails'
 gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-oauth2.git'
 gem 'omniauth'
 gem 'dotenv-rails'
-gem 'devise', github: 'heartcombo/devise'
+gem 'devise', git: 'https://github.com/heartcombo/devise.git', branch: 'main'
 gem 'omniauth-rails_csrf_protection'
 
 #deviseの日本語化
@@ -93,3 +93,4 @@ gem 'fog-aws'
 
 gem 'rack-mini-profiler', '~> 2.0'
 gem 'mini_racer'
+gem 'nokogiri', '~> 1.11.0'
