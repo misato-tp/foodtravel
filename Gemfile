@@ -61,6 +61,10 @@ group :test do
   gem 'rspec_junit_formatter'
 end
 
+group :production do
+  gem 'nokogiri', '~> 1.11.0'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
@@ -93,4 +97,4 @@ gem 'fog-aws'
 
 gem 'rack-mini-profiler', '~> 2.0'
 gem 'mini_racer'
-gem 'nokogiri', '~> 1.11.0'
+gem 'loofah', '~> 2.19.1'
