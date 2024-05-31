@@ -8,14 +8,14 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/ruby:2.6.6
+      - image: cimg/ruby:2.7.7
     environment:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
     steps:
       - checkout
       - ruby/install-deps:
-          bundler-version: 2.1.4
+          bundler-version: 2.4.22
       - node/install:
           node-version: '16.20.2'
       - node/install-packages:
@@ -23,7 +23,7 @@ jobs:
 
   test:
     docker:
-      - image: cimg/ruby:2.6.6
+      - image: cimg/ruby:2.7.7
       - image: circleci/postgres:11.7
         environment:
           POSTGRES_USER: circleci
@@ -41,7 +41,7 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps:
-          bundler-version: 2.1.4
+          bundler-version: 2.4.22
       - node/install:
           node-version: '16.20.2'
       - node/install-packages: 
