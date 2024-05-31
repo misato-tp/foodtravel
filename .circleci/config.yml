@@ -1,81 +1,62 @@
-version: 2.1
-
-orbs:
-  ruby: circleci/ruby@1.1.1
-  node: circleci/node@4.0.0
-  browser-tools: circleci/browser-tools@1.0.1
-
+version: 2
 jobs:
   build:
-    docker:
-      - image: cimg/ruby:2.7.7
-    environment:
-      BUNDLE_JOBS: "3"
-      BUNDLE_RETRY: "3"
-    steps:
-      - checkout
-      - ruby/install-deps:
-          bundler-version: 2.4.22
-      - node/install:
-          node-version: '16.20.2'
-      - run:
-          name: Install npm 8.x
-          command: npm install -g npm@8
-      - node/install-packages:
-          pkg-manager: yarn
+    working_directory: ~/foodtravel_0409
 
-  test:
+    # Primary container image where all commands run
+
     docker:
-      - image: cimg/ruby:2.7.7
-      - image: circleci/postgres:11.7
+      - image: cimg/ruby:2.7.7-node
+        auth:
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD  # context / project UI env-var reference
         environment:
-          POSTGRES_USER: circleci
-          POSTGRES_DB: blog_rails6_test
-          POSTGRES_HOST_AUTH_METHOD: trust
-    environment:
-      BUNDLE_JOBS: "3"
-      BUNDLE_RETRY: "3"
-      PGHOST: 127.0.0.1
-      PGUSER: circleci
-      PGPASSWORD: ${DATABASE_PASSWORD}
-      TZ: "/usr/share/zoneinfo/Asia/Tokyo"
-      RAILS_ENV: test
+          RAILS_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: root
+
+    # Service container image available at `host: localhost`
+
+      - image: cimg/postgres:14.0
+        auth:
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD  # context / project UI env-var reference
+        environment:
+          POSTGRES_USER: $DATABASE_USERNAME
+          POSTGRES_DB: $DATABASE_URL
 
     steps:
       - checkout
-      - ruby/install-deps:
-          bundler-version: 2.4.22
-      - node/install:
-          node-version: '16.20.2'
-      - run:
-          name: Install npm 8.x
-          command: npm install -g npm@8
-      - node/install-packages: 
-          pkg-manager: yarn
-      - run:
-          name: Verify NPM version
-          command: npm -v
-      - browser-tools/install-chrome
-      - browser-tools/install-chromedriver
-      - run:
-          name: DB Initializing
-          command: |
-            dockerize -wait tcp://localhost:5432 -timeout 1m
-            bundle exec rake db:schema:load
-      - run:
-          name: rspec
-          command: |
-            bundle exec rspec --format RspecJunitFormatter \
-                              --out test_results/rspec.xml \
-                              --format documentation
-      - store_test_results:
-          path: test_results
 
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - rails-demo-{{ checksum "Gemfile.lock" }}
+            - rails-demo-
+
+      # Bundle install dependencies
+      - run:
+          name: Install dependencies
+          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
+
+      - run: sudo apt install -y postgresql-client || true
+
+      # Store bundle cache
+      - save_cache:
+          key: rails-demo-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Database Setup
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:structure:load
+
+      - run:
+          name: Parallel RSpec
+          command: bin/rails test
+
+      # Save artifacts
+      - store_test_results:
+          path: /tmp/test-results
