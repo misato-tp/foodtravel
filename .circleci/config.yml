@@ -18,6 +18,9 @@ jobs:
           bundler-version: 2.4.22
       - node/install:
           node-version: '16.20.2'
+      - run:
+          name: Install npm 8.x
+          command: npm install -g npm@8
       - node/install-packages:
           pkg-manager: yarn
 
@@ -49,6 +52,9 @@ jobs:
           command: npm install -g npm@8
       - node/install-packages: 
           pkg-manager: yarn
+      -run:
+        name: Verify NPM version
+        command: npm -v
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - run:
