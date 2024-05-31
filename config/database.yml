@@ -14,7 +14,7 @@ development:
 
 test:
   <<: *default
-  host: sb
+  host: db
   database: foodtravel_test
 
 production:
