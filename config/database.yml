@@ -14,6 +14,7 @@ development:
 
 test:
   <<: *default
+  host: <%= ENV.fetch("DATABASE_HOST") {"DATABASE_HOSTの環境変数が存在しません"} %>
   database: foodtravel_test
 
 production:
