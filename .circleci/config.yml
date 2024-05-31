@@ -53,8 +53,8 @@ jobs:
       - node/install-packages: 
           pkg-manager: yarn
       - run:
-        name: Verify NPM version
-        command: npm -v
+          name: Verify NPM version
+          command: npm -v
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - run:
