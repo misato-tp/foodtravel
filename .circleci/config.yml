@@ -1,53 +1,60 @@
-version: 2.1
-
-orbs:
-  ruby: circleci/ruby@1.1.3
-  node: circleci/node@4.5.1
-
+version: 2
 jobs:
   build:
+    working_directory: ~/foodtravel_0409
+
     docker:
-      - image: cimg/ruby:2.7.7-node
-    steps:
-      - checkout
-      - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
-  test:
-    docker:
-      - image: cimg/ruby:2.7.7-node
+      - image: cimg/ruby:2.6-node:16.20.2
+        auth:
+          username: ${DOCKER_USERNAME}
+          password: ${DOCKER_PASSWORD}
         environment:
           RAILS_ENV: test
-      - image: circleci/mysql:latest
-        command: mysqld --default-authentication-plugin=mysql_native_password
+          PGHOST: 127.0.0.1
+          PGUSER: root
+
+    # Service container image available at `host: localhost`
+
+      - image: cimg/postgres:14.0
+        auth:
+          username: ${DOCKER_USERNAME}
+          password: ${DOCKER_PASSWORD}
         environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
-    environment:
-      BUNDLE_JOBS: "4"
-      BUNDLE_RETRY: "3"
-      BUNDLE_PATH: vendor/bundle
+          POSTGRES_USER: ${DATABASE_USERNAME}
+          POSTGRES_DB: ${DATABASE_URL}
+
     steps:
       - checkout
-      - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
-      - run:
-          name: Watting stand up database
-          command: |
-            dockerize -wait \
-            tcp://127.0.0.1:3306 -timeout 1m
-      - run: mv ./config/database.yml.ci ./config/database.yml
-      - run:
-          name: Database setup
-          command: |
-            bundle exec rails db:create db:migrate db:seed
-      - ruby/rspec-test
-      - ruby/rubocop-check
 
-workflows:
-  build_and_test:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - rails-demo-{{ checksum "Gemfile.lock" }}
+            - rails-demo-
+
+      # Bundle install dependencies
+      - run:
+          name: Install dependencies
+          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
+
+      - run: sudo apt install -y postgresql-client || true
+
+      # Store bundle cache
+      - save_cache:
+          key: rails-demo-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Database Setup
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:structure:load
+
+      - run:
+          name: Parallel RSpec
+          command: bin/rails test
+
+      # Save artifacts
+      - store_test_results:
+          path: /tmp/test-results
