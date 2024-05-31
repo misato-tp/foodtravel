@@ -2,7 +2,7 @@
   "name": "foodtravel-0409",
   "private": true,
   "version": "0.1.0",
-  "engines":{
+  "engines": {
     "node": "16.x"
   },
   "dependencies": {
