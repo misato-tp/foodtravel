@@ -8,20 +8,20 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/ruby:2.6.6-node
+      - image: cimg/ruby:2.7.7-node
     environment:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
     steps:
       - checkout
       - ruby/install-deps:
-          bundler-version: 2.1.4
+          bundler-version: 2.4.22
       - node/install-packages: 
           pkg-manager: yarn
 
   test:
     docker:
-      - image: cimg/ruby:2.6.6-node
+      - image: cimg/ruby:2.7.7-node
       - image: circleci/postgres:11.7
         environment:
           POSTGRES_USER: circleci
@@ -32,14 +32,14 @@ jobs:
       BUNDLE_RETRY: "3"
       PGHOST: 127.0.0.1
       PGUSER: circleci
-      PGPASSWORD: ""
+      PGPASSWORD: ${DATABASE_PASSWORD}
       TZ: "/usr/share/zoneinfo/Asia/Tokyo"
       RAILS_ENV: test
 
     steps:
       - checkout
       - ruby/install-deps:
-          bundler-version: 2.1.4
+          bundler-version: 2.4.22
       - node/install-packages: 
           pkg-manager: yarn
       - browser-tools/install-chrome
