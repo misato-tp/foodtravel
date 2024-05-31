@@ -12,8 +12,8 @@ jobs:
           password: $DOCKER_PASSWORD  # context / project UI env-var reference
         environment:
           RAILS_ENV: test
-          PGHOST: $PGHOST
-          PGUSER: $DATABASE_USERNAME
+          PGHOST: 127.0.0.1
+          PGUSER: postgres
 
     # Service container image available at `host: localhost`
 
