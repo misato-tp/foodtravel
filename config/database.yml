@@ -11,6 +11,7 @@ default: &default
 development:
   <<: *default
   database: foodtravel_development
+  host: localhost
 
 test:
   <<: *default
