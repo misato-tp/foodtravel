@@ -7,15 +7,12 @@ default: &default
   host: db
   port: 5432
 
-
 development:
   <<: *default
   database: foodtravel_development
-  host: localhost
 
 test:
   <<: *default
-  host: db
   database: foodtravel_test
 
 production:
