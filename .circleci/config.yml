@@ -11,6 +11,11 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
+      - node/install
+          node-versions: '16.20.2'
+      - run:
+          name: Install npm 8.x
+          command: npm install -g npm@8
       # Store bundle cache
       - node/install-packages:
           pkg-manager: yarn
@@ -34,6 +39,11 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
+      - node/install:
+          node-version: '16.20.2'
+      - run:
+          name: Install npm 8.x
+          command: npm install -g npm@8
       - node/install-packages:
           pkg-manager: yarn
           cache-key: "yarn.lock"
