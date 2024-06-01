@@ -1,32 +1,21 @@
-version: 2
 jobs:
   build:
-    working_directory: ~/foodtravel_0409
-
-    # Primary container image where all commands run
-
     docker:
       - image: cimg/ruby:2.7.7-node
-        auth:
-          username: $DOCKER_USERNAME
-          password: $DOCKER_PASSWORD  # context / project UI env-var reference
         environment:
           RAILS_ENV: test
-          PGHOST: db
-          PGUSER: postgres
-
-    # Service container image available at `host: localhost`
-
       - image: cimg/postgres:14.0
-        auth:
-          username: $DOCKER_USERNAME
-          password: $DOCKER_PASSWORD  # context / project UI env-var reference
         environment:
-          POSTGRES_USER: $DATABASE_USERNAME
-          POSTGRES_DB: $DATABASE_URL
+          POSTGRES_USER: ${DATABASE_USERNAME}
+          POSTGRES_DB: foodtravel_test
+          POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+
+    working_directory: ~/foodtravel_0409
 
     steps:
       - checkout
+
+      - run: sudo apt install -y postgresql-client || true
 
       # Restore bundle cache
       - restore_cache:
@@ -37,9 +26,7 @@ jobs:
       # Bundle install dependencies
       - run:
           name: Install dependencies
-          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
-
-      - run: sudo apt install -y postgresql-client || true
+          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
 
       # Store bundle cache
       - save_cache:
@@ -48,14 +35,19 @@ jobs:
             - vendor/bundle
 
       - run:
+          name: Wait for DB
+          command: |
+            dockerize -wait tcp://db:5432 -timeout 1m
+
+      - run:
           name: Database Setup
           command: |
             bundle exec rake db:create
             bundle exec rake db:structure:load
 
       - run:
-          name: Parallel RSpec
-          command: bin/rails test
+          name: Run tests
+          command: bundle exec rspec
 
       # Save artifacts
       - store_test_results:
