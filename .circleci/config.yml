@@ -16,7 +16,6 @@ jobs:
       # Store bundle cache
       - node/install-packages:
           pkg-manager: yarn
-          cache-key: "yarn.lock"
   test:
     parallelism: 3
     docker:
@@ -40,7 +39,6 @@ jobs:
           node-version: '16.20.2'
       - node/install-packages:
           pkg-manager: yarn
-          cache-key: "yarn.lock"
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
