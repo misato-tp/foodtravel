@@ -21,6 +21,7 @@ jobs:
           node-version: '16.20.2'
       - node/install-packages:
           pkg-manager: yarn
+
   test:
     parallelism: 3
     docker:
@@ -61,8 +62,6 @@ workflows:
       - test:
           requires:
             - build
-  heroku_deploy:
-    jobs:
       - heroku/deploy-via-git:
           requires:
             - test
