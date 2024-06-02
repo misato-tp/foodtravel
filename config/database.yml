@@ -17,5 +17,4 @@ test:
 
 production:
   <<: *default
-  database: foodtravel_production
-  host: db
+  url: <%= ENV['DATABASE_URL'] %>
