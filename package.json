@@ -1,6 +1,11 @@
 {
   "name": "foodtravel-0409",
   "private": true,
+  "version": "0.1.0",
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
+  },
   "dependencies": {
     "@babel/plugin-proposal-private-methods": "^7.18.6",
     "@babel/plugin-proposal-private-property-in-object": "7.21.11",
@@ -17,7 +22,6 @@
     "webpack-cli": "^3.3.12",
     "yarn": "1.22.19"
   },
-  "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3"
   }
