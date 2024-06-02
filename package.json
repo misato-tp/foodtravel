@@ -2,8 +2,9 @@
   "name": "foodtravel-0409",
   "private": true,
   "version": "0.1.0",
-  "engines":{
-    "node": "16.x"
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
   },
   "dependencies": {
     "@babel/plugin-proposal-private-methods": "^7.18.6",

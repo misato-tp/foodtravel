@@ -96,5 +96,5 @@ gem 'ransack'
 gem 'fog-aws'
 
 gem 'rack-mini-profiler', '~> 2.0'
-gem 'mini_racer'
+
 gem 'loofah', '~> 2.19.1'
