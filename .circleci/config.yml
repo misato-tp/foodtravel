@@ -70,6 +70,7 @@ workflows:
             - run:
                 name: Setup Ruby
                 command: setup-ruby
+            - run:
                 name: Database Migration
                 command: bundle exec rake db:migrate
           pre-steps:
