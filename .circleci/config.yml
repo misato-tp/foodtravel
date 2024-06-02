@@ -8,7 +8,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/ruby:2.7.7-node:16.20
+      - image: cimg/ruby:2.7.7-node
       - image: circleci/postgres:13.3
         environment:
           POSTGRES_USER: ${DATABASE_USERNAME}
@@ -17,15 +17,16 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
-      - node/install:
-          node-version: '16.20.2'
+      - run:
+          name: Install Node.js
+          command: nvm install 16.20.2
       - node/install-packages:
           pkg-manager: yarn
 
   test:
     parallelism: 3
     docker:
-      - image: cimg/ruby:2.7.7-node:16.20
+      - image: cimg/ruby:2.7.7-node
       - image: circleci/postgres:13.3
         environment:
           POSTGRES_USER: ${DATABASE_USERNAME}
@@ -41,8 +42,9 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
-      - node/install:
-          node-version: '16.20.2'
+      - run:
+          name: Install Node.js
+          command: nvm insttall 16.20.2
       - node/install-packages:
           pkg-manager: yarn
       - run:
@@ -56,13 +58,16 @@ jobs:
 
   deploy:
     docker:
-      - image: cimg/ruby:2.7.7-node:16.20
+      - image: cimg/ruby:2.7.7-node
     steps:
       - checkout
       - ruby/install-deps
       - run:
           name: Setup bundler
           command: gem install bundler
+      - run:
+          name: Install Node.js
+          command: nvm install 16.20.2
       - run:
           name: Assets Precompile
           command: bundle exec rake assets:precompile
