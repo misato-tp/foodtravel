@@ -64,8 +64,12 @@ workflows:
   heroku_deploy:
     jobs:
       - heroku/deploy-via-git:
+          requires:
+            - test
           post-steps:
             - run:
+                name: Setup Ruby
+                command: setup-ruby
                 name: Database Migration
                 command: bundle exec rake db:migrate
           pre-steps:
