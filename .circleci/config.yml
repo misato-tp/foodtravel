@@ -54,18 +54,6 @@ jobs:
       - ruby/rspec-test
       - ruby/rubocop-check
 
-workflows:
-  version: 2
-  build_test_deploy:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
-      - deploy:
-          requires:
-            - test
-jobs:
   deploy:
     docker:
       - image: cimg/ruby:2.7.7-node
@@ -80,8 +68,22 @@ jobs:
           command: bundle exec rake assets:precompile
       - heroku/deploy-via-git:
           app-name: foodtravel
-          requires:
-            - run
       - run:
           name: Database Migration
           command: bundle exec rake db:migrate
+
+workflows:
+  version: 2
+  build_test_deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - main
