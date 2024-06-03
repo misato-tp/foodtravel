@@ -54,15 +54,26 @@ jobs:
       - ruby/rspec-test
       - ruby/rubocop-check
 
+  heroku_deploy:
+    working_directory: ~/foodtravel
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - run:
+          name: Deploy
+          command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:main
+      - run:
+          name: Run post-deploy tasks
+          command: |
+            heroku run bin/rails db:migrate -a $HEROKU_APP_NAME
 workflows:
-  version: 2
-  build_test_deploy:
+  version: 2.1
+  build_and_test:
     jobs:
       - build
-      - test:
-          requires:
-            - build
-      - heroku/deploy-via-git:
+      - test
+      - heroku_deploy:
           requires:
             - test
           filters:
