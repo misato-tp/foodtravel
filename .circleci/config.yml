@@ -11,9 +11,9 @@ jobs:
       - image: cimg/ruby:2.7.7-node
       - image: cimg/postgres:14.12
         environment:
-          POSTGRES_USER: $DATABASE_USERNAME
+          POSTGRES_USER: ${DATABASE_USERNAME}
           POSTGRES_DB: postgres
-          POSTGRES_PASSWORD: $DATABASE_PASSWORD
+          POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     steps:
       - checkout
       - ruby/install-deps
@@ -28,15 +28,15 @@ jobs:
       - image: cimg/ruby:2.7.7-node
       - image: cimg/postgres:14.12
         environment:
-          POSTGRES_USER: $DATABASE_USERNAME
+          POSTGRES_USER: ${DATABASE_USERNAME}
           POSTGRES_DB: foodtravel_test
-          POSTGRES_PASSWORD: $DATABASE_PASSWORD
+          POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     environment:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
       PGHOST: 127.0.0.1
-      PGUSER: $DATABASE_USERNAME
-      PGPASSWORD: $DATABASE_PASSWORD
+      PGUSER: ${DATABASE_USERNAME}
+      PGPASSWORD: ${DATABASE_PASSWORD}
       RAILS_ENV: test
     steps:
       - checkout
@@ -54,28 +54,28 @@ jobs:
       - ruby/rspec-test
       - ruby/rubocop-check
 
-  heroku_deploy:
-    working_directory: ~/foodtravel
-    executor: heroku/default
-    steps:
-      - checkout
-      - heroku/install
-      - run:
-          name: Deploy
-          command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:main
-      - run:
-          name: Run post-deploy tasks
-          command: |
-            heroku run bin/rails db:migrate -a $HEROKU_APP_NAME
 workflows:
-  version: 2.1
-  build_and_test:
+  version: 2
+  build_test_deploy:
     jobs:
       - build
-      - test
-      - heroku_deploy:
+      - test:
+          requires:
+            - build
+      - heroku/deploy-via-git:
           requires:
             - test
+          post-steps:
+            - run:
+                name: Database Migration
+                command: bundle exec rake db:migrate
+          pre-steps:
+            - run:
+                name: Setup bundler
+                command: gem install bundler
+            - run:
+                name: Assets Precompile
+                command: bundle exec rake assets:precompile
           filters:
             branches:
               only:
