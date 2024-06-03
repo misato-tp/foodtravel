@@ -9,11 +9,11 @@ jobs:
   build:
     docker:
       - image: cimg/ruby:2.7.7-node
-      - image: circleci/postgres:13.3
+      - image: circleci/postgres:14.12
         environment:
-          POSTGRES_USER: ${DATABASE_USERNAME}
+          POSTGRES_USER: $DATABASE_USERNAME
           POSTGRES_DB: postgres
-          POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+          POSTGRES_PASSWORD: $DATABASE_PASSWORD
     steps:
       - checkout
       - ruby/install-deps
@@ -26,17 +26,17 @@ jobs:
     parallelism: 3
     docker:
       - image: cimg/ruby:2.7.7-node
-      - image: circleci/postgres:13.3
+      - image: circleci/postgres:14.12
         environment:
-          POSTGRES_USER: ${DATABASE_USERNAME}
+          POSTGRES_USER: $DATABASE_USERNAME
           POSTGRES_DB: foodtravel_test
-          POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+          POSTGRES_PASSWORD: $DATABASE_PASSWORD
     environment:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
       PGHOST: 127.0.0.1
-      PGUSER: ${DATABASE_USERNAME}
-      PGPASSWORD: ${DATABASE_PASSWORD}
+      PGUSER: $DATABASE_USERNAME
+      PGPASSWORD: $DATABASE_PASSWORD
       RAILS_ENV: test
     steps:
       - checkout
