@@ -62,9 +62,10 @@ workflows:
       - test:
           requires:
             - build
-      - heroku/deploy-via-git:
+      - deploy:
+          name: heroku/deploy-via-git
           requires:
-            - test:
+            - test
           filters:
             branches:
               only:
