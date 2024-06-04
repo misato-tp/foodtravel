@@ -14,12 +14,6 @@ jobs:
           POSTGRES_DB: postgres
           POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     steps:
-      - run:
-          name: Create and set permissions for /home/circleci/project
-          command: |
-            mkdir -p /home/circleci/project
-            sudo chown -R circleci:circleci /home/circleci/project
-            sudo chmod -R 755 /home/circleci/project
       - checkout
       - ruby/install-deps
       - node/install:
@@ -44,12 +38,6 @@ jobs:
       PGPASSWORD: ${DATABASE_PASSWORD}
       RAILS_ENV: test
     steps:
-      - run:
-          name: Create and set permissions for /home/circleci/project
-          command: |
-            mkdir -p /home/circleci/project
-            sudo chown -R circleci:circleci /home/circleci/project
-            sudo chmod -R 755 /home/circleci/project
       - checkout
       - ruby/install-deps
       - node/install:
