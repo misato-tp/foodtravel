@@ -48,9 +48,9 @@ jobs:
       - run:
           name: Create and set permissions for /home/circleci/project
           command: |
-          mkdir -p /home/circleci/project
-          sudo chown -R circleci:circleci /home/circleci/project
-          sudo chmod -R 755 /home/circleci/project
+            mkdir -p /home/circleci/project
+            sudo chown -R circleci:circleci /home/circleci/project
+            sudo chmod -R 755 /home/circleci/project
       - ruby/install-deps
       - node/install:
           node-version: '16.20.2'
