@@ -3,7 +3,6 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@2.1.3
   node: circleci/node@5.2.0
-  heroku: circleci/heroku@2.0.0
 
 jobs:
   build:
@@ -16,6 +15,12 @@ jobs:
           POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     steps:
       - checkout
+      - run:
+          name: Create and set permissions for /home/circleci/project
+          command: |
+            mkdir -p /home/circleci/project
+            sudo chown -R circleci:circleci /home/circleci/project
+            sudo chmod -R 755 /home/circleci/project
       - ruby/install-deps
       - node/install:
           node-version: '16.20.2'
@@ -40,6 +45,12 @@ jobs:
       RAILS_ENV: test
     steps:
       - checkout
+      - run:
+          name: Create and set permissions for /home/circleci/project
+          command: |
+          mkdir -p /home/circleci/project
+          sudo chown -R circleci:circleci /home/circleci/project
+          sudo chmod -R 755 /home/circleci/project
       - ruby/install-deps
       - node/install:
           node-version: '16.20.2'
@@ -62,21 +73,3 @@ workflows:
       - test:
           requires:
             - build
-      - heroku/deploy-via-git:
-          requires:
-            - test
-          post-steps:
-            - run:
-                name: Database Migration
-                command: bundle exec rake db:migrate
-          pre-steps:
-            - run:
-                name: Setup bundler
-                command: gem install bundler
-            - run:
-                name: Assets Precompile
-                command: bundle exec rake assets:precompile
-          filters:
-            branches:
-              only:
-                - main
