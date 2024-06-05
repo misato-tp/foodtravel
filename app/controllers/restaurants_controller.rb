@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
   before_action :authenticate_user!, except: [
-    :index, :show, :search_restaurant_by_gps, :search_restaurant_by_keywords, :search_restaurant_by_map, :search_restaurant_by_map_results
+    :index, :show, :search_restaurant_by_gps, :search_restaurant_by_keywords, :search_restaurant_by_map,
+    :search_restaurant_by_map_results,
   ]
 
   def index
