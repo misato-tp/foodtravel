@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
   before_action :authenticate_user!, except: [
-    :index, :show, :search_restaurant_by_gps, :search_restaurant_by_keywords, :search_restaurant_by_map,
+    :index, :show, :search_restaurant_by_gps, :search_restaurant_by_keywords, :search_restaurant_by_map, :search_restaurant_by_map_results
   ]
 
   def index
@@ -74,8 +74,10 @@ class RestaurantsController < ApplicationController
   end
 
   def search_restaurant_by_map
-    country_id = params[:country_id]
-    @results = Restaurant.where(country_id: country_id)
+  end
+
+  def search_restaurant_by_map_results
+    @results = Restaurant.where(country_id: params[:id])
   end
 
   private
