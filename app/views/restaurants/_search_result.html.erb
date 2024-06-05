@@ -4,7 +4,12 @@
   <%= link_to :back, class:"btn btn-dark mb-3 mt-3" do %>
     <i class="bi bi-arrow-left"></i>一つ前に戻る
   <% end %>
-  <h5><b><%= name %>の検索結果</b></h5>
+  <% if name.blank? %>
+    <h5><b>登録されているお店</b></h5>
+  <% else %>
+    <h5><b><%= name %>の検索結果</b></h5>
+  <% end %>
+  <div class="mb-4">全<%= results.count %>件</div>
   <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
     <% results.each do |r| %>
       <div class="col mb-5">
