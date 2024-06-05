@@ -28,15 +28,7 @@ window.addEventListener('load', function() {
           document.getElementById("restaurant_country").value = clickElement.textContent;
           document.getElementById("restaurant_country_id").value = country.id;
 
-          countryName.forEach(function(c) {
-            if (c.id !== country.id) {
-              const el = document.getElementById(c.id);
-              if (el) {
-                el.remove();
-                clickElement.remove();
-              }
-            }
-          }) ;
+          searchResult.innerHTML = '';
         });
       });
     };
