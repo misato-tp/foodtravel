@@ -1,6 +1,6 @@
 <%= render "devise/shared/error_messages", resource: resource %>
 <div class="form-forgotPassword w-100 m-auto">
-<h4 class="my-3 text-center">ユーザ名の確認と<br>パスワードの再発行</h4>
+<h4 class="my-3 text-center">ユーザー名の確認と<br>パスワードの再発行</h4>
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <div class="form-floating pb-2">
       <%= f.email_field :email, class: "form-control", id: "floatingEmail", placeholder: "Email", type: "email" %>
