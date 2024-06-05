@@ -1,31 +1,40 @@
 <h1 class="page-title text-dark text-center text-uppercase fw-lighter mt-4">result</h1>
 <h5 class="page-title text-dark text-center">検索結果</h5>
 <div class="container px-4 px-lg-5 mt-5">
+  <%= link_to :back, class:"btn btn-dark mb-3 mt-3" do %>
+    <i class="bi bi-arrow-left"></i>一つ前に戻る
+  <% end %>
+  <% if name.blank? %>
+    <h5><b>登録されているお店</b></h5>
+  <% else %>
+    <h5><b><%= name %>の検索結果</b></h5>
+  <% end %>
+  <div class="mb-4">全<%= results.count %>件</div>
   <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-  <% @results.each do |r| %>
-    <div class="col mb-5">
-      <div class="card h-100">
-        <div class="text-center">
-          <div class="restaurant_image">
-            <% if r.image? %>
-              <%= image_tag r.image.photo.url, class:'img-fluid mx-auto rounded-top' %>
-            <% else %>
-              <%= image_tag "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/noimage.png", size: :photo, class:'img-fluid mx-auto rounded-top' %>
-            <% end %>
-          </div>
-        </div>
-        <div class="card-body p-4">
+    <% results.each do |r| %>
+      <div class="col mb-5">
+        <div class="card h-100">
           <div class="text-center">
-              <h5 class="fw-bolder"><%= r.name %></h5>
-              <p><%= r.address %></p>
-              <p><%= r.country.name %></p>
+            <div class="restaurant_image">
+              <% if r.image? %>
+                <%= image_tag r.image.photo.url, class:'img-fluid mx-auto rounded-top' %>
+              <% else %>
+                <%= image_tag "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/noimage.png", size: :photo, class:'img-fluid mx-auto rounded-top' %>
+              <% end %>
+            </div>
           </div>
-        </div>
-        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-          <%= link_to "詳細", r, data: {"turbolinks" => false}, class: "btn btn-primary" %>
+          <div class="card-body p-4">
+            <div class="text-center">
+                <h5 class="fw-bolder"><%= r.name %></h5>
+                <p><%= r.address %></p>
+                <p><%= r.country.name %></p>
+            </div>
+          </div>
+          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <%= link_to "詳細", r, data: {"turbolinks" => false}, class: "btn btn-primary" %>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
   </div>
 </div>
