@@ -29,10 +29,10 @@ Rails.application.routes.draw do
     end
     member do
       get 'search_country'
+      get 'search_restaurant_by_map_results'
     end
   end
 
-  get 'countries/:id/search_restaurant_by_map_result', to: 'countries#search_restaurant_by_map_result'
   post 'like/:id' => 'likes#create', as: 'create_like'
   delete 'like/:id' => 'likes#destroy', as: 'destroy_like'
   root to: 'homes#index'
