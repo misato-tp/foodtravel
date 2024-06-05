@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end
 
-  resources :users, only: [] do
+  resources :users, only: [:edit, :update, :destroy] do
     collection do
     get :profile
     get :myrestaurants
@@ -32,8 +32,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'countries/:id/search_restaurant_by_map_result', to: 'countries#search_restaurant_by_map_result'
   post 'like/:id' => 'likes#create', as: 'create_like'
   delete 'like/:id' => 'likes#destroy', as: 'destroy_like'
-
   root to: 'homes#index'
 end
