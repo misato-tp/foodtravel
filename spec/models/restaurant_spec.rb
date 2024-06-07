@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Restaurant, type: :model do
-  let(:restaurant) { create(:restaurant, reports: [report1, report2]) }
-  let(:report1) { create(:report) }
-  let(:report2) { create(:report) }
+  let(:restaurant) { create(:restaurant) }
+  let(:report1) { create(:report, restaurant: restaurant) }
+  let(:report2) { create(:report, restaurant: restaurant) }
   let(:like1) { create(:like, restaurant: restaurant) }
   let(:like2) { create(:like, restaurant: restaurant) }
 
@@ -32,6 +32,13 @@ RSpec.describe Restaurant, type: :model do
         restaurant = build(:restaurant, address: nil)
         restaurant.valid?
         expect(restaurant.errors[:address]).to include('を入力してください')
+      end
+
+      it 'nameが重複していると登録ができないこと' do
+        create(:restaurant)
+        restaurant2 = build(:restaurant)
+        restaurant2.valid?
+        expect(restaurant2.errors[:name]).to include('はすでに登録されているようです。お店を探してレポを書こう！')
       end
     end
   end

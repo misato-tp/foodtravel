@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :restaurant do
-    sequence(:name) { |n| "テスト#{n}のお店" }
+    name { "テストのお店" }
     postal_code { "1000000" }
     address { "東京都千代田区" }
     image { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/test.jpg'), 'image/jpeg') }
