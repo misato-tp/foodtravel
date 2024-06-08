@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Restaurant, type: :model do
   let(:restaurant) { create(:restaurant) }
-  let(:report1) { create(:report, restaurant: restaurant) }
-  let(:report2) { create(:report, restaurant: restaurant) }
-  let(:like1) { create(:like, restaurant: restaurant) }
-  let(:like2) { create(:like, restaurant: restaurant) }
+  let!(:report1) { create(:report, restaurant: restaurant) }
+  let!(:report2) { create(:report, restaurant: restaurant) }
+  let!(:like1) { create(:like, restaurant: restaurant) }
+  let!(:like2) { create(:like, restaurant: restaurant) }
 
   describe 'バリデーションに関するテスト' do
     context '投稿可能な場合' do
@@ -35,10 +35,10 @@ RSpec.describe Restaurant, type: :model do
       end
 
       it 'nameが重複していると登録ができないこと' do
-        create(:restaurant)
-        restaurant2 = build(:restaurant)
-        restaurant2.valid?
-        expect(restaurant2.errors[:name]).to include('はすでに登録されているようです。お店を探してレポを書こう！')
+        same_name_restaurant = create(:restaurant, name: "元祖テストのお店")
+        restaurant = build(:restaurant, name: "元祖テストのお店")
+        restaurant.valid?
+        expect(restaurant.errors[:name]).to include('はすでに登録されているようです。お店を探してレポを書こう！')
       end
     end
   end
@@ -62,6 +62,14 @@ RSpec.describe Restaurant, type: :model do
     
     it 'restaurantが複数のいいねを取得できること' do
       expect(restaurant.likes).to include(like1, like2)
+    end
+
+    it 'restaurantを削除すると、reportも削除されること' do
+      expect{ restaurant.destroy }.to change{ Report.count }.by(-2)
+    end
+
+    it 'restaurantを削除すると、いいねも削除されること' do
+      expect{ restaurant.destroy }.to change{ Like.count }.by(-2)
     end
   end
 
@@ -87,6 +95,4 @@ RSpec.describe Restaurant, type: :model do
       expect(restaurant.longitude).not_to be_nil
     end
   end
-
-  describe ''
 end
