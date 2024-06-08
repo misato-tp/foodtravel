@@ -64,4 +64,29 @@ RSpec.describe Restaurant, type: :model do
       expect(restaurant.likes).to include(like1, like2)
     end
   end
+
+  describe 'geocodeに関するテスト' do
+    it 'restaurant作成時にgeocodeが実行されること' do
+      restaurant = build(:restaurant)
+      expect(restaurant).to receive(:geocode)
+      restaurant.valid?
+    end
+
+    it 'addressが変更されたらgeocodeが実行されること' do
+      restaurant.address = '東京都渋谷区'
+      expect(restaurant).to receive(:geocode)
+      restaurant.valid?
+    end
+
+    it '緯度と経度が設定されること' do
+      restaurant.latitude = nil 
+      restaurant.longitude = nil
+      restaurant.address = '東京都渋谷区'
+      restaurant.save
+      expect(restaurant.latitude).not_to be_nil
+      expect(restaurant.longitude).not_to be_nil
+    end
+  end
+
+  describe ''
 end
