@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
   
   describe 'バリデーションに関するテスト' do
     context '登録に成功する場合' do
-      it 'username, email, password, password_confirmationがあれば登録ができること' do
+      it 'username, email, password, password_confirmationが正しく入力されていると登録ができること' do
         user.profile_image = nil
         expect(user).to be_valid
       end
@@ -38,6 +38,25 @@ RSpec.describe User, type: :model do
 
       it 'password_confirmationが空だと登録に失敗すること' do
         user = build(:user, password_confirmation: '')
+        user.valid?
+        expect(user.errors[:password_confirmation]).to include('が内容とあっていません。')
+      end
+
+      it 'すでに登録されているemailでは登録に失敗すること' do
+        same_email_user = create(:user, email: 'tests@email.com')
+        user = build(:user, email: 'tests@email.com')
+        user.valid?
+        expect(user.errors[:email]).to include('は既に使用されています。')
+      end
+
+      it 'パスワードが6文字以下だと登録に失敗すること' do
+        user = build(:user, password: '12345')
+        user.valid?
+        expect(user.errors[:password]).to include('は6文字以上に設定して下さい。')
+      end
+
+      it 'パスワードと確認用パスワードが一致していないと登録に失敗すること' do
+        user = build(:user, password: 'password', password_confirmation: 'passward')
         user.valid?
         expect(user.errors[:password_confirmation]).to include('が内容とあっていません。')
       end
