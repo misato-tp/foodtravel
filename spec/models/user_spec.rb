@@ -121,4 +121,15 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe 'ゲストログインに関するテスト' do
+    it 'ゲストユーザーが存在しない場合は新しいゲストユーザーが作成されること' do
+      expect { User.guest }.to change{ User.count }.by(1)
+    end
+
+    it '2回目以降は同じゲストユーザーでログインされること' do
+      User.guest
+      expect { User.guest }.not_to change { User.count }
+    end
+  end
 end
