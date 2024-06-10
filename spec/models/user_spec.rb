@@ -8,6 +8,7 @@ RSpec.describe User, type: :model do
   let(:like2) { create(:like, user: user) }
   let(:report1) { create(:report, user: user) }
   let(:report2) { create(:report, user: user) }
+  let(:auth) { create(:auth_hash) }
   
   describe 'バリデーションに関するテスト' do
     context '登録に成功する場合' do
@@ -60,6 +61,13 @@ RSpec.describe User, type: :model do
         user.valid?
         expect(user.errors[:password_confirmation]).to include('が内容とあっていません。')
       end
+
+      it 'googleアカウントでログインしたことがあり、そのgoogleアカウントのemailを使用し登録すると失敗すること' do
+        User.from_omniauth(auth)
+        user = build(:user, email: 'auth@email.com')
+        user.valid?
+        expect(user.errors[:email]).to include('は既に使用されています。')
+      end
     end
   end
 
@@ -84,6 +92,33 @@ RSpec.describe User, type: :model do
     it 'userを削除すると、likeも削除されること' do
       like1 = create(:like, user: user)
       expect{ user.destroy }.to change{ Like.count }.by(-1)
+    end
+  end
+
+  describe 'googleアカウントのログインに関するテスト' do
+    context '成功する場合' do
+      it '初ログインで、googleの情報を使って新しくユーザーが作られること' do
+        expect { User.from_omniauth(auth) }.to change{ User.count }.by(1)
+      end
+
+      context '2回目以降同じgoogleアカウントを使ってログインした場合' do
+        it '同じアカウントで2回目以降ログインしてもユーザーは増えないこと' do
+          User.from_omniauth(auth)
+          expect { User.from_omniauth(auth) }.not_to change { User.count }
+        end
+      end
+    end
+
+    context '失敗する場合' do
+      it 'usernameの情報が無いとアカウントが作成できないこと' do
+        auth = build(:auth_hash, info: { name: nil })
+        expect { User.from_omniauth(auth) }.not_to change{ User.count }
+      end
+
+      it  'emailの情報が無いとアカウントが作成できないこと' do
+        auth = build(:auth_hash, info: {email: nil })
+        expect { User.from_omniauth(auth) }.not_to change{ User.count }
+      end
     end
   end
 end
