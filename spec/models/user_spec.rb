@@ -132,4 +132,15 @@ RSpec.describe User, type: :model do
       expect { User.guest }.not_to change { User.count }
     end
   end
+
+  describe 'いいね機能に関するテスト' do
+    it 'userが指定されたrestaurantをいいねしていればtrueが返ってくること' do
+      user.likes.create(restaurant_id: restaurant1.id)
+      expect(user.liked_by?(restaurant1.id)).to eq(true)
+    end
+
+    it 'userが指定されたrestaurantをいいねしていなければfalseが返ってくること' do
+      expect(user.liked_by?(restaurant1.id)).to eq(false)
+    end
+  end
 end
