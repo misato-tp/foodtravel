@@ -25,10 +25,11 @@ class ReportsController < ApplicationController
   end
 
   def update
-    @report = Report.find(params[:id])
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @report = @restaurant.reports.find(params[:id])
     if @report.update(report_params)
       flash[:notice] = "レポを更新しました。"
-      redirect_to restaurant_path(@report.restaurant.id)
+      redirect_to restaurant_path(@restaurant)
     else
       flash[:alert] = "レポの更新に失敗しました。"
       render :edit
