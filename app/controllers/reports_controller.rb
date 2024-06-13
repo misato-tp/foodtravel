@@ -14,7 +14,7 @@ class ReportsController < ApplicationController
       flash[:notice] = "レポの登録に成功しました。投稿ありがとう！"
       redirect_to restaurant_path(@restaurant.id)
     else
-      flash[:alert] = "登録に失敗しました。"
+      flash[:alert] = "レポの登録に失敗しました。"
       render :new
     end
   end
@@ -30,7 +30,7 @@ class ReportsController < ApplicationController
       flash[:notice] = "レポを更新しました。"
       redirect_to restaurant_path(@report.restaurant.id)
     else
-      flash[:alert] = "登録に失敗しました。"
+      flash[:alert] = "レポの更新に失敗しました。"
       render :edit
     end
   end

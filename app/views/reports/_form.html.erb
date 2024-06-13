@@ -2,7 +2,7 @@
   <%= link_to :back, class:"btn btn-dark mb-3 mt-3" do %>
     <i class="bi bi-arrow-left"></i>一つ前に戻る
   <% end %>
-  <%= form_with model:[@restaurant, @report] do |f| %>
+  <%= form_with model:[restaurant, report] do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <ul class="list-unstyled">
       <li><i class="bi bi-chat-right"></i>
@@ -20,6 +20,9 @@
       <li><i class="bi bi-image"></i>
         <%= f.label :image, "写真" %>
         <%= f.file_field :image, class: "form-control mb-3" %>
+        <% if report.image.present? %>
+          <p class="uploaded-image">現在のファイル: <%= report.image.identifier %></p>
+        <% end %>
         <div id="preview-image"></div>
       </li>
     </ul>
