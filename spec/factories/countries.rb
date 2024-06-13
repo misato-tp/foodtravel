@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :country do
-    name { "テスト国" }
+    name { "韓国" }
   end
 end
