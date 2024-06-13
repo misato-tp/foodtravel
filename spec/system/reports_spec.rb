@@ -129,8 +129,22 @@ RSpec.describe "Reports", type: :system do
       expect(page).to have_current_path(restaurant_path(id: restaurant.id))
     end
 
-    it 'フォームのバリデーションを作動させてから他のページに行くとメッセージが表示されること' do
-      
+    it '新規作成でフォームのバリデーションを作動させてから他のページに行くとメッセージが表示されること' do
+      click_on 'このお店のレポを書く'
+      fill_in 'タイトル', with: 'おいしかった'
+      click_on '登録'
+      expect(page).to have_content 'メモを入力してください'
+      click_on 'お店を探す'
+      expect(page).to have_content 'レポの登録に失敗しました。'
+    end
+    
+    it 'reportの編集でバリデーションを作動させてから他のページに行くとメッセージが表示されること' do
+      find('.report-edit').click
+      fill_in 'タイトル', with: ''
+      click_on '登録'
+      expect(page).to have_content 'タイトルを入力してください'
+      click_on 'お店を探す'
+      expect(page).to have_content 'レポの更新に失敗しました。'
     end
   end
 end
