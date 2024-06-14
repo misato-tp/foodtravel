@@ -49,6 +49,7 @@ RSpec.describe "Reports", type: :system do
       find('.report-delete').click
       expect(page).to have_current_path(restaurant_path(id: restaurant.id))
       expect(page).to have_content 'レポを削除しました。'
+      expect(page).to have_content '投稿されたレポはまだありません。'
     end
 
     it '編集ボタンを押すと画面が編集画面に遷移すること' do
