@@ -293,5 +293,26 @@ RSpec.describe "Restaurants", type: :system do
       click_on '登録'
       expect(page).to have_content '国を入力してください'
     end
+
+    it '新規作成時にバリデーションを発生させてから別のページに行くとメッセージが表示されること' do
+      click_on '登録'
+      click_on 'お店を探す'
+      expect(page).to have_content 'お店の登録に失敗しました。'
+    end
+
+    it '編集時にバリデーションを発生させてから別のページに行くとメッセージが表示されること', js: true do
+      visit edit_restaurant_path(id: restaurant.id)
+      fill_in 'お店の名前', with: ''
+      click_on '登録'
+      click_on 'お店を探す'
+      expect(page).to have_content 'お店の情報更新に失敗しました。'
+    end
+
+    it 'お店の削除中に何かエラーが起きた場合はメッセージが表示されること' do
+      allow_any_instance_of(Restaurant).to receive(:destroy).and_return(false)
+      visit restaurant_path(id: restaurant.id)
+      find('.restaurant-delete').click
+      expect(page).to have_content 'お店を削除できませんでした。'
+    end
   end
 end
