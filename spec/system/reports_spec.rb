@@ -137,7 +137,7 @@ RSpec.describe "Reports", type: :system do
       click_on 'お店を探す'
       expect(page).to have_content 'レポの登録に失敗しました。'
     end
-    
+
     it 'reportの編集でバリデーションを作動させてから他のページに行くとメッセージが表示されること' do
       find('.report-edit').click
       fill_in 'タイトル', with: ''

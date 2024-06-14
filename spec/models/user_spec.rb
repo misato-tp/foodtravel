@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
   let(:report1) { create(:report, user: user) }
   let(:report2) { create(:report, user: user) }
   let(:auth) { create(:auth_hash) }
-  
+
   describe 'バリデーションに関するテスト' do
     context '登録に成功する場合' do
       it 'username, email, password, password_confirmationが正しく入力されていると登録ができること' do
@@ -44,7 +44,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'すでに登録されているemailでは登録に失敗すること' do
-        same_email_user = create(:user, email: 'tests@email.com')
+        create(:user, email: 'tests@email.com')
         user = build(:user, email: 'tests@email.com')
         user.valid?
         expect(user.errors[:email]).to include('は既に使用されています。')
@@ -86,19 +86,19 @@ RSpec.describe User, type: :model do
 
     it 'userを削除すると、reportも削除されること' do
       user = create(:user, reports: [report1, report2])
-      expect{ user.destroy }.to change{ Report.count }.by(-2)
+      expect { user.destroy }.to change { Report.count }.by(-2)
     end
 
     it 'userを削除すると、likeも削除されること' do
-      like1 = create(:like, user: user)
-      expect{ user.destroy }.to change{ Like.count }.by(-1)
+      create(:like, user: user)
+      expect { user.destroy }.to change { Like.count }.by(-1)
     end
   end
 
   describe 'googleアカウントのログインに関するテスト' do
     context '成功する場合' do
       it '初ログインで、googleの情報を使って新しくユーザーが作られること' do
-        expect { User.from_omniauth(auth) }.to change{ User.count }.by(1)
+        expect { User.from_omniauth(auth) }.to change { User.count }.by(1)
       end
 
       context '2回目以降同じgoogleアカウントを使ってログインした場合' do
@@ -112,19 +112,19 @@ RSpec.describe User, type: :model do
     context '失敗する場合' do
       it 'usernameの情報が無いとアカウントが作成できないこと' do
         auth = build(:auth_hash, info: { name: nil })
-        expect { User.from_omniauth(auth) }.not_to change{ User.count }
+        expect { User.from_omniauth(auth) }.not_to change { User.count }
       end
 
-      it  'emailの情報が無いとアカウントが作成できないこと' do
-        auth = build(:auth_hash, info: {email: nil })
-        expect { User.from_omniauth(auth) }.not_to change{ User.count }
+      it 'emailの情報が無いとアカウントが作成できないこと' do
+        auth = build(:auth_hash, info: { email: nil })
+        expect { User.from_omniauth(auth) }.not_to change { User.count }
       end
     end
   end
 
   describe 'ゲストログインに関するテスト' do
     it 'ゲストユーザーが存在しない場合は新しいゲストユーザーが作成されること' do
-      expect { User.guest }.to change{ User.count }.by(1)
+      expect { User.guest }.to change { User.count }.by(1)
     end
 
     it '2回目以降は同じゲストユーザーでログインされること' do

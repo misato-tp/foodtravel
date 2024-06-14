@@ -17,9 +17,9 @@ RSpec.describe Restaurant, type: :model do
 
     context '投稿不可能な場合' do
       it 'nameなしでは登録が無効であること' do
-      restaurant = build(:restaurant, name: nil)
-      restaurant.valid?
-      expect(restaurant.errors[:name]).to include('を入力してください')
+        restaurant = build(:restaurant, name: nil)
+        restaurant.valid?
+        expect(restaurant.errors[:name]).to include('を入力してください')
       end
 
       it 'postal_codeなしでは登録が無効であること' do
@@ -35,7 +35,7 @@ RSpec.describe Restaurant, type: :model do
       end
 
       it 'nameが重複していると登録ができないこと' do
-        same_name_restaurant = create(:restaurant, name: "元祖テストのお店")
+        create(:restaurant, name: "元祖テストのお店")
         restaurant = build(:restaurant, name: "元祖テストのお店")
         restaurant.valid?
         expect(restaurant.errors[:name]).to include('はすでに登録されているようです。お店を探してレポを書こう！')
@@ -59,17 +59,17 @@ RSpec.describe Restaurant, type: :model do
     it 'restaurantが複数のレポートを取得できること' do
       expect(restaurant.reports).to include(report1, report2)
     end
-    
+
     it 'restaurantが複数のいいねを取得できること' do
       expect(restaurant.likes).to include(like1, like2)
     end
 
     it 'restaurantを削除すると、reportも削除されること' do
-      expect{ restaurant.destroy }.to change{ Report.count }.by(-2)
+      expect { restaurant.destroy }.to change { Report.count }.by(-2)
     end
 
     it 'restaurantを削除すると、いいねも削除されること' do
-      expect{ restaurant.destroy }.to change{ Like.count }.by(-2)
+      expect { restaurant.destroy }.to change { Like.count }.by(-2)
     end
   end
 
@@ -87,7 +87,7 @@ RSpec.describe Restaurant, type: :model do
     end
 
     it '緯度と経度が設定されること' do
-      restaurant.latitude = nil 
+      restaurant.latitude = nil
       restaurant.longitude = nil
       restaurant.address = '東京都渋谷区'
       restaurant.save

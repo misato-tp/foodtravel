@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe "Restaurants", type: :system do
   let(:user) { create(:user) }
   let(:user2) { create(:user) }
-  let(:restaurant) { create(:restaurant, user: user) }
+  let(:restaurant) { create(:restaurant, user: user, country: country) }
   let!(:report) { create(:report, restaurant: restaurant, user: user) }
-  let!(:country) { create(:country, name:'ブラジル') }
+  let(:country) { create(:country) }
 
-  describe'restaurants#indexについてのテスト' do
+  describe 'restaurants#indexについてのテスト' do
     before do
       create(:restaurant)
       visit restaurants_path
@@ -47,14 +47,14 @@ RSpec.describe "Restaurants", type: :system do
     end
 
     it '登録されているrestaurantが表示されていること' do
-      expect(page).to have_selector ('.restaurant-img')
-      expect(page).to have_content (restaurant.name)
-      expect(page).to have_content (restaurant.address)
-      expect(page).to have_content (restaurant.country.name)
+      expect(page).to have_selector('.restaurant-img')
+      expect(page).to have_content(restaurant.name)
+      expect(page).to have_content(restaurant.address)
+      expect(page).to have_content(restaurant.country.name)
     end
 
     it '登録されているrestaurantの詳細ボタンを押すと対象のrestaurantのshowページに遷移すること' do
-      click_on '詳細'
+      first('.restaurant-box').click_on '詳細'
       expect(page).to have_current_path(restaurant_path(id: restaurant.id))
     end
 
@@ -87,18 +87,18 @@ RSpec.describe "Restaurants", type: :system do
     end
 
     it 'google mapが表示されていること', js: true do
-      expect(page).to have_selector ('.gmnoprint')
+      expect(page).to have_selector('.gmnoprint')
     end
 
     it 'google mapの中に自分の現在地にピンが立っていること', js: true do
-      expect(page).to have_selector ('#gmimap0')
+      expect(page).to have_selector('#gmimap0')
     end
 
     it '登録されているお店のピンが表示されていること', js: true do
       5.times do
         find('button[aria-label="ズームアウト"]').click
       end
-      expect(page).to have_selector ('div[role="button"]')
+      expect(page).to have_selector('div[role="button"]')
     end
 
     it '登録しているお店のピンを押して詳細ページに遷移できること', js: true do
@@ -107,8 +107,8 @@ RSpec.describe "Restaurants", type: :system do
       end
       find('div[role="button"]').click
       expect(page).to have_selector('.gm-style-iw')
-      click_on 'テストのお店1'
-      expect(page).to have_current_path (restaurant_path(id: restaurant.id))
+      click_on(restaurant.name)
+      expect(page).to have_current_path(restaurant_path(id: restaurant.id))
     end
   end
 
@@ -128,18 +128,18 @@ RSpec.describe "Restaurants", type: :system do
     end
 
     it '国ごとの検索結果のページが正しく表示されること' do
-      visit search_restaurant_by_map_results_restaurant_path(country_id: country.id)
+      create(:restaurant)
+      visit search_restaurant_by_map_results_restaurant_path(id: country.id)
       expect(page).to have_content '韓国の検索結果'
       expect(page).to have_content '全1件'
-      expect(page).to have_content (restaurant.name)
-      expect(page).to have_content (restaurant.address)
-      expect(page).to have_content (resrautrant.country.name)
+      expect(page).to have_content(restaurant.name)
+      expect(page).to have_content(restaurant.address)
+      expect(page).to have_content(restaurant.country.name)
       expect(page).to have_content '詳細'
     end
   end
 
   describe 'CRUD処理についてのテスト' do
-
     before do
       login_as user
       visit restaurants_path
@@ -180,12 +180,12 @@ RSpec.describe "Restaurants", type: :system do
       expect(page).to have_current_path(restaurant_path(id: restaurant.id))
       expect(page).to have_content '一つ前に戻る'
       expect(page).to have_selector "img[src*='test.jpg']"
-      expect(page).to have_content (restaurant.name)
-      expect(page).to have_content (restaurant.postal_code)
-      expect(page).to have_content (restaurant.address)
-      expect(page).to have_content (restaurant.country.name)
-      expect(page).to have_content (restaurant.memo)
-      expect(page).to have_selector ('.gm-style')
+      expect(page).to have_content(restaurant.name)
+      expect(page).to have_content(restaurant.postal_code)
+      expect(page).to have_content(restaurant.address)
+      expect(page).to have_content(restaurant.country.name)
+      expect(page).to have_content(restaurant.memo)
+      expect(page).to have_selector('.gm-style')
     end
 
     context 'ログインしているユーザーがrestaurantを作成したユーザーと同じ場合' do
@@ -200,7 +200,7 @@ RSpec.describe "Restaurants", type: :system do
       end
 
       it 'restaurantの編集ができること' do
-        expect(page).to have_selector 'h1.display-5', text: 'テストのお店1'
+        expect(page).to have_selector 'h1.display-5', text: restaurant.name
         find('.restaurant-edit').click
         fill_in 'お店の名前', with: 'Churrascaria Que bom!'
         click_on '登録'
@@ -210,7 +210,7 @@ RSpec.describe "Restaurants", type: :system do
       end
 
       it 'restaurantの削除ができること' do
-        restaurant = create(:restaurant, user: user)
+        create(:restaurant, user: user)
         visit restaurants_path
         expect(page).to have_selector('.restaurant-box', count: 2)
         first('.restaurant-box').click_on '詳細'
