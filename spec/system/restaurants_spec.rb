@@ -5,7 +5,7 @@ RSpec.describe "Restaurants", type: :system do
   let(:user2) { create(:user) }
   let(:restaurant) { create(:restaurant, user: user, country: country) }
   let!(:report) { create(:report, restaurant: restaurant, user: user) }
-  let(:country) { create(:country) }
+  let(:country) { create(:country, name: 'ブラジル') }
 
   describe 'restaurants#indexについてのテスト' do
     before do
@@ -130,7 +130,7 @@ RSpec.describe "Restaurants", type: :system do
     it '国ごとの検索結果のページが正しく表示されること' do
       create(:restaurant)
       visit search_restaurant_by_map_results_restaurant_path(id: country.id)
-      expect(page).to have_content '韓国の検索結果'
+      expect(page).to have_content 'ブラジルの検索結果'
       expect(page).to have_content '全1件'
       expect(page).to have_content(restaurant.name)
       expect(page).to have_content(restaurant.address)
