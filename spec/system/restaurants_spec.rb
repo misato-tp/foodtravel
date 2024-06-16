@@ -9,7 +9,7 @@ RSpec.describe "Restaurants", type: :system do
 
   describe 'restaurants#indexについてのテスト' do
     before do
-      create(:restaurant)
+      restaurant
       visit restaurants_path
     end
 
@@ -72,6 +72,44 @@ RSpec.describe "Restaurants", type: :system do
     end
   end
 
+  describe 'restaurants#search_restaurant_by_keywordsについてのテスト' do
+    before do
+      create(:restaurant, name: 'マクドナルド', address: '神奈川県')
+      create(:restaurant, name: 'バーガーキング', address: '神奈川県')
+      create(:restaurant, name: 'モスバーガー', address: '埼玉県')
+      visit restaurants_path
+      click_button 'お店を探す'
+    end
+
+    it 'キーワードを入力すると店名にその単語を全て含むお店がヒットすること' do
+      fill_in 'q_name_or_address_cont', with: 'マクドナルド'
+      click_on '検索'
+      expect(page).to have_content 'マクドナルドの検索結果'
+      expect(page).to have_selector '.restaurant-name', text: 'マクドナルド'
+      expect(page).to have_content '全1件'
+    end
+
+    it 'キーワードを入力すると住所にその単語を全て含むお店がヒットすること' do
+      fill_in 'q_name_or_address_cont', with: '神奈川県'
+      click_on '検索'
+      expect(page).to have_content '神奈川県の検索結果'
+      expect(page).to have_content 'マクドナルド'
+      expect(page).to have_content 'バーガーキング'
+      expect(page).not_to have_content 'モスバーガー'
+      expect(page).to have_content '全2件'
+    end
+
+    it '検索ワードに店名と住所を入力してAND検索ができること' do
+      fill_in 'q_name_or_address_cont', with: '神奈川県 マクドナルド'
+      click_on '検索'
+      expect(page).to have_content '神奈川県 マクドナルドの検索結果'
+      expect(page).to have_content 'マクドナルド'
+      expect(page).not_to have_content 'バーガーキング'
+      expect(page).not_to have_content 'モスバーガー'
+      expect(page).to have_content '全1件'
+    end
+  end
+
   describe 'restaurants#search_restaurant_by_gpsについてのテスト' do
     it '一つ前に戻るボタンで前に開いていたページに遷移できること' do
       visit restaurants_path
@@ -107,7 +145,7 @@ RSpec.describe "Restaurants", type: :system do
       end
       find('div[role="button"]').click
       expect(page).to have_selector('.gm-style-iw')
-      click_on(restaurant.name)
+      find('.gm-style-iw-d').click
       expect(page).to have_current_path(restaurant_path(id: restaurant.id))
     end
   end
@@ -186,10 +224,25 @@ RSpec.describe "Restaurants", type: :system do
       expect(page).to have_selector 'img.preview-img'
     end
 
+    it '郵便番号を入れると自動で住所が入力されること', js: true do
+      fill_in '郵便番号', with: '1000000'
+      expect(page).to have_field '住所', with: '東京都千代田区'
+    end
+
+    it '国名のフォームに文字を入力すると候補が出現すること', js: true do
+      fill_in 'どこの国の料理が食べられる？(入力すると下に候補が出ます)', with: 'ブラジル'
+      expect(page).to have_selector '.child', text: 'ブラジル'
+    end
+
     it '国名の候補をクリックするとidが入力されること', js: true do
       fill_in 'どこの国の料理が食べられる？(入力すると下に候補が出ます)', with: 'ブラジル'
       find('.child').click
       expect(find('#restaurant_country_id', visible: false).value).to eq country.id.to_s
+    end
+
+    it '「一覧に戻る」でrestaurants#indexに遷移すること' do
+      click_on '一覧に戻る'
+      expect(page).to have_current_path(restaurants_path)
     end
 
     it 'restaurantの詳細を表示できること', js: true do
