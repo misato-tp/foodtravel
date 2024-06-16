@@ -68,10 +68,10 @@ RSpec.describe "Users", type: :system do
     it 'googleで初回ログインの場合アカウントが新規作成されること', js: true do
       google_mock
       visit new_user_session_path
-      expect {
+      expect do
         find('.googleLogin').click
         expect(page).to have_content 'Google アカウントによる認証に成功しました。'
-      }.to change{ User.count }.by(1)
+      end.to change { User.count }.by(1)
     end
 
     it '2回目以降のgoogleアカウントによるログインの場合アカウントは新規作成されないこと', js: true do
@@ -81,9 +81,9 @@ RSpec.describe "Users", type: :system do
       find('li.nav-item.dropdown').click
       click_on 'ログアウト'
       click_on 'ログイン'
-      expect {
+      expect do
         find('.googleLogin').click
-      }.to change{ User.count }.by(0)
+      end.to change { User.count }.by(0)
     end
   end
 
@@ -103,7 +103,7 @@ RSpec.describe "Users", type: :system do
     before do
       clear_emails
       visit new_user_password_path
-      fill_in 'メールアドレス', with: (user.email)
+      fill_in 'メールアドレス', with: user.email
       click_on '送信'
     end
 
@@ -173,7 +173,7 @@ RSpec.describe "Users", type: :system do
       it 'お店の名前をクリックするとそのお店の詳細ページに遷移すること', js: true do
         find('#navbarDropdown').click
         click_on 'いいねしたお店'
-        click_on (restaurant.name)
+        click_on(restaurant.name)
         expect(page).to have_current_path(restaurant_path(id: restaurant.id))
         expect(page).to have_content(restaurant.name)
       end
@@ -311,7 +311,7 @@ RSpec.describe "Users", type: :system do
 
     it 'アカウントを削除することができること', js: true do
       click_on '編集'
-      expect {
+      expect do
         click_button '退会したい方はクリック'
         alert = page.driver.browser.switch_to.alert
         alert_text = alert.text
@@ -319,7 +319,7 @@ RSpec.describe "Users", type: :system do
         alert.accept
         expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'
         expect(page).to have_current_path(root_path)
-      }.to change { User.count }.by(-1)
+      end.to change { User.count }.by(-1)
     end
   end
 
@@ -388,7 +388,7 @@ RSpec.describe "Users", type: :system do
         clear_emails
         user
         visit new_user_password_path
-        fill_in 'メールアドレス', with: (user.email)
+        fill_in 'メールアドレス', with: user.email
         click_on '送信'
         open_email(user.email)
         current_email.click_link 'パスワードを変更する'
@@ -485,7 +485,7 @@ RSpec.describe "Users", type: :system do
         user
         visit new_user_registration_path
         fill_in 'ユーザー名', with: 'testuser'
-        fill_in 'メールアドレス', with: (user.email)
+        fill_in 'メールアドレス', with: user.email
         fill_in 'パスワード(6文字以上)', with: '123456'
         fill_in 'パスワード(確認用)', with: '123456'
         click_on '登録'
@@ -558,13 +558,13 @@ RSpec.describe "Users", type: :system do
       end
 
       it 'アカウントを削除するとエラーになること', js: true do
-          click_button '退会したい方はクリック'
-          alert = page.driver.browser.switch_to.alert
-          alert_text = alert.text
-          expect(alert_text).to eq '本当に削除してよろしいですか？'
-          alert.accept
-          expect(page).to have_content 'ゲストユーザーは変更・削除できません。'
-          expect(page).to have_current_path(root_path)
+        click_button '退会したい方はクリック'
+        alert = page.driver.browser.switch_to.alert
+        alert_text = alert.text
+        expect(alert_text).to eq '本当に削除してよろしいですか？'
+        alert.accept
+        expect(page).to have_content 'ゲストユーザーは変更・削除できません。'
+        expect(page).to have_current_path(root_path)
       end
     end
   end

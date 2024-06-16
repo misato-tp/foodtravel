@@ -12,7 +12,7 @@ module OmniauthMacros
           "token" => "TOKEN",
           "refresh_token" => "REFRESH_TOKEN",
           "expires_at" => 1496120719,
-          "expires" => true
+          "expires" => true,
         },
         "extra" => {
           "id_token" => "ID_TOKEN",
@@ -25,7 +25,7 @@ module OmniauthMacros
             "at_hash" => "HK6E_P6Dh8Y93mRNtsDB1Q",
             "iss" => "accounts.google.com",
             "iat" => 1496117119,
-            "exp" => 1496120719
+            "exp" => 1496120719,
           },
           "raw_info" => {
             "sub" => "100000000000000000000",
@@ -33,8 +33,8 @@ module OmniauthMacros
             "email" => "auth@email.com",
             "email_verified" => "true",
             "locale" => "ja",
-          }
-        }
+          },
+        },
       }
     )
   end
