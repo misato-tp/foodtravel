@@ -11,7 +11,7 @@ FactoryBot.define do
 
   factory :auth_hash, class: "OmniAuth::AuthHash" do
     provider { "google" }
-    uid { 123456789012345678901 }
+    uid { 100000000000000000000 }
     info do
       {
         name: "auth_user",

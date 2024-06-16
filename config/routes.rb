@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end
 
-  resources :users, only: [:edit, :update, :destroy] do
+  resources :users, only: [:update, :destroy] do
     collection do
     get :profile
     get :myrestaurants

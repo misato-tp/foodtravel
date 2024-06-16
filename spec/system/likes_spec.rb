@@ -11,10 +11,10 @@ RSpec.describe "Likes", type: :system do
 
   it 'いいねが無効の状態からrestaurantのハートを押すといいねが有効になること', js: true do
     expect(page).to have_selector('.like-button .unlike')
-    expect do
+    expect {
       find('.like-button').click
       expect(page).to have_selector('.like-button .like')
-    end.to change { Like.count }.by(1)
+    }.to change { Like.count }.by(1)
     expect(user.likes.exists?(restaurant_id: restaurant.id)).to be_truthy
   end
 

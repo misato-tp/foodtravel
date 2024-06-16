@@ -8,12 +8,12 @@
   <%= form_with model: @user, url: user_registration_path do |f| %>
     <div class="field mb-3">
       <%= f.label :username %><span class="text-danger"> ※必須</span><br>
-      <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control" %>
+      <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "username form-control" %>
     </div>
   
     <div class="field mb-3">
       <%= f.label :email %><span class="text-danger"> ※必須</span><br />
-      <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+      <%= f.email_field :email, autocomplete: "email", class: "email form-control" %>
     </div>
   
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
