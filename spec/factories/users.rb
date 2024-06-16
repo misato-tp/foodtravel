@@ -9,13 +9,13 @@ FactoryBot.define do
     password_confirmation { "password" }
   end
 
-  factory :auth_hash, class: OmniAuth::AuthHash do
+  factory :auth_hash, class: "OmniAuth::AuthHash" do
     provider { "google" }
-    uid { 123456789012345678901 }
+    uid { 100000000000000000000 }
     info do
       {
         name: "auth_user",
-        email: "auth@email.com"
+        email: "auth@email.com",
       }
     end
   end

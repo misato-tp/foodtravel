@@ -33,14 +33,14 @@
 <div class="container px-4 px-lg-5 mt-5">
   <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
   <% @restaurants.each do |r| %>
-    <div class="col mb-5">
+    <div class="restaurant-box col mb-5">
       <div class="card h-100">
         <div class="text-center">
           <div class="restaurant_image">
             <% if r.image? %>
-              <%= image_tag r.image.photo.url, class:'img-fluid mx-auto rounded-top' %>
+              <%= image_tag r.image.photo.url, class:'restaurant-img img-fluid mx-auto rounded-top' %>
             <% else %>
-              <%= image_tag "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/noimage.png", size: :photo, class:'img-fluid mx-auto rounded-top' %>
+              <%= image_tag "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/noimage.png", size: :photo, class:'restaurant-img img-fluid mx-auto rounded-top' %>
             <% end %>
           </div>
         </div>

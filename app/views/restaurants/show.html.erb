@@ -9,8 +9,8 @@
     <% if current_user %>
       <div class="edit-buttons col-auto">
         <% if current_user.id == @restaurant.user.id %>
-          <%= link_to "編集", edit_restaurant_path(@restaurant.id), data: {"turbolinks" => false}, class:"btn btn-outline-dark mt-auto" %>
-          <%= link_to "削除", restaurant_path(@restaurant.id), method: :delete, class:"btn btn-outline-danger mt-auto" %>
+          <%= link_to "編集", edit_restaurant_path(@restaurant.id), data: {"turbolinks" => false}, class:"restaurant-edit btn btn-outline-dark mt-auto" %>
+          <%= link_to "削除", restaurant_path(@restaurant.id), method: :delete, class:"restaurant-delete btn btn-outline-danger mt-auto" %>
         <% end %>
       </div>
     <% end %>
@@ -20,9 +20,9 @@
       <div class="col-md-6">
         <div class="restaurant_image">
           <% if @restaurant.image? %>
-            <%= image_tag @restaurant.image.show.url, class:"card-img-top mb-5 mb-md-0" %>
+            <%= image_tag @restaurant.image.show.url, class:"restaurant-img card-img-top mb-5 mb-md-0" %>
           <% else %>
-            <%= image_tag "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/noimage.png", size: :show, class:"card-img-top mb-5 mb-md-0" %>
+            <%= image_tag "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/noimage.png", size: :show, class:"restaurant-img card-img-top mb-5 mb-md-0" %>
           <% end %>
         </div>
       </div>
