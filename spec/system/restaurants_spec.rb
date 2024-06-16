@@ -187,7 +187,8 @@ RSpec.describe "Restaurants", type: :system do
     it 'restaurantを新規作成できること', js: true do
       fill_in 'お店の名前', with: 'Churrascaria Que bom!'
       fill_in '郵便番号(ハイフンなし)', with: '1110035'
-      existing_address = find_field('住所').value
+      sleep 1
+      existing_address = find('#restaurant_address').value
       new_address = existing_address + '2丁目15番地13-B1'
       fill_in '住所', with: new_address
       fill_in 'どこの国の料理が食べられる？(入力すると下に候補が出ます)', with: 'ブラジル'
