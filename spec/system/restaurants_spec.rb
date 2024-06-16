@@ -161,6 +161,24 @@ RSpec.describe "Restaurants", type: :system do
       expect(page).to have_current_path(restaurant_path(id: restaurant.id))
       expect(page).to have_content 'お店の登録に成功しました。投稿ありがとう！'
       expect(page).to have_content 'Churrascaria Que bom!'
+      expect(page).to have_content '〒1110035'
+      expect(page).to have_content '東京都台東区西浅草2丁目15番地13-B1'
+      expect(page).to have_content 'ブラジル料理店'
+      expect(page).to have_content '食べ放題では店員さんが焼きたてのシュラスコを持ってきてくださいます！焼きパインがシナモン効いてて大好きです'
+      expect(page).to have_selector("img[src*='test2.jpg']")
+    end
+
+    it '新規作成時に写真を無しにするとデフォルトの画像が入ること', js: true do
+      fill_in 'お店の名前', with: 'Churrascaria Que bom!'
+      fill_in '郵便番号(ハイフンなし)', with: '1110035'
+      existing_address = find_field('住所').value
+      new_address = existing_address + '2丁目15番地13-B1'
+      fill_in '住所', with: new_address
+      fill_in 'どこの国の料理が食べられる？(入力すると下に候補が出ます)', with: 'ブラジル'
+      find('.child').click
+      fill_in 'メモ・感想', with: '食べ放題では店員さんが焼きたてのシュラスコを持ってきてくださいます！焼きパインがシナモン効いてて大好きです'
+      click_on '登録'
+      expect(page).to have_selector("img[src*='noimage.png']")
     end
 
     it '写真を選択した時にプレビューが表示されること', js: true do
