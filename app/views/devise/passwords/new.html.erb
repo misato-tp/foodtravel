@@ -1,6 +1,6 @@
 <%= render "devise/shared/error_messages", resource: resource %>
 <div class="form-forgotPassword w-100 m-auto">
-<h1 class="h3 my-3 fw-normal text-center"><i class="bi bi-lock-fill"></i>&ensp;パスワードの再発行</h1>
+<h4 class="my-3 text-center">ユーザー名の確認と<br>パスワードの再発行</h4>
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <div class="form-floating pb-2">
       <%= f.email_field :email, class: "form-control", id: "floatingEmail", placeholder: "Email", type: "email" %>
@@ -13,7 +13,7 @@
   <hr>
   <div class="link py-1">
     <%= link_to new_session_path(resource_name), class: "link", data: {"turbolinks" => false} do %>
-      <i class="bi bi-lightbulb"></i>&ensp;パスワードを思い出した方はこちら
+      <i class="bi bi-lightbulb"></i>&ensp;ユーザー名・パスワードを思い出した方はこちら
     <% end %>
   </div>
   <div class="link py-1">
