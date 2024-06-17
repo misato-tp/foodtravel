@@ -39,12 +39,12 @@
                     マイページ
                   </a>
                   <ul class="dropdown-menu text-white" aria-labelledby="navbarDropdown">
-                    <li><%= link_to "いいねしたお店", likes_user_path(current_user), class: "dropdown-item text-white" %></li>
-                    <li><%= link_to "投稿したお店", myrestaurants_users_path, class: "dropdown-item text-white" %></li>
-                    <li><%= link_to "投稿したレポ", myreports_users_path, class: "dropdown-item text-white" %></li>
+                    <li><%= link_to "いいねしたお店", likes_user_path(current_user), class: "dropdown-item" %></li>
+                    <li><%= link_to "投稿したお店", myrestaurants_users_path, class: "dropdown-item" %></li>
+                    <li><%= link_to "投稿したレポ", myreports_users_path, class: "dropdown-item" %></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><%= link_to "プロフィール", profile_users_path, class: "dropdown-item text-white" %></li>
-                    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item text-white" %></li>
+                    <li><%= link_to "プロフィール", profile_users_path, class: "dropdown-item" %></li>
+                    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
                   </ul>
                 </li>
               <% else %>
