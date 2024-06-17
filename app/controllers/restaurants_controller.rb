@@ -5,14 +5,14 @@ class RestaurantsController < ApplicationController
   ]
 
   def index
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.includes(:country).all
     @q = Restaurant.ransack(params[:q])
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.includes(reports: :user).find(params[:id])
     @countries = @restaurant.country
-    @restaurant_reports = @restaurant.reports.all
+    @restaurant_reports = @restaurant.reports
   end
 
   def new
