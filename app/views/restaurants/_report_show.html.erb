@@ -1,0 +1,50 @@
+<div class="mb-4">
+  <%= link_to new_restaurant_report_path(@restaurant), class: "btn btn-warning focus-button", data: { turbolinks:"false" } do %>
+    <i class="bi bi-pencil-square"></i>&ensp;このお店のレポを書く
+  <% end %>
+</div>
+<% if @restaurant_reports.blank? %>
+  <div>投稿されたレポはまだありません。</div>
+<% else %>
+<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+  <% @restaurant_reports.each do |report| %>
+      <div class="col mb-5">
+        <div class="report card h-100">
+          <div id="report_<%= report.id %>"></div>
+            <%= image_tag report.image.card.url, class:"report-image img-fluid mx-auto rounded-top" %>
+            <div class="card-body p-4">
+              <div class="text-center">
+                <div><h5 class="report-title fw-bolder"><%= report.title %></h5></div>
+                <% if report.recommend.blank? %>
+                <% else %>
+                  <hr>
+                  <div class="badge text-bg-dark">recommend</div>
+                  <div class="report-recommend"><%= report.recommend %></div>
+                <% end %>
+                <hr>
+                <div class="report-memo"><%= report.memo %></div>
+                <hr>
+                <% if report.user.profile_image? %>
+                  <%= image_tag report.user.profile_image.url, size:"50x50", class:"user-image rounded-circle" %>
+                <% else %>
+                  <%= image_tag "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/defaultIcon.png", size:"50x50", class:"rounded-circle" %>
+                <% end %>
+                <span>by&ensp;<%= report.user.username %></span>
+              </div>
+            </div>
+            <% if current_user %>
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="row text-center">
+                  <% if current_user.id == report.user.id %>
+                    <div class="col"><%= link_to "編集", edit_restaurant_report_path(@restaurant, report),  data: { turbolinks:"false" }, class:"report-edit btn btn-outline-dark mt-auto" %></div>
+                    <div class="col"><%= link_to "削除", restaurant_report_path(report.restaurant, report), method: :delete, class:"report-delete btn btn-outline-danger mt-auto"%></div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
