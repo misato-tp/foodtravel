@@ -72,6 +72,21 @@ RSpec.describe "Restaurants", type: :system do
     end
   end
 
+  describe 'restaurants#showのログアウト時についてのテスト' do
+    before do
+      visit restaurant_path(id: restaurant.id)
+    end
+
+    it 'ページ内にreportが表示されていないこと' do
+      expect(page).not_to have_selector('.report')
+    end
+
+    it 'ログインボタンを押すとログインページに遷移すること' do
+      click_on '今すぐログインする'
+      expect(page).to have_current_path(new_user_session_path)
+    end
+  end
+
   describe 'restaurants#search_restaurant_by_keywordsについてのテスト' do
     before do
       create(:restaurant, name: 'マクドナルド', address: '神奈川県')
