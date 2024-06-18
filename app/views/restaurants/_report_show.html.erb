@@ -6,6 +6,7 @@
 <% if @restaurant_reports.blank? %>
   <div>投稿されたレポはまだありません。</div>
 <% else %>
+  <p>横スクロールで他のレポも見られます</p>
   <div class="row flex-row flex-nowrap overflow-auto gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3">
     <% @restaurant_reports.each do |report| %>
       <div class="col mb-5">
