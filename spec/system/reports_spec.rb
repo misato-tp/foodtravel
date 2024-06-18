@@ -45,8 +45,14 @@ RSpec.describe "Reports", type: :system do
       expect(page).to have_selector '.report-delete', text: '削除'
     end
 
-    it '削除ボタンを押すと投稿を消せること' do
+    it '削除ボタンを押すと投稿を消せること', js: true do
+      page.execute_script('window.scrollTo(0, document.body.scrollHeight);')
+      sleep 3
       find('.report-delete').click
+      alert = page.driver.browser.switch_to.alert
+      alert_text = alert.text
+      expect(alert_text).to eq '本当に削除してよろしいですか？'
+      alert.accept
       expect(page).to have_current_path(restaurant_path(id: restaurant.id))
       expect(page).to have_content 'レポを削除しました。'
       expect(page).to have_content '投稿されたレポはまだありません。'

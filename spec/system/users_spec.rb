@@ -314,8 +314,9 @@ RSpec.describe "Users", type: :system do
       expect do
         click_button '退会したい方はクリック'
         alert = page.driver.browser.switch_to.alert
-        alert_text = alert.text
-        expect(alert_text).to eq '本当に削除してよろしいですか？'
+        alert_text = alert.text.gsub(/\s+/, '')
+        expected_text = "本当に削除してよろしいですか？なお、投稿したお店の情報はアカウントを削除しても残りますのでご注意ください。お店を削除したい場合はヘッダーのマイページ→投稿したお店→店名をクリック→上部にある「削除」ボタンを押してください。"
+        expect(alert_text).to eq expected_text
         alert.accept
         expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'
         expect(page).to have_current_path(root_path)
