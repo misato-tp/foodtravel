@@ -8,7 +8,8 @@
 
 <img width="1440" alt="スクリーンショット 2024-06-17 13 40 03" src="https://github.com/misato-tp/foodtravel/assets/138008284/75d3acf7-7ed1-4deb-b194-94703c0921c8">
 
-<img width="216" alt="スクリーンショット 2024-06-17 13 08 53" src="https://github.com/misato-tp/foodtravel/assets/138008284/d2d7a61c-3615-4c82-ba7d-f07d012d0674">
+<img width="314" alt="スクリーンショット 2024-06-19 0 14 09" src="https://github.com/misato-tp/foodtravel/assets/138008284/3ff0edd7-3d65-4b57-aa4f-eeca3313cbbc">
+
 </div>
 
 # ⭐URL
@@ -54,14 +55,22 @@ https://foodtravel-5c7b1abd1960.herokuapp.com/ <br>
 - google mapによる詳細な場所表示
 
 ユーザーが視覚的にわかりやすく、周辺の建物を含め詳細にお店の場所がわかるように工夫をしました。
+<br><br>
 
-## ✅口コミ(レポ)の投稿
-<img width="1440" alt="レポの見本" src="https://github.com/misato-tp/foodtravel/assets/138008284/7b76ac5c-5612-4926-87c9-fce6ca7417e7">
-
+## ✅口コミ(レポ)の投稿・閲覧（ログイン必須）
+<img width="1440" alt="スクリーンショット 2024-06-19 0 15 38" src="https://github.com/misato-tp/foodtravel/assets/138008284/2294e558-2be0-4110-9627-db7da65c20a3">
 
 サイトで見つけたお店にもし行ったら、写真付きで感想をみんなでシェアできる機能です。<br>
 おすすめ料理もピックアップして表記することができます。<br>
-<br>
+
+またログインの有無でレポの閲覧が変化するように設定しています(左画像：ログイン時、右画像：ログアウト時)。<br>
+アカウント作成や、ログインをしたくなるような仕組みの1つです。
+
+<img width="500" alt="スクリーンショット 2024-06-19 0 15 38" src="https://github.com/misato-tp/foodtravel/assets/138008284/2ebf7be4-f5fc-4e4b-919d-61a7584ee7d6">
+
+<img width="500" alt="スクリーンショット 2024-06-19 0 21 51" src="https://github.com/misato-tp/foodtravel/assets/138008284/564deaa3-5520-41d6-8e5c-fa60e5a0bb08">
+
+<br><br>
 
 ## ✅豊富な検索機能
 
@@ -82,14 +91,14 @@ GooglemapAPI, Geocoderを使い、現在地を取得してお店を探せます�
 - 国から探す<br>
 Google my mapを使い、各お店に関連づけている国の情報から、国ごとにお店を検索できます。<br>
 食べたことない国のご飯が食べたいという時に活用できます。
-<br>
+<br><br>
 
 ## ✅いいね機能
 
 ![2024-06-1719 35 17-ezgif com-video-to-gif-converter](https://github.com/misato-tp/foodtravel/assets/138008284/a6d7e80b-a381-4581-8e6e-8040a9424458)
 
 お気に入りのお店をすぐに探せるように、いいね機能を実装しました。
-
+<br><br>
 
 # ⭐使用技術
 ##### 言語
@@ -129,6 +138,7 @@ Google my mapを使い、各お店に関連づけている国の情報から、�
   - 国名検索(jquery)
 - 表示機能
   - 住所からmapを表示(Google Maps JavaScript API)
+  - ログインの有無によるレポの表示切り替え機能
 - 検索機能
   - 位置情報検索(geocoder)
   - Google　my　Maps
@@ -146,7 +156,6 @@ Google my mapを使い、各お店に関連づけている国の情報から、�
 # ⭐今後の計画と反省
 - (件数が増えてきたら)ページネーションを実装したい
 - DockerやCircleCiにもう一度チャレンジしたい
-- restaurants#indexのcssにこだわりたい
 
 DockerやCircleCiは途中で導入をするのではなく最初から導入するか決めておけばよかったと反省しています。<br>
 またプログラミングスクールでは環境構築等は手順を決めていただいていたので、1から自分でおこなうものはかなり難しく感じました。<br>
