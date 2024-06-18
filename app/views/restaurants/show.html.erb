@@ -20,9 +20,9 @@
       <div class="col-md-6">
         <div class="restaurant_image">
           <% if @restaurant.image? %>
-            <%= image_tag @restaurant.image.show.url, class:"restaurant-img card-img-top mb-5 mb-md-0" %>
+            <%= image_tag @restaurant.image.url, class:"restaurant-img card-img-top mb-5 mb-md-0" %>
           <% else %>
-            <%= image_tag "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/noimage.png", size: :show, class:"restaurant-img card-img-top mb-5 mb-md-0" %>
+            <%= image_tag "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/noimage.png", class:"restaurant-img card-img-top mb-5 mb-md-0" %>
           <% end %>
         </div>
       </div>
@@ -88,7 +88,7 @@
             <div class="col mb-5">
               <div class="report card h-100">
                 <div id="report_<%= report.id %>"></div>
-                  <%= image_tag report.image.url, class:"report-image img-fluid mx-auto rounded-top" %>
+                  <%= image_tag report.image.card.url, class:"report-image img-fluid mx-auto rounded-top" %>
                   <div class="card-body p-4">
                     <div class="text-center">
                       <div><h5 class="report-title fw-bolder"><%= report.title %></h5></div>

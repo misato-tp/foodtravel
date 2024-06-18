@@ -1,6 +1,5 @@
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  process resize_to_fit: [300, 300]
 
   storage :fog
 
@@ -18,11 +17,8 @@ class ImageUploader < CarrierWave::Uploader::Base
     end
   end
 
-  version :photo do
-    process resize_to_fit: [300, 300]
-  end
-  version :show do
-    process resize_to_fit: [600, 700]
+  version :card do
+    process resize_to_fill: [500, 500]
   end
 
   def extension_allowlist
