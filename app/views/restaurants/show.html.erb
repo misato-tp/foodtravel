@@ -10,7 +10,7 @@
       <div class="edit-buttons col-auto">
         <% if current_user.id == @restaurant.user.id %>
           <%= link_to "編集", edit_restaurant_path(@restaurant.id), data: {"turbolinks" => false}, class:"restaurant-edit btn btn-outline-dark mt-auto" %>
-          <%= link_to "削除", restaurant_path(@restaurant.id), method: :delete, class:"restaurant-delete btn btn-outline-danger mt-auto" %>
+          <%= link_to "削除", restaurant_path(@restaurant.id), method: :delete, class:"restaurant-delete btn btn-outline-danger mt-auto", data: { confirm: "本当に削除してよろしいですか？" } %>
         <% end %>
       </div>
     <% end %>

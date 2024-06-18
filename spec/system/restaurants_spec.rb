@@ -296,12 +296,16 @@ RSpec.describe "Restaurants", type: :system do
         expect(page).to have_selector 'h1.display-5', text: 'Churrascaria Que bom!'
       end
 
-      it 'restaurantの削除ができること' do
+      it 'restaurantの削除ができること', js: true do
         create(:restaurant, user: user)
         visit restaurants_path
         expect(page).to have_selector('.restaurant-box', count: 2)
         first('.restaurant-box').click_on '詳細'
         find('.restaurant-delete').click
+        alert = page.driver.browser.switch_to.alert
+        alert_text = alert.text
+        expect(alert_text).to eq '本当に削除してよろしいですか？'
+        alert.accept
         expect(page).to have_current_path(restaurants_path)
         expect(page).to have_content 'お店を削除しました。'
         expect(page).to have_selector('.restaurant-box', count: 1)
