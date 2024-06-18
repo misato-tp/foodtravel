@@ -296,6 +296,11 @@ RSpec.describe "Restaurants", type: :system do
         expect(page).to have_selector 'h1.display-5', text: 'Churrascaria Que bom!'
       end
 
+      it '編集時にアップロード済みの写真がある場合はファイル名が表示されていること', js: true do
+        find('.restaurant-edit').click
+        expect(page).to have_content '現在のファイル: test.jpg'
+      end
+
       it 'restaurantの削除ができること', js: true do
         create(:restaurant, user: user)
         visit restaurants_path
