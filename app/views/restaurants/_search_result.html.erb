@@ -20,9 +20,9 @@
             <div class="text-center">
               <div class="restaurant_image">
                 <% if r.image? %>
-                  <%= image_tag r.image.photo.url, class:'img-fluid mx-auto rounded-top' %>
+                  <%= image_tag r.image.card.url, class:'img-fluid mx-auto rounded-top' %>
                 <% else %>
-                  <%= image_tag "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/noimage.png", size: :photo, class:'img-fluid mx-auto rounded-top' %>
+                  <%= image_tag "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/noimage.png", size: :card, class:'img-fluid mx-auto rounded-top' %>
                 <% end %>
               </div>
             </div>

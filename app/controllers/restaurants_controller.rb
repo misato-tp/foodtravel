@@ -10,9 +10,13 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @restaurant = Restaurant.includes(reports: :user).find(params[:id])
+    if user_signed_in?
+      @restaurant = Restaurant.includes(reports: :user).find(params[:id])
+      @restaurant_reports = @restaurant.reports
+    else
+      @restaurant = Restaurant.find(params[:id])
+    end
     @countries = @restaurant.country
-    @restaurant_reports = @restaurant.reports
   end
 
   def new

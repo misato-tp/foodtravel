@@ -298,7 +298,7 @@ RSpec.describe "Users", type: :system do
         attach_file('プロフィールアイコン', Rails.root.join('spec/fixtures/test2.jpg'))
         click_on '更新'
         click_on '編集'
-        expect(page).to have_selector "img[src*='test2.jpg']"
+        expect(page).to have_content '現在のファイル: test2.jpg'
       end
     end
   end
@@ -314,8 +314,9 @@ RSpec.describe "Users", type: :system do
       expect do
         click_button '退会したい方はクリック'
         alert = page.driver.browser.switch_to.alert
-        alert_text = alert.text
-        expect(alert_text).to eq '本当に削除してよろしいですか？'
+        alert_text = alert.text.gsub(/\s+/, '')
+        expected_text = "本当に削除してよろしいですか？なお、投稿したお店の情報はアカウントを削除しても残りますのでご注意ください。お店を削除したい場合はヘッダーのマイページ→投稿したお店→店名をクリック→上部にある「削除」ボタンを押してください。"
+        expect(alert_text).to eq expected_text
         alert.accept
         expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'
         expect(page).to have_current_path(root_path)
