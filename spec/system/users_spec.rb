@@ -298,7 +298,7 @@ RSpec.describe "Users", type: :system do
         attach_file('プロフィールアイコン', Rails.root.join('spec/fixtures/test2.jpg'))
         click_on '更新'
         click_on '編集'
-        expect(page).to have_selector "img[src*='test2.jpg']"
+        expect(page).to have_content '現在のファイル: test2.jpg'
       end
     end
   end
