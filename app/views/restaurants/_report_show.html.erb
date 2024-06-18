@@ -37,7 +37,7 @@
                 <div class="row text-center">
                   <% if current_user.id == report.user.id %>
                     <div class="col"><%= link_to "編集", edit_restaurant_report_path(@restaurant, report),  data: { turbolinks:"false" }, class:"report-edit btn btn-outline-dark mt-auto" %></div>
-                    <div class="col"><%= link_to "削除", restaurant_report_path(report.restaurant, report), method: :delete, class:"report-delete btn btn-outline-danger mt-auto"%></div>
+                    <div class="col"><%= link_to "削除", restaurant_report_path(report.restaurant, report), method: :delete, class:"report-delete btn btn-outline-danger mt-auto", data: { confirm: "本当に削除してよろしいですか？" }%></div>
                   <% end %>
                 </div>
               </div>
