@@ -4,9 +4,9 @@
 <div class="container px-4 px-lg-5 my-5 text-center">
   <div class="card mx-auto" style="width: 18rem;">
     <% if @user.profile_image? %>
-      <%= image_tag @user.profile_image.url, class:"card-image-top img-fluid mx-auto rounded-top" %>
+      <%= image_tag @user.profile_image.card.url, class:"card-image-top img-fluid mx-auto rounded-top" %>
     <% else %>
-      <%= image_tag "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/defaultIcon.png", class:"card-image-top img-fluid mx-auto rounded-top" %>
+      <%= image_tag "https://#{ENV['AWS_BUCKET_NAME']}.s3.#{ENV['AWS_REGION']}.amazonaws.com/app-images/defaultIcon.png", size: :card, class:"card-image-top img-fluid mx-auto rounded-top" %>
     <% end %>
     <div class="card-body">
       <h5 class="card-title"><%= current_user.username %></h5>
