@@ -37,7 +37,7 @@
       <div>お気に入りのお店をみんなに紹介しよう！</div>
       <p>※お店を紹介するにはログインが必要です。</p>
       <p>
-        <%= link_to "restaurants/new", class:"btn btn-warning" do %>
+        <%= link_to "restaurants/new", class:"btn btn-warning", data: {"turbolinks" => false} do %>
           みんなに紹介する &raquo;
         <% end %>
         </p>
