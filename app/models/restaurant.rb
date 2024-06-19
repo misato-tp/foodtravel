@@ -31,11 +31,11 @@ class Restaurant < ApplicationRecord
     prefectures = ['都', '道', '府', '県']
     cities = ['市', '区', '町', '村']
 
-    unless address.present? && prefectures.any? { |prefecture| address.include?(prefecture) }
+    if address.blank? || !prefectures.any? { |prefecture| address.include?(prefecture) }
       errors.add(:address, "に都道府県名を入力してください")
     end
 
-    unless address.present? && cities.any? { |city| address.include?(city) }
+    if address.blank? || !cities.any? { |city| address.include?(city) }
       errors.add(:address, "に市区町村名を入力してください")
     end
   end
