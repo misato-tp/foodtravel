@@ -13,6 +13,16 @@ RSpec.describe Restaurant, type: :model do
         restaurant = build(:restaurant, image: nil, memo: nil)
         expect(restaurant).to be_valid
       end
+
+      it 'postal_codeが7桁であれば登録が有効であること' do
+        restaurant = build(:restaurant, postal_code: '1234567')
+        expect(restaurant).to be_valid
+      end
+
+      it '住所に「都道府県」のいずれか1つと「市区町村」のいずれか1つを含んでいれば登録が有効であること' do
+        restaurant = build(:restaurant, address: '東京都千代田区')
+        expect(restaurant).to be_valid
+      end
     end
 
     context '投稿不可能な場合' do
@@ -28,10 +38,40 @@ RSpec.describe Restaurant, type: :model do
         expect(restaurant.errors[:postal_code]).to include('を入力してください')
       end
 
+      it 'postal_codeに数字以外が入力されると登録が無効であること' do
+        restaurant = build(:restaurant, postal_code: 'あいうえお')
+        restaurant.valid?
+        expect(restaurant.errors[:postal_code]).to include('は数字を7桁入力してください')
+      end
+
+      it 'postal_codeに入力された数字が6文字だと登録が無効であること' do
+        restaurant = build(:restaurant, postal_code: '123456')
+        restaurant.valid?
+        expect(restaurant.errors[:postal_code]).to include('は数字を7桁入力してください')
+      end
+
+      it 'postal_codeに入力された数字が8文字だと登録が無効であること' do
+        restaurant = build(:restaurant, postal_code: '12345678')
+        restaurant.valid?
+        expect(restaurant.errors[:postal_code]).to include('は数字を7桁入力してください')
+      end
+
       it 'addressなしでは登録が無効であること' do
         restaurant = build(:restaurant, address: nil)
         restaurant.valid?
         expect(restaurant.errors[:address]).to include('を入力してください')
+      end
+
+      it 'addressに都道府県名が入っていないと登録が無効であること' do
+        restaurant = build(:restaurant, address: '千代田区')
+        restaurant.valid?
+        expect(restaurant.errors[:address]).to include('に都道府県名を入力してください')
+      end
+
+      it 'addressに市区町村が入っていないと登録が無効であること' do
+        restaurant = build(:restaurant, address: '東京都')
+        restaurant.valid?
+        expect(restaurant.errors[:address]).to include('に市区町村名を入力してください')
       end
 
       it 'nameが重複していると登録ができないこと' do
