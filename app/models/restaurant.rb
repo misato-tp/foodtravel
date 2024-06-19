@@ -3,8 +3,8 @@ class Restaurant < ApplicationRecord
     validates :name, :postal_code, :address
   end
   validate :name_uniqueness_check
-  validate :address_accurary_check
-  validate :postal_code_accurary_check
+  validate :address_correct_check
+  validate :postal_code_correct_check
 
   mount_uploader :image, ImageUploader
 
@@ -27,7 +27,7 @@ class Restaurant < ApplicationRecord
     end
   end
 
-  def address_accurary_check
+  def address_correct_check
     prefectures = ['都', '道', '府', '県']
     cities = ['市', '区', '町', '村']
 
@@ -40,7 +40,7 @@ class Restaurant < ApplicationRecord
     end
   end
 
-  def postal_code_accurary_check
+  def postal_code_correct_check
     return if postal_code.blank?
     postal_code_str = postal_code.to_s
 
