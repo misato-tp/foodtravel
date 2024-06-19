@@ -358,6 +358,26 @@ RSpec.describe "Restaurants", type: :system do
       expect(page).to have_content '郵便番号を入力してください'
     end
 
+    it '郵便番号に数字以外の文字が入っているとエラーになること', js: true do
+      fill_in 'お店の名前', with: 'Churrascaria Que bom!'
+      fill_in '郵便番号(ハイフンなし)', with: 'あいうえお'
+      fill_in '住所', with: '東京都台東区西浅草2丁目15番地13-B1'
+      fill_in 'どこの国の料理が食べられる？(入力すると下に候補が出ます)', with: 'ブラジル'
+      find('.child').click
+      click_on '登録'
+      expect(page).to have_content 'は数字を7桁入力してください'
+    end
+
+    it '郵便番号の桁数が間違っているとエラーになること', js: true do
+      fill_in 'お店の名前', with: 'Churrascaria Que bom!'
+      fill_in '郵便番号(ハイフンなし)', with: '12345678'
+      fill_in '住所', with: '東京都台東区西浅草2丁目15番地13-B1'
+      fill_in 'どこの国の料理が食べられる？(入力すると下に候補が出ます)', with: 'ブラジル'
+      find('.child').click
+      click_on '登録'
+      expect(page).to have_content 'は数字を7桁入力してください'
+    end
+
     it '住所が空欄だとエラーになること', js: true do
       fill_in 'お店の名前', with: 'Churrascaria Que bom!'
       fill_in '郵便番号(ハイフンなし)', with: '1110035'
@@ -366,6 +386,28 @@ RSpec.describe "Restaurants", type: :system do
       page.execute_script("document.getElementById('restaurant_address').value = ''")
       click_on '登録'
       expect(page).to have_content '住所を入力してください'
+    end
+
+    it '住所に都道府県名が入っていないとエラーになること', js: true do
+      fill_in 'お店の名前', with: 'Churrascaria Que bom!'
+      fill_in '郵便番号(ハイフンなし)', with: '1110035'
+      fill_in 'どこの国の料理が食べられる？(入力すると下に候補が出ます)', with: 'ブラジル'
+      find('.child').click
+      page.execute_script("document.getElementById('restaurant_address').value = ''")
+      fill_in '住所', with: '台東区西浅草2丁目15番地13-B1'
+      click_on '登録'
+      expect(page).to have_content 'に都道府県名を入力してください'
+    end
+
+    it '住所に市区町村名が入っていないとエラーになること', js: true do
+      fill_in 'お店の名前', with: 'Churrascaria Que bom!'
+      fill_in '郵便番号(ハイフンなし)', with: '1110035'
+      fill_in 'どこの国の料理が食べられる？(入力すると下に候補が出ます)', with: 'ブラジル'
+      find('.child').click
+      page.execute_script("document.getElementById('restaurant_address').value = ''")
+      fill_in '住所', with: '東京都西浅草2丁目15番地13-B1'
+      click_on '登録'
+      expect(page).to have_content 'に市区町村名を入力してください'
     end
 
     it '国名が空欄だとエラーになること', js: true do
