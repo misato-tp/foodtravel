@@ -43,13 +43,10 @@ class Restaurant < ApplicationRecord
   def postal_code_correct_check
     return if postal_code.blank?
     postal_code_str = postal_code.to_s
+    postal_code_digit = 7
 
-    unless postal_code_str.length == 7
-      errors.add(:postal_code, "は7桁入力してください")
-    end
-
-    unless postal_code_str.match?(/\A\d+\z/)
-      errors.add(:postal_code, "には数字のみ入力してください")
+    unless postal_code_str.length == postal_code_digit
+      errors.add(:postal_code, "は数字を7桁入力してください")
     end
   end
 end
