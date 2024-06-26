@@ -14,6 +14,7 @@ import "./preview"
 import "./jquery.jpostal.js"
 import "./country.js"
 import "./flash_messages.js"
+import Raty from './raty.js';
 import "@fortawesome/fontawesome-free/js/all";
 
 Rails.start()
@@ -30,4 +31,14 @@ ActiveStorage.start()
         "#restaurant_address.form-control": "%3%4%5%6%7"
       }
     });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const ratyElement = document.querySelector('[data-raty]');
+    if (ratyElement) {
+      new Raty(ratyElement, {
+        starOff: '/assets/star-off.png',
+        starOn: '/assets/star-on.png'
+      }).init();
+    }
   });
