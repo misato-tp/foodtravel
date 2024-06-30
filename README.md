@@ -72,9 +72,9 @@ https://foodtravel-5c7b1abd1960.herokuapp.com/ <br>
 またログインの有無でレポの閲覧が変化するように設定しています(上画像：ログイン時、下画像：ログアウト時)。<br>
 アカウント作成や、ログインをしたくなるような仕組みの1つです。
 
-<img width="500" alt="スクリーンショット 2024-06-19 0 15 38" src="https://github.com/misato-tp/foodtravel/assets/138008284/2ebf7be4-f5fc-4e4b-919d-61a7584ee7d6">
+<img width="1000" alt="スクリーンショット 2024-06-19 0 15 38" src="https://github.com/misato-tp/foodtravel/assets/138008284/2ebf7be4-f5fc-4e4b-919d-61a7584ee7d6">
 
-<img width="500" alt="スクリーンショット 2024-06-19 0 21 51" src="https://github.com/misato-tp/foodtravel/assets/138008284/564deaa3-5520-41d6-8e5c-fa60e5a0bb08">
+<img width="1000" alt="スクリーンショット 2024-06-19 0 21 51" src="https://github.com/misato-tp/foodtravel/assets/138008284/564deaa3-5520-41d6-8e5c-fa60e5a0bb08">
 
 <br><br>
 
