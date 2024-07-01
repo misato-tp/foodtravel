@@ -1,16 +1,30 @@
-<div id= "star_<%= report.id %>"></div>
-<script>
-  $(document).on('turbolinks:load', function() {
-    let elem = document.querySelector('#star_<%= report.id %>');
-    if (elem == null) return;
-
-    elem.innerHTML = "";
-    let opt = {  
-      starOn: "<%= asset_path('star-on.png') %>",
-      starOff: "<%= asset_path('star-off.png') %>",
-      score: "<%= report.star %>",
-      readOnly: true,
-    };
-    raty(elem, opt);
-  });
-</script>
+<% if controller.controller_name == 'restaurants' && controller.action_name == 'index' %>
+<div id="star_average<%= restaurant.id %>"></div>
+  <script>
+    $(document).on('turbolinks:load', function() {
+      $('#star_average<%= restaurant.id %>').raty({
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        readOnly: true,
+        score: <%= restaurant.average_star %>
+      });
+    });
+  </script>
+<% else %>
+  <div id= "star_<%= report.id %>"></div>
+  <script>
+    $(document).on('turbolinks:load', function() {
+      let elem = document.querySelector('#star_<%= report.id %>');
+      if (elem == null) return;
+  
+      elem.innerHTML = "";
+      let opt = {  
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        score: "<%= report.star %>",
+        readOnly: true,
+      };
+      raty(elem, opt);
+    });
+  </script>
+<% end %>
