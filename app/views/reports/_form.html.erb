@@ -10,10 +10,26 @@
         <%= f.text_field :title, class: "form-control mb-3" %>
       </li>
       <li>
-        <%= f.label :star, '評価' %><span class="text-danger"> ※必須</span>
-        <%= f.hidden_field :star, id: :review_star %>
-        <div data-raty></div>
-        <script src="raty.js"></script>
+      <%= f.label :star, '評価' %><span class="text-danger"> ※必須</span>
+        <% if report.id.nil? %>
+          <%= f.hidden_field :star, class: "form-control mb-3", id: :review_star %>
+          <div id="post-raty"></div>
+          <script>
+            $(document).on('turbolinks:load', function() {
+              let elem = document.querySelector('#post-raty');
+              if (elem == null) return;
+              elem.innerHTML = ""
+              let opt = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                scoreName: 'report[star]',
+              };
+              raty(elem,opt);
+            });
+          </script>
+        <% else %>
+          <%= render "star_rate", report: report %>
+        <% end %>
       </li>
       <li><i class="bi bi-hand-thumbs-up"></i>
         <%= f.label :recommend, "おすすめの料理" %>

@@ -33,12 +33,8 @@ ActiveStorage.start()
     });
   });
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const ratyElement = document.querySelector('[data-raty]');
-    if (ratyElement) {
-      new Raty(ratyElement, {
-        starOff: '/assets/star-off.png',
-        starOn: '/assets/star-on.png'
-      }).init();
-    }
-  });
+  window.raty = function(elem,opt) {
+    let raty = new Raty(elem,opt)
+    raty.init();
+    return raty;
+  }
