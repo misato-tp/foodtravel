@@ -10,13 +10,15 @@
         <%= f.text_field :title, class: "form-control mb-3" %>
       </li>
       <li>
-      <%= f.label :star, '評価' %><span class="text-danger"> ※必須</span>
         <% if report.id.nil? %>
-          <%= f.hidden_field :star, class: "form-control mb-3", id: :review_star %>
-          <div id="post-raty"></div>
+          <i class="bi bi-star-fill"></i>
+          <%= f.label :star, '評価(1~5)', for: 'review_star' %>
+          <span class="text-danger"> ※必須 ※登録後再評価はできません</span>
+          <%= f.hidden_field :star, id: 'review_star' %>
+          <div id="report-raty", class="mb-3"></div>
           <script>
             $(document).on('turbolinks:load', function() {
-              let elem = document.querySelector('#post-raty');
+              let elem = document.querySelector('#report-raty');
               if (elem == null) return;
               elem.innerHTML = ""
               let opt = {
@@ -28,7 +30,10 @@
             });
           </script>
         <% else %>
-          <%= render "star_rate", report: report %>
+          <div class="mb-3"><i class="bi bi-star-fill"></i>
+            評価(1~5)<span class="text-danger"> ※必須 ※登録後編集はできません</span>
+            <%= render "star_rate", report: report %>
+          </div>
         <% end %>
       </li>
       <li><i class="bi bi-hand-thumbs-up"></i>
