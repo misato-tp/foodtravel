@@ -90,6 +90,7 @@ Report.create!([
     title: "イギリスの朝食",
     remote_image_url: "#{base_url}/app-images/WORLD-BREAKFAST-ALLDAY-food.JPG",
     recommend: "English breakfast",
+    star: 5.0,
     memo: "イギリスの定番朝ごはん「フルブレックファスト」をいただきました。おいしかったです！",
     user_id: seed_user.id,
     restaurant_id: Restaurant.first.id
@@ -97,6 +98,7 @@ Report.create!([
   {
     title: "ボリューミーで◎",
     remote_image_url: "#{base_url}/app-images/kangansurure-food.jpeg",
+    star: 4.0,
     memo: "韓国料理が気軽に楽しめます。",
     user_id: seed_user.id,
     restaurant_id: Restaurant.second.id
@@ -105,6 +107,7 @@ Report.create!([
     title: "見た目も楽しい料理",
     remote_image_url: "#{base_url}/app-images/spainmura-food.jpeg",
     recommend: "パエリア",
+    star: 5.0,
     memo: "素敵なパエリアをいただきました。魚介の旨みが詰まっています！",
     user_id: seed_user.id,
     restaurant_id: Restaurant.third.id
@@ -112,6 +115,7 @@ Report.create!([
   {
     title: "コースに満足です",
     remote_image_url: "#{base_url}/app-images/spainmura-food2.JPG",
+    star: 5.0,
     memo: "どのお料理も満足でした",
     user_id: seed_user.id,
     restaurant_id: Restaurant.third.id
@@ -119,6 +123,7 @@ Report.create!([
   {
     title: "ゆっくり楽しめました",
     remote_image_url: "#{base_url}/app-images/spainmura-food3.jpg",
+    star: 5.0,
     memo: "お店の雰囲気もよく、お酒と料理を楽しめます",
     user_id: seed_user.id,
     restaurant_id: Restaurant.third.id
@@ -126,6 +131,7 @@ Report.create!([
   {
     title: "初ペルー料理",
     remote_image_url: "#{base_url}/app-images/aldo-food2.JPG",
+    star: 4.0,
     memo: "初めてペルー料理をいただきましたが、思ったよりクセがなく美味しいものばかりです！",
     user_id: seed_user.id,
     restaurant_id: Restaurant.fourth.id
@@ -134,6 +140,7 @@ Report.create!([
     title: "香りがいい！",
     remote_image_url: "#{base_url}/app-images/kainan-food.JPG",
     recommend: "シンガポールチキンライス",
+    star: 4.0,
     memo: "特にソース、ライスの香りがとてもよかったです。",
     user_id: seed_user.id,
     restaurant_id: Restaurant.fifth.id
