@@ -28,6 +28,7 @@
       </div>
       <div class="col-md-6">
         <h1 class="display-5 fw-bolder"><%= @restaurant.name %></h1><%= render "likes/like", restaurant: @restaurant %></h1>
+        <p>★ : <%= @restaurant.average_star %>/5</p>
         <ul class="list-unstyled">
           <li class="mb-2">〒<%= @restaurant.postal_code %></li>
           <li class="mb-2"><%= @restaurant.address %></li>
