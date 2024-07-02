@@ -14,6 +14,7 @@ import "./preview"
 import "./jquery.jpostal.js"
 import "./country.js"
 import "./flash_messages.js"
+import Raty from './raty.js';
 import "@fortawesome/fontawesome-free/js/all";
 
 Rails.start()
@@ -31,3 +32,9 @@ ActiveStorage.start()
       }
     });
   });
+
+  window.raty = function(elem,opt) {
+    let raty = new Raty(elem,opt)
+    raty.init();
+    return raty;
+  }
