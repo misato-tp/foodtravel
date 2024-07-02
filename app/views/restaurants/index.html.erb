@@ -49,6 +49,11 @@
             <h5 class="fw-bolder"><%= r.name %></h5>
             <p><%= r.address %></p>
             <p><%= r.country.name %></p>
+            <% if r.average_star == 0.0 %>
+              <p>★ : 評価はまだありません</p>
+            <% else %>
+              <p>★ : <%= r.average_star %>/5</p>
+            <% end %>
           </div>
         </div>
         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">

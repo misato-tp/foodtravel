@@ -16,6 +16,8 @@
           <div class="card-body p-4">
             <div class="text-center">
               <div><h5 class="report-title fw-bolder"><%= report.title %></h5></div>
+              <hr>
+              <%= render "reports/star_rate", report: report %>
               <% if report.recommend.blank? %>
               <% else %>
                 <hr>
