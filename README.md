@@ -14,7 +14,8 @@
 
 <img width="1440" alt="スクリーンショット 2024-06-17 13 40 03" src="https://github.com/misato-tp/foodtravel/assets/138008284/75d3acf7-7ed1-4deb-b194-94703c0921c8">
 
-<img width="314" alt="スクリーンショット 2024-06-19 0 14 09" src="https://github.com/misato-tp/foodtravel/assets/138008284/3ff0edd7-3d65-4b57-aa4f-eeca3313cbbc">
+<img width="311" alt="スクリーンショット 2024-07-03 16 56 16" src="https://github.com/misato-tp/foodtravel/assets/138008284/6cd6601d-0c9e-4bd8-bfb9-d7a44e690d8e">
+
 
 </div>
 
@@ -42,7 +43,7 @@ https://foodtravel-5c7b1abd1960.herokuapp.com/ <br>
 みなさまにこのwebアプリを通じて、素敵なお店との出会い、発見、体験を提供できましたら幸いです。
 
 # ⭐ER図
-![空白の図](https://github.com/misato-tp/foodtravel/assets/138008284/0d5b22c7-0f84-43a6-acc5-1c5dbf00ed9f)
+![空白の図 (1)](https://github.com/misato-tp/foodtravel/assets/138008284/61c6e72c-7998-4042-a3ed-6b35a4d52f99)
 
 
 # ⭐メイン機能
@@ -53,8 +54,10 @@ https://foodtravel-5c7b1abd1960.herokuapp.com/ <br>
 - 郵便番号を入れると自動で住所が入力される機能
 - 国名をインクリメンタルサーチで候補を出力
 - 画像を選択した際にはプレビューを表示
+<br><br>
 
-<img width="600" alt="お店の詳細ページ" src="https://github.com/misato-tp/foodtravel/assets/138008284/4603208c-d851-44df-ba0b-312c7aeaafa0">
+<img width="957" alt="スクリーンショット 2024-07-03 17 24 57" src="https://github.com/misato-tp/foodtravel/assets/138008284/2620ed36-d567-4e71-a018-f851d0c9516b">
+
 
 お店の詳細ページでは、
 - 画像をメインとした表示
@@ -64,17 +67,16 @@ https://foodtravel-5c7b1abd1960.herokuapp.com/ <br>
 <br><br>
 
 ## ✅口コミ(レポ)の投稿・閲覧（ログイン必須）
-<img width="1440" alt="スクリーンショット 2024-06-19 0 15 38" src="https://github.com/misato-tp/foodtravel/assets/138008284/2294e558-2be0-4110-9627-db7da65c20a3">
+<img width="887" alt="スクリーンショット 2024-07-03 17 08 25" src="https://github.com/misato-tp/foodtravel/assets/138008284/d7da3cf4-8743-4922-bffe-605903a4e97c">
 
 サイトで見つけたお店にもし行ったら、写真付きで感想をみんなでシェアできる機能です。<br>
-おすすめ料理もピックアップして表記することができます。<br>
+おすすめ料理もピックアップや、星の5段階評価も表記することができます。<br>
 
-またログインの有無でレポの閲覧が変化するように設定しています(上画像：ログイン時、下画像：ログアウト時)。<br>
+またログインの有無でレポの閲覧が変化するように設定しています(下画像：ログアウト時はレポが見られなくなっています)。<br>
 アカウント作成や、ログインをしたくなるような仕組みの1つです。
 
-<img width="1000" alt="スクリーンショット 2024-06-19 0 15 38" src="https://github.com/misato-tp/foodtravel/assets/138008284/2ebf7be4-f5fc-4e4b-919d-61a7584ee7d6">
+<img width="887" alt="スクリーンショット 2024-07-03 17 08 42" src="https://github.com/misato-tp/foodtravel/assets/138008284/ed5e61fc-2d0c-46d0-8d81-81b514154247">
 
-<img width="1000" alt="スクリーンショット 2024-06-19 0 21 51" src="https://github.com/misato-tp/foodtravel/assets/138008284/564deaa3-5520-41d6-8e5c-fa60e5a0bb08">
 
 <br><br>
 
@@ -142,6 +144,7 @@ Google my mapを使い、各お店に関連づけている国の情報から、�
   - 住所自動入力(jp_prefecture)
   - 画像プレビュー(jquery)
   - 国名検索(jquery)
+  - レビューの星評価機能(raty) 2024/07/02追加機能
 - 表示機能
   - 住所からmapを表示(Google Maps JavaScript API)
   - ログインの有無によるレポの表示切り替え機能
