@@ -3,7 +3,7 @@
   <i class="bi bi-arrow-left"></i>一覧に戻る
 <% end %>
   <%= form_with model: restaurant do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
+    <%= render "shared/error_messages", object: f.object %>
     <div class="field mb-3">
       <i class="bi bi-shop"></i>
       <%= f.label :name, "お店の名前" %><span class="text-danger"> ※必須</span>
@@ -17,7 +17,7 @@
     <div class="field mb-3">
       <i class="bi bi-geo-alt-fill"></i>
       <%= f.label :address, "住所" %><span class="text-danger"> ※必須</span>
-      <%= f.text_field :address, id: "restaurant_address", autocomplete: "address", class: "form-control"  %>
+      <%= f.text_field :address, id: "restaurant_address", autocomplete: "address", class: "form-control" %>
     </div>
     <div class="field mb-4">
       <i class="bi bi-globe2"></i>
@@ -42,7 +42,7 @@
       <%= f.text_area :memo, class: "form-control" %>
     </div>
     <div class="field mb-3 d-flex justify-content-end">
-      <%= f.submit '登録', class: "btn btn-primary col-md-3" %>
+      <%= f.submit "登録", class: "btn btn-primary col-md-3" %>
     </div>
   <% end %>
 </div>

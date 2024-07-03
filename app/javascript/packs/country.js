@@ -1,4 +1,4 @@
-window.addEventListener('load', function() {
+window.addEventListener("load", function() {
   const inputElement = document.getElementById("restaurant_country");
 
   // ひらがなをカタカナに変換する関数
@@ -8,7 +8,7 @@ window.addEventListener('load', function() {
     });
   }
 
-  inputElement.addEventListener('keyup', (e) => {
+  inputElement.addEventListener("keyup", (e) => {
     const input = toKatakana(document.getElementById("restaurant_country").value);
     const baseUrl = window.location.origin;
 
@@ -16,29 +16,29 @@ window.addEventListener('load', function() {
       .then(response => response.json())
       .then(data => {
         const countryNames = data.keyword;
-        const searchResult = document.getElementById('search-result');
-        searchResult.innerHTML = '';
+        const searchResult = document.getElementById("search-result");
+        searchResult.innerHTML = "";
 
         countryNames.forEach(function(country) {
-          const parentsElement = document.createElement('div');
+          const parentsElement = document.createElement("div");
           const childElement = document.createElement("div");
 
-          parentsElement.setAttribute('id', 'parents');
-          childElement.setAttribute('id', country.id);
-          childElement.setAttribute('class', 'child');
+          parentsElement.setAttribute("id", "parents");
+          childElement.setAttribute("id", country.id);
+          childElement.setAttribute("class", "child");
 
           parentsElement.appendChild(childElement);
           childElement.innerHTML = country.name;
           searchResult.appendChild(parentsElement);
 
           const clickElement = document.getElementById(country.id);
-          clickElement.addEventListener('click', () => {
+          clickElement.addEventListener("click", () => {
             document.getElementById("restaurant_country").value = clickElement.textContent;
             document.getElementById("restaurant_country_id").value = country.id;
-            searchResult.innerHTML = '';
+            searchResult.innerHTML = "";
           });
         });
       })
-      .catch(error => console.error('Error:', error));
+      .catch(error => console.error("Error:", error));
   });
 });
